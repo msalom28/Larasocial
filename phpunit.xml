@@ -12,12 +12,13 @@
     <testsuites>
         <testsuite name="Application Test Suite">
             <directory>./tests/</directory>
+            <directory>./tests/controllers/TestRegistrationController.php</directory>
         </testsuite>
     </testsuites>
     <php>
         <env name="APP_ENV" value="testing"/>
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
-        <env name="QUEUE_DRIVER" value="sync"/>
+        <env name="DB_PATH" value="storage/database.sqlite"/>
     </php>
 </phpunit>

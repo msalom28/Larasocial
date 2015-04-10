@@ -1,3 +1,118 @@
-body{
-	color: red;
+$primary-color: #cc3341;
+
+@mixin primary-button{
+	.btn-primary{
+		background-color: #3E474F;
+		border-color: #3E474F;
+		color: #EBEBEB;
+		&:hover{
+			background-color: #2E353B;
+			border-color: #2E353B;
+		}
+	}
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+
+@include primary-button;
+  margin-bottom: 15px;
+  position: relative;
+
+  > .container {
+
+  padding: 35px 20px 0;
+  margin-bottom: 10px;
+  overflow: hidden;
+  }
+
+}
+
+  #registration-form{
+  	margin-top: 47px;
+  }
+
+  #main-title{
+
+  	margin-top: 30px;
+
+  	font-family: 'Source Sans Pro', sans-serif;
+
+  	h1{
+  		font-weight: 300;
+  	}
+
+  	h2{
+  		font-weight: 200;
+  	}
+  }
+
+  .navbar{
+
+  		background-color: $primary-color;
+		border-radius: 0px;
+		border-color: $primary-color;
+		position: fixed;
+		z-index: 100;
+		width: 100%;
+
+		a{
+			color: white;
+			text-decoration: none;
+		}
+
+		.navbar-brand{		
+			font-family: 'Source Sans Pro', sans-serif;
+			font-weight: 650;
+			color: white;
+		}
+	}
+
+	.footer {
+
+	  position: fixed;
+	  bottom: 0;
+	  width: 100%;
+	   /*Set the fixed height of the footer here */
+	  height: 35px;
+	  background-color: #EBEBEB;
+	  padding-top: 14px;
+	  z-index: 100;
+	}
+
+.avatar{
+
+	border: 1px solid #FFF;
+	}
+
+	.large-avatar{
+
+		width: 70px;
+		height: 70px;
+	}
+
+	.medium-avatar{
+
+		width: 40px;
+		height: 40px
+	}
+
+	.small-avatar{
+
+		border: 1px solid #FFF;
+		width: 25px;
+		height: 25px
+	}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+  color: #fff;
+  background-color: $primary-color;
+}
+
+.navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-text {
+  color: white;
 }
