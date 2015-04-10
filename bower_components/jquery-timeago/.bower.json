@@ -1,0 +1,24 @@
+{
+  "name": "jquery-timeago",
+  "version": "1.4.1",
+  "license": "MIT",
+  "main": "jquery.timeago.js",
+  "ignore": [
+    "test",
+    "vendor"
+  ],
+  "dependencies": {
+    "jquery": ">=1.4"
+  },
+  "homepage": "https://github.com/rmm5t/jquery-timeago",
+  "_release": "1.4.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.4.1",
+    "commit": "bf9d361e4e939286777751f4457af54b2e000c7c"
+  },
+  "_source": "git://github.com/rmm5t/jquery-timeago.git",
+  "_target": "~1.4.1",
+  "_originalSource": "jquery-timeago",
+  "_direct": true
+}
