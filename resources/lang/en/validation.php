@@ -86,9 +86,21 @@ return [
 	*/
 
 	'custom' => [
-		'attribute-name' => [
-			'rule-name' => 'custom-message',
+		'firstname' => [
+			'required' => 'Your first name is required.',
+			'min:2'	   => 'Your first name must have at least 2 characters.',
+			'alpha'    => 'Your first name may only contain letters.',
 		],
+		'lastname' => [
+			'required' => 'Your last name is required.',
+			'min:2'	   => 'Your last name must have at least 2 characters.',
+			'alpha'    => 'Your last name may only contain letters.',
+		],
+		'profileimage' =>[
+			'required' => 'Your profile image is required.',
+			'image'	   => 'Your profile image file must be an image.',
+			'mimes'    => 'Your profile image must be a file of type: jpeg, jpg, bmp, png, or gif.'
+		]
 	],
 
 	/*
