@@ -13,6 +13,7 @@
         <testsuite name="Application Test Suite">
             <directory>./tests/</directory>
             <directory>./tests/controllers/TestRegistrationController.php</directory>
+            <directory>./tests/commands/TestRegisterUserCommand.php</directory>
         </testsuite>
     </testsuites>
     <php>
