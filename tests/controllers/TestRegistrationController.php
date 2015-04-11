@@ -20,7 +20,7 @@ class TestRegistrationController extends TestCase
 		
 		/** PLEASE READ **
 		 *
-		 * This test was intended for a different result, we need to figure out how to test files attached...
+		 * This test was intended for a different result, we need to figure out how to test files attached with PHPUnit...
 		 */
 
 		$this->setExpectedException('ErrorException');

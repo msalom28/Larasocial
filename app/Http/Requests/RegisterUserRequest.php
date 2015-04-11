@@ -21,6 +21,9 @@ class RegisterUserRequest extends Request {
 	 */
 	public function rules()
 	{
+
+		$timestamp = strtotime('-15 years');
+
 		return [
 			'firstname'				=>	'required|min:2|alpha',
 			'lastname'				=>	'required|min:2|alpha',
@@ -30,7 +33,7 @@ class RegisterUserRequest extends Request {
 			'gender'				=>	'required|alpha|size:1',
 			'month'					=>	'required|numeric|between:01,12',
 			'day'					=>	'required|numeric|between:01,31',			
-			'year'					=>	'required|numeric|before:'.date('Y'),
+			'year'					=>	'required|numeric|before:'.date('Y', $timestamp),
 			'profileimage'			=>	'required|image|mimes:jpeg,jpg,bmp,png,gif'
 		];
 	}

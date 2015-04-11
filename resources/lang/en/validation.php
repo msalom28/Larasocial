@@ -88,12 +88,12 @@ return [
 	'custom' => [
 		'firstname' => [
 			'required' => 'Your first name is required.',
-			'min:2'	   => 'Your first name must have at least 2 characters.',
+			'min'	   => 'Your first name must have at least 2 characters.',
 			'alpha'    => 'Your first name may only contain letters.',
 		],
 		'lastname' => [
 			'required' => 'Your last name is required.',
-			'min:2'	   => 'Your last name must have at least 2 characters.',
+			'min'	   => 'Your last name must have at least 2 characters.',
 			'alpha'    => 'Your last name may only contain letters.',
 		],
 		'profileimage' =>[
