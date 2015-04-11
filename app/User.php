@@ -57,4 +57,18 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $user;
 	}
 
+	/**
+	 * Update the online status of current user
+	 *	
+	 * @param int $status
+     *
+	 * @return mixed
+	 */
+	public function updateOnlineStatus($status)
+	{
+	 	$this->onlinestatus = $status;
+
+	 	$this->save();
+	}
+
 }

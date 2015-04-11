@@ -42,7 +42,7 @@
       {!! Form::close() !!}
 
    @else
-      {!! Form::open(['route' => 'registration_path', 'class'=>'navbar-form navbar-right']) !!}       
+      {!! Form::open(['route' => 'login_path', 'class'=>'navbar-form navbar-right']) !!}       
         <div class="form-group">
           {!! Form::email('email', null, ['class' => 'form-control login-form', 'placeholder' => 'Email', 'required' => 'required']) !!}
         </div>

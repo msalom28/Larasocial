@@ -53,13 +53,13 @@ gulp.task('cssLibs', function(){
 //saas Task
 //Updates main css when saas changes
 gulp.task('sass', function(){
-	return sass('public/scss/main.scss', { style: 'compressed' })
+	return sass('resources/assets/sass/main.scss', { style: 'compressed' })
 	.pipe(gulp.dest('public/css/'));
 });
 
 
 gulp.task('watch', function(){
-	gulp.watch('public/scss/main.scss', ['sass']);
+	gulp.watch('resources/assets/sass/main.scss', ['sass']);
 	gulp.watch('main.js', ['script']);
 });
 

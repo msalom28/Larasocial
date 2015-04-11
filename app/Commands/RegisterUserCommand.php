@@ -75,6 +75,8 @@ class RegisterUserCommand extends Command implements SelfHandling {
 
 		event(new UserWasRegistered($user));
 
+		Auth::login($user);
+
 		return $user;
 	}
 }

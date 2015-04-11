@@ -44,6 +44,8 @@ class RegistrationController extends Controller {
 			'profileImagePath' => $newUserProfileImagePath
 		]);
 
+		return redirect()->route('feeds_path');
+
 	}
 
 

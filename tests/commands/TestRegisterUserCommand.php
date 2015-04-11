@@ -25,6 +25,8 @@ class TestRegisterUserCommand
 
 		$this->assertInstanceOf('App\User', $user);
 
+		$this->assertTrue(Auth::check());
+
 	}
 }
 

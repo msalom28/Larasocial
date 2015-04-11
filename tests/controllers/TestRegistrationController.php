@@ -5,12 +5,23 @@ use App\Http\Controllers\RegistrationController;
 
 class TestRegistrationController extends TestCase
 {
+
+	protected static $registrationController; 
+
+	public static function setUpBeforeClass()
+	{
+		self::$registrationController = new RegistrationController;
+	}
+
+	public static function tearDownAfterClass()
+	{
+
+		self::$registrationController = '';
+	}
 	
 	public function testCreateReturnsRegistrationViewOnSuccesfulRequest()
 	{
-		$registrationController = new RegistrationController;
-
-		$response = $registrationController->create();
+		$response = self::$registrationController->create();
 
 		$this->assertInstanceOf('Illuminate\View\View', $response);
 	}
@@ -39,9 +50,7 @@ class TestRegistrationController extends TestCase
 
 			]);
 
-		$registrationController = new RegistrationController;
-
-		$response = $registrationController->store($request);
+		$response = self::$registrationController->store($request);
 
 	}
 	
