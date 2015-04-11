@@ -14,6 +14,8 @@
             <directory>./tests/</directory>
             <directory>./tests/controllers/TestRegistrationController.php</directory>
             <directory>./tests/commands/TestRegisterUserCommand.php</directory>
+            <directory>./tests/events/TestUserWasRegistered.php</directory>
+            <directory>./tests/handlers/TestEmailRegistrationConfirmation.php</directory>
         </testsuite>
     </testsuites>
     <php>

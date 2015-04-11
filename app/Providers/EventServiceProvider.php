@@ -1,5 +1,7 @@
 <?php namespace App\Providers;
 
+use App\Events\UserWasRegistered;
+use App\Handlers\Events\EmailRegistrationConfirmation;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -11,8 +13,10 @@ class EventServiceProvider extends ServiceProvider {
 	 * @var array
 	 */
 	protected $listen = [
-		'event.name' => [
-			'EventListener',
+	
+		UserWasRegistered::class => [
+
+			EmailRegistrationConfirmation::class,
 		],
 	];
 

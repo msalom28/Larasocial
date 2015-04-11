@@ -5,7 +5,7 @@ use Laracasts\Integrated\Extensions\Laravel as IntegrationTest;
 
 class TestCase extends IntegrationTest {
 
-	// use DatabaseTransactions;
+	use DatabaseTransactions;
 
 	/**
 	 * Creates the application.

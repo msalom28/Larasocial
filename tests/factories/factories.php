@@ -10,4 +10,4 @@ $factory('App\User', [
 	'birthday'	=> '12-06-1980',
 	'profileimage' => $faker->imageUrl($width = 180, $height = 180)
 
-])
+]);

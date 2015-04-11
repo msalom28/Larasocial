@@ -1,6 +1,6 @@
 <?php namespace App\Commands;
 
-// use App\Events\UserWasRegistered;
+use App\Events\UserWasRegistered;
 use App\Commands\Command;
 use Illuminate\Contracts\Bus\SelfHandling;
 use App\User;
@@ -73,7 +73,7 @@ class RegisterUserCommand extends Command implements SelfHandling {
 		
 		$user->save();
 
-		// \Event::fire(new UserWasRegistered($user));
+		event(new UserWasRegistered($user));
 
 		return $user;
 	}

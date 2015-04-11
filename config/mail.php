@@ -15,7 +15,9 @@ return [
 	|
 	*/
 
-	'driver' => env('MAIL_DRIVER', 'smtp'),
+	// 'driver' => env('MAIL_DRIVER', 'log'),
+
+	'driver' => ('log'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +56,7 @@ return [
 	|
 	*/
 
-	'from' => ['address' => null, 'name' => null],
+	'from' => ['address' => 'support@larasocial.com', 'name' => 'Support'],
 
 	/*
 	|--------------------------------------------------------------------------

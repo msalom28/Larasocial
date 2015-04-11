@@ -1,5 +1,6 @@
 <?php
 
+use Laracasts\TestDummy\Factory;
 use App\Events\UserWasRegistered; 
 
 class TestUserWasRegistered extends TestCase
