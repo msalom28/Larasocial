@@ -21,6 +21,7 @@
       </div>
     </footer>
     <script src="{{ asset('js/libs.js') }}"></script>
+    <script src="http://localhost:1337/socket.io/socket.io.js"></script>
 	<script src="{{ asset('js/main.js') }}"></script>
 </body>
 </htm

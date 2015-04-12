@@ -1,10 +1,4 @@
-@extends('layouts.default')
-
-@section('content')
-
-	You are now logged in.
-
-	@if(Auth::check())
+@if(Auth::check())
 	<script> 
 		var userId = <?php echo Auth::user()->id; ?>;
 		var chatStatus = <?php echo Auth::user()->chatstatus; ?>;
@@ -15,6 +9,3 @@
 		console.log(userFirstname);
 	</script>
 @endif
-
-
-@stop

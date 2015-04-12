@@ -29,7 +29,7 @@
           <li><a href="#">Friend Requests</a></li>
           <li><a href="#">Messages</a></li>             
           <li class="divider"></li>
-          <li><a class="logout-link" href="http://localhost:8000/logout">Logout</a></li>
+          <li><a class="logout-link" data-method="DELETE" href="http://localhost:8000/logout">Logout</a></li>
           </ul>
         </li>
       </ul>
