@@ -2,8 +2,8 @@
 
 	// //checkout informing friends when friend request is accepted
 
-	// //login bottom message alert
-	// $('.right-bottom-alert').fadeIn(300).delay(3500).fadeOut(300);
+	//login bottom message alert
+	$('.welcome-alert').fadeIn(300).delay(3500).fadeOut(300);
 
 	// //Register and Connect to websocket
 	// var socket = io.connect('http://localhost:1337');
@@ -169,112 +169,109 @@
 	//  }); //End listening for socket alerts
 
 
-	// //Handle ajax form submissions
+	//Handle ajax form submissions
 
 	// $('.email-form').submit(handleFormSubmisions);
 
 	// $('.response-email-form').submit(handleFormSubmisions);
 
-	// $('.feed-form').submit(handleFormSubmisions);	
+	$('.feed-form').submit(handleFormSubmisions);	
 
 
-	// function handleFormSubmisions()
-	// {
+	function handleFormSubmisions()
+	{
 
-	// 	var form = $(this);
+		var form = $(this);
 
-	// 	var url = form.prop('action');
+		var url = form.prop('action');
 
-	// 	var method = form.find('input[name="_method"]').val() || 'POST';
+		var method = form.find('input[name="_method"]').val() || 'POST';
 
-	// 	var formData = form.serialize();
+		var formData = form.serialize();
 
-	// 	$.ajax({
+		$.ajax({
 
-	// 		type: method,
-	// 		url: url,
-	// 		data: formData
-	// 	})
+			type: method,
+			url: url,
+			data: formData
+		})
 
-	// 	.done(function(data)
-	// 	{
-	// 		if(data.response == 'success'){
+		.done(function(data)
+		{
+			if(data.response == 'success'){
 
-	// 			switch (form.prop('class')) {				   
+				switch (form.prop('class')) {				   
 
-	// 				case 'email-form':
+					case 'email-form':
 
-	// 		        $('.center-alert').html(data.message).fadeIn(300).delay(2500).fadeOut(300);
+			        $('.center-alert').html(data.message).fadeIn(300).delay(2500).fadeOut(300);
 
-	// 		        form.find('textarea').val("");
+			        form.find('textarea').val("");
 
-	// 				break;
+					break;
 
-	// 				case 'response-email-form':
+					case 'response-email-form':
 
-	// 		        $('.center-alert').html(data.message).fadeIn(300).delay(2500).fadeOut(300);			       
+			        $('.center-alert').html(data.message).fadeIn(300).delay(2500).fadeOut(300);			       
 
-	// 		        $('.email-list').prepend('<li>'+
-	// 						'<div class="media">'+
-	// 							'<div class="pull-left">'+
-	// 						         '<img class="media-object avatar small-avatar" src='+userProfileImage+' alt='+userFirstname+'>'+        
-	// 						     '</div>'+
+			        $('.email-list').prepend('<li>'+
+							'<div class="media">'+
+								'<div class="pull-left">'+
+							         '<img class="media-object avatar small-avatar" src='+userProfileImage+' alt='+userFirstname+'>'+        
+							     '</div>'+
 
-	// 						     '<div class="media-body">'+
-	// 						     	'<p><span class="text-muted">Just now you wrote:</span></p></div></div>'+
-	// 						'<div class="email-body" style="display: block;">'+
-	// 							 form.find('textarea').val()+
-	// 						'</div>'+
-	// 					'</li>'
-	// 					);
+							     '<div class="media-body">'+
+							     	'<p><span class="text-muted">Just now you wrote:</span></p>'+feedBody+'</div></div>'+
+							'<div class="email-body" style="display: block;">'+
+								 form.find('textarea').val()+
+							'</div>'+
+						'</li>'
+						);
 
-	// 		         form.find('textarea').val("");
+			         form.find('textarea').val("");
 
-	// 				break;
+					break;
 
-	// 				case 'feed-form':
+					case 'feed-form':
 
-	// 				var feedsCount = $('.feeds-count').text();
+					var feedsCount = $('.feeds-count').text();
 
-	// 				var actualFeedsCount = parseInt(feedsCount) + 1;
+					// var actualFeedsCount = parseInt(feedsCount) + 1;
 
-	// 				$('.feeds-count').text(actualFeedsCount);
+					// $('.feeds-count').text(actualFeedsCount);
 
-	// 				$('.status-list').prepend('<article class="media status-media">'+
-	// 				'<div class="pull-left"><img class="media-object avatar medium-avatar"'+ 
-	// 				'src="'+data.profileImage+'" alt="'+data.userFirstname+'">'+
-	// 				'</div><div class="media-body"><h4 class="media-heading">'+data.userFirstname+'</h4>'+
-	// 				'<p>Just now</p>'+data.statusBody+'</div></article>');
+					$('.feed-list').prepend('<div id="feedid" class="media listed-object">'+
+						'<div class="pull-left"><img class="media-object avatar medium-avatar" src="'+data.userProfileImage+'" alt="'+data.userFirstname+'">'+
+						'</div><div class="media-body"><h4 class="media-heading">'+data.userFirstname+'</h4><p>Just now</p>'+
+						data.feedBody+'</div></div>');
 
-	// 				form.find('textarea').val("");
+					form.find('textarea').val("");
 
-	// 				$('.no-feeds-info').hide();
+					// $('.no-feeds-info').hide();
 				
 
-	// 		       	break;			
+			       	break;			
 								     
-	// 			}			
+				}			
 
-	// 		}
-	// 		else if(data.response == 'failed')
-	// 		{
-	// 	        $('.center-alert').html(data.message).fadeIn(300).delay(2500).fadeOut(300);
+			}
+			else if(data.response == 'failed')
+			{
+		        form.find('textarea').val("");					
+			}			
+		})
 
-	// 	        form.find('textarea').val("");					
-	// 		}			
-	// 	})
+		.fail(function(){
 
-	// 	.fail(function(){
+			return alert('something went wrong. Please try again.');
 
-	// 		return alert('something went wrong. Please try again.');
+		});
 
-	// 	});
+		//end ajax
 
-	// 	//end ajax
+		return false;
 
-	// 	return false;
-
-	// }//end handle ajax form submissions
+	}//end handle ajax form submissions
 
 
 	//Handle ajax friend activity
@@ -858,93 +855,93 @@
 	// }); //End open / close email message
 
 
-	// // Loading feeds when scrolling 
-	// if($(location).attr('href') == "http://localhost:8000/feeds")
-	// {	
+	// Loading feeds when scrolling 
+	if($(location).attr('href') == "http://localhost:8000/feeds")
+	{	
 
-	// 	$(window).scroll(function(){
+		$(window).scroll(function(){
 
-	// 		if ($(window).scrollTop() + $(window).height() >= $(document).height() - 850)
-	// 		{
-	// 			$('#go-up').show();
-	// 		}
-	// 		else
-	// 		{
-	// 			$('#go-up').hide();
-	// 		}
+			if ($(window).scrollTop() + $(window).height() >= $(document).height() - 850)
+			{
+				$('#go-up').show();
+			}
+			else
+			{
+				$('#go-up').hide();
+			}
 
 
-	// 		if ($(window).scrollTop() + $(window).height() >= $(document).height() - 300){
+			if ($(window).scrollTop() + $(window).height() >= $(document).height() - 300){
 
-	// 			var skipQty = $('article').length;
+				var skipQty = $('.listed-object').length;
 
-	// 			if(skipQty <= 10)
-	// 			{
-	// 				skipQty = 10;
-	// 			}
+				if(skipQty <= 10)
+				{
+					skipQty = 10;
+				}
 				
-	// 			if(skipQty < $('.status-list').attr('data-statuscount'))
-	// 			{
+				if(skipQty < $('.feed-list').attr('data-feedcount'))
+				{
 
-	// 				$('#loader').fadeIn('slow', function() {
+					$('#loader').fadeIn('slow', function() {
 
 
-	// 					$.ajax({
+						$.ajax({
 
-	// 					url: "feeds/more",
-	// 					data: { 'skipQty' : skipQty}
-	// 					})
+						url: "feeds/more",
+						data: { 'skipQty' : skipQty}
+						})
 
-	// 					.done(function(data)
-	// 					{
-	// 						$('#loader').fadeOut('slow', function() {
+						.done(function(data)
+						{
+							$('#loader').fadeOut('slow', function() {
 
-	// 							var feedsHTML = "";
+								var feedsHTML = "";
 
-	// 							$.each(data.feeds, function(index, feed){
+								$.each(data.feeds, function(index, feed){
 
-	// 									if ($('#statusid'+feed.id).length == 0)
-	// 									{
-	// 										feedsHTML += '<article id="statusid'+feed.id+'" class="media status-media">'+
-	// 										 '<div class="pull-left"><img class="media-object avatar medium-avatar" src="'+feed.profile_image+'"'+
-	// 										 ' alt="'+feed.user_firstname+'"></div><div class="media-body"><h4 class="media-heading">'+feed.user_firstname+'</h4>'+
-	// 										 '<p>'+$.timeago(feed.created_at)+'</p>'+feed.body+'</div></article>';	
-	// 									}
-	// 									else
-	// 									{
-	// 										return false
-	// 									}				
+										if ($('#feedid'+feed.id).length == 0)
+										{
+											feedsHTML += '<div id="feedid'+feed.id+'" class="media listed-object">'+
+											 '<div class="pull-left"><img class="media-object avatar medium-avatar" src="'+feed.poster_profile_image+'"'+
+											 ' alt="'+feed.poster_firstname+'"></div><div class="media-body"><h4 class="media-heading">'+feed.poster_firstname+'</h4>'+
+											 '<p>'+$.timeago(feed.created_at)+'</p>'+feed.body+'</div></div>';	
+										}
+										else
+										{
+											return false
+										}				
 
 								
-	// 							});
+								});
 
-	// 							$('.status-list').append(feedsHTML);
+								$('.feed-list').append(feedsHTML);
 
-	// 						});
+							}); //Finish fading out loader
 							
 
-	// 					})
+						})
 
-	// 					.fail(function() {
+						.fail(function() {
 
-	// 						return alert('something went wrong. Please try again.');
+							return alert('something went wrong. Please try again.');
 
-	// 					});
+						});
 
-	// 				});				
+					});	//Finish showing the loader			
 
-	// 			}
-	// 			else
-	// 			{
-	// 				return false
-	// 			}				
+				}
+				else
+				{
+					return false
+				}				
 
-	// 		}//end scrolling
-	// 	});
+			}//end scrolling
+		});
 
-	// }//End Loading new feeds
+	}//End Loading new feeds
 
 	// //scrolling Top		
-	// $("body").scrollspy({target: "#go-up"});
+	$("body").scrollspy({target: "#go-up"});
 
 })();

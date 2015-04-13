@@ -30,6 +30,27 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
+	/**
+	 * A User can have many feeds.
+	 *
+	 * @return collection
+	 */
+	public function feeds()
+	{
+		return $this->hasMany('App\Feed')->latest();
+	}
+
+	/**
+	 * A user can have many friends.
+	 * 	
+	 * @return Collection
+	 *
+	 */
+	public function friends()
+	{
+		return $this->belongsToMany(Self::class, 'friends', 'requested_id', 'requester_id')->withTimestamps();
+	}
+
 
 	/**
 	 * Register a new Larasocial user.

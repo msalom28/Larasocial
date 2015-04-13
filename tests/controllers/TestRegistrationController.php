@@ -16,7 +16,7 @@ class TestRegistrationController extends TestCase
 	public static function tearDownAfterClass()
 	{
 
-		self::$registrationController = '';
+		self::$registrationController = null;
 	}
 	
 	public function testCreateReturnsRegistrationViewOnSuccesfulRequest()

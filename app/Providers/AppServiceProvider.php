@@ -25,7 +25,11 @@ class AppServiceProvider extends ServiceProvider {
 		$this->app->bind(
 			'ProcessImage',
 			'App\Services\ProcessImage'
+		);
 
+		$this->app->bind(
+			'App\Repositories\Feed\FeedRepository', 
+			'App\Repositories\Feed\EloquentFeedRepository'
 		);
 
 	}

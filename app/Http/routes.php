@@ -12,8 +12,6 @@ Route::post('/', ['as' => 'registration_path', 'uses' => 'RegistrationController
  */
 Route::post('login', ['as' => 'login_path', 'uses' => 'SessionController@store']);
 
-Route::get('logout', ['as' => 'logout_path', 'uses' => 'SessionController@destroy']);
-
 Route::delete('logout', ['as' => 'logout_path', 'uses' => 'SessionController@destroy']);
 
 
@@ -21,4 +19,8 @@ Route::delete('logout', ['as' => 'logout_path', 'uses' => 'SessionController@des
  * Feeds
  */
 Route::get('feeds', ['as' => 'feeds_path', 'uses' => 'FeedController@index']);
+
+Route::post('feeds', ['as' => 'feeds_path', 'uses' => 'FeedController@store']);
+
+Route::get('feeds/more', ['as' => 'feeds_path_more', 'uses' => 'FeedController@more']);
 

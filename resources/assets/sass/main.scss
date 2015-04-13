@@ -5,10 +5,12 @@ $primary-color: #CC3341;
 		background-color: #3E474F;
 		border-color: #3E474F;
 		color: #EBEBEB;
-		&:hover{
+		&:hover, &:active, &:focus{
 			background-color: #2E353B;
 			border-color: #2E353B;
+			outline-color: #2E353B;
 		}
+		
 	}
 }
 
@@ -116,3 +118,91 @@ body {
 .navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-text {
   color: white;
 }
+
+.flash-alert{
+	
+	display: none;
+	position: absolute;
+	z-index: 100;	
+}
+
+.welcome-alert{
+	margin-top: 38%;
+	margin-left: 75%;	
+}
+
+
+.center-alert{
+	top: 35%;
+	left: 43%;	
+}
+
+
+.center-form{
+	border: 1px solid #e3e3e3;
+	background: white;
+	margin-bottom: 3em;
+	padding: 0;
+
+	textarea{
+		border: none;
+		resize: none;
+		&:focus{
+			box-shadow: none;			
+		}
+	}
+
+	form{
+		
+		padding: .5em 1em;
+		margin-bottom: 0;
+		overflow: hidden;
+
+		input[type=submit] {
+			float: right;
+		}
+
+	}
+
+}
+
+.listed-object{
+	border: 1px solid #e3e3e3;
+	background: white;
+	padding: 1em; 
+	margin-bottom: 2em;
+}
+
+#main-feed{
+	margin-top: 45px;
+}
+
+
+#loader{
+	display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    opacity: .8;
+    background-color: #FFFFFF;
+}
+
+#go-up{
+
+	position: fixed;	
+	margin-top: 45%;
+	margin-left: 92%;
+	padding : 0;
+	z-index: 102;
+	display: none;
+
+	span{
+		font-size: 215%;
+		color: $primary-color;	
+	}
+}
+
+

@@ -2,19 +2,40 @@
 
 @section('content')
 
-	You are now logged in.
+	@include('layouts.partials.welcome-alert')
 
-	@if(Auth::check())
-	<script> 
-		var userId = <?php echo Auth::user()->id; ?>;
-		var chatStatus = <?php echo Auth::user()->chatstatus; ?>;
-		var userFirstname = <?php echo json_encode(Auth::user()->firstname); ?>;
-		var userProfileImage = <?php echo json_encode(Auth::user()->profileimage); ?>;
-		console.log(chatStatus);
-		console.log(userId);
-		console.log(userFirstname);
-	</script>
-@endif
+	<div class="row">
+		<div class="col-md-3">
+			This is the profile section
+		</div>
 
+		<div id="main-feed" class="col-md-6">
+
+			@include('layouts.partials.center-form', ['placeholder' => 'What\'s on your mind?', 'formType' => 'feed-form', 'button' => 'Publish', 'path' => 'feeds_path'])
+
+				<div class="row feed-list" data-feedcount="{!! $feedsCount !!}">
+				<div id="loader"></div>
+
+					@if($feeds->count())
+
+						@foreach($feeds as $feed)
+
+							@include('feeds.partials.feed-list')
+
+						@endforeach
+					@else
+						<div class="alert alert-info no-feeds-info" role="alert"><span class="glyphicon glyphicon-info-sign"></span> You haven't posted anything yet.
+						</div>
+						
+					@endif
+
+				</div>
+
+		</div>
+
+		<div class="col-md-3">
+			This is the Chat with friends section
+		</div>
+	</div>	
 
 @stop

@@ -47,7 +47,7 @@ class testSessionController extends TestCase
 
 	}
 
-	public function testDestroyReturnsRedirectToHomeWhenLogout()
+	public function testDestroyReturnsJsonResponseWithLogoutData()
 	{
 		$tempUser = Factory::create('App\User');
 

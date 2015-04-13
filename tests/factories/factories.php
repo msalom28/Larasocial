@@ -11,3 +11,10 @@ $factory('App\User', [
 	'profileimage' => $faker->imageUrl($width = 180, $height = 180)
 
 ]);
+
+$factory('App\Feed', [
+	'user_id' => 'factory:App\User',
+	'body' => $faker->sentence,
+	'poster_firstname'  => $faker->firstName,
+	'poster_profile_image'  => $faker->imageUrl($width = 180, $height = 180)
+]);
