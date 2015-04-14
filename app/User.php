@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use DB;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
@@ -90,6 +91,48 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 	$this->onlinestatus = $status;
 
 	 	$this->save();
+	}
+
+	/**
+	 * Determine if current user is friends with another user.
+	 *	
+	 * @param int $otherUserId
+     *
+	 * @return boolean
+	 */
+	public function isFriendsWith($otherUserId)
+	{
+		$currentUserFriends = DB::table('friends')->where('requester_id', $this->id)->lists('requested_id');
+
+		return in_array($otherUserId, $currentUserFriends);		
+	}
+
+	/**
+	 * Determine if current user has sent a friend request to another user.
+	 *	
+	 * @param int $otherUserId
+     *
+	 * @return boolean
+	 */
+	public function sentFriendRequestTo($otherUserId)
+	{
+		$friendRequestedByCurrentUser = DB::table('friend_requests')->where('requester_id', $this->id)->lists('requested_id');
+
+		return in_array($otherUserId, $friendRequestedByCurrentUser);
+	}
+
+	/**
+	 * Determine if current user has received a friend request from another user.
+	 *	
+	 * @param int $otherUserId
+     *
+	 * @return boolean
+	 */
+	public function receivedFriendRequestFrom($otherUserId)
+	{
+		$friendRequestsReceivedByCurrentUser = DB::table('friend_requests')->where('requested_id', $this->id)->lists('requester_id');
+		
+		return in_array($otherUserId, $friendRequestsReceivedByCurrentUser);
 	}
 
 }

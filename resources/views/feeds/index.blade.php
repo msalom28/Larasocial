@@ -9,7 +9,7 @@
 			This is the profile section
 		</div>
 
-		<div id="main-feed" class="col-md-6">
+		<div id="center-column" class="col-md-6">
 
 			@include('layouts.partials.center-form', ['placeholder' => 'What\'s on your mind?', 'formType' => 'feed-form', 'button' => 'Publish', 'path' => 'feeds_path'])
 

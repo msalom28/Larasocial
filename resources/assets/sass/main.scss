@@ -1,5 +1,12 @@
 $primary-color: #CC3341;
 
+@mixin style-listbox{
+	border: 1px solid #e3e3e3;
+	background: white;
+	padding: 1em; 
+	
+}
+
 @mixin primary-button{
 	.btn-primary{
 		background-color: #3E474F;
@@ -167,13 +174,16 @@ body {
 }
 
 .listed-object{
-	border: 1px solid #e3e3e3;
-	background: white;
-	padding: 1em; 
+	@include style-listbox;
 	margin-bottom: 2em;
 }
 
-#main-feed{
+.listed-object-close{
+	@include style-listbox;
+	margin-bottom: -1.5em;
+}
+
+#center-column{
 	margin-top: 45px;
 }
 
@@ -205,4 +215,43 @@ body {
 	}
 }
 
+.paginator{
+	margin-top: 10px;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+  z-index: 2;
+  color: #fff;
+  cursor: default;
+  background-color: $primary-color;
+  border-color: $primary-color;
+}
+.pagination>li>a, .pagination>li>span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: $primary-color;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+.pagination>li>a, .pagination>li>span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: $primary-color;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover {
+  color: $primary-color;
+  background-color: #eee;
+  border-color: #ddd;
+}
 

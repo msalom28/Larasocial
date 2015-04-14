@@ -32,6 +32,11 @@ class AppServiceProvider extends ServiceProvider {
 			'App\Repositories\Feed\EloquentFeedRepository'
 		);
 
+		$this->app->bind(
+			'App\Repositories\User\UserRepository', 
+			'App\Repositories\User\EloquentUserRepository'
+		);
+
 	}
 
 }

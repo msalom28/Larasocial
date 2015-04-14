@@ -24,3 +24,8 @@ Route::post('feeds', ['as' => 'feeds_path', 'uses' => 'FeedController@store']);
 
 Route::get('feeds/more', ['as' => 'feeds_path_more', 'uses' => 'FeedController@more']);
 
+/**
+ * Users
+ */
+Route::get('users', ['as' => 'users_path', 'uses' => 'UserController@index']);
+

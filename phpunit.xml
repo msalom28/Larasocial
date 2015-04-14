@@ -15,6 +15,7 @@
             <directory>./tests/controllers/TestRegistrationController.php</directory>
             <directory>./tests/controllers/TestSessionController.php</directory>
             <directory>./tests/controllers/TestFeedController.php</directory>
+            <directory>./tests/controllers/TestUserController.php</directory>
             <directory>./tests/commands/TestRegisterUserCommand.php</directory>
             <directory>./tests/commands/TestCreateFeedCommand.php</directory>
             <directory>./tests/events/TestUserWasRegistered.php</directory>
@@ -24,6 +25,7 @@
             <directory>./tests/integration/LoginSuccesful.php</directory>
             <directory>./tests/integration/PostFeed.php</directory>
             <directory>./tests/repositories/TestFeedRepository.php</directory>
+            <directory>./tests/repositories/TestUserRepository.php</directory>
         </testsuite>
     </testsuites>
     <php>
