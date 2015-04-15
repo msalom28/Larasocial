@@ -6,8 +6,8 @@ use App\User;
 
 class DatabaseSeeder extends Seeder {
 
-	protected $tables = ['users'];
-	protected $seeders = ['UserTableSeeder'];
+	protected $tables = ['users', 'feeds'];
+	protected $seeders = ['UserTableSeeder', 'FeedTableSeeder'];
 	/**
 	 * Run the database seeds.
 	 *

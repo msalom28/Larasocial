@@ -855,7 +855,8 @@
 	// }); //End open / close email message
 
 
-	// Loading feeds when scrolling 
+	// Loading feeds when scrolling
+
 	if($(location).attr('href') == "http://localhost:8000/feeds")
 	{	
 
@@ -887,9 +888,8 @@
 
 
 						$.ajax({
-
-						url: "feeds/more",
-						data: { 'skipQty' : skipQty}
+							url: "feeds/more",
+							data: { 'skipQty' : skipQty}
 						})
 
 						.done(function(data)

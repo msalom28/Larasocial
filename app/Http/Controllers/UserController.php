@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\User\UserRepository;
+use App\Repositories\Feed\FeedRepository;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -17,6 +18,8 @@ class UserController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth');
+
+		$this->currentUser = Auth::user();
 	}
 
 
@@ -29,7 +32,7 @@ class UserController extends Controller {
 	 */
 	public function index(Request $request, UserRepository $userRepository)
 	{
-		$currentUser = Auth::user();
+		$currentUser = $this->currentUser;
 
 		$users = $userRepository->getPaginated(null, $request->firstname);
 
@@ -57,14 +60,21 @@ class UserController extends Controller {
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Display the specified user.
 	 *
-	 * @param  int  $id
+	 * @param  int $id
+	 *
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($id, UserRepository $userRepository, FeedRepository $feedRepository)
 	{
-		//
+		$currentUser = $this->currentUser;
+
+		$user = $userRepository->findById($id);
+
+		$feeds = $feedRepository->getPublishedByUser($user);
+
+		return view('users.show', compact('currentUser', 'user', 'feeds'));
 	}
 
 	/**

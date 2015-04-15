@@ -21,6 +21,14 @@ class EloquentFeedRepository implements FeedRepository
 		return Feed::whereIn('user_id', $friendsUserIds)->latest()->take(10)->get();
 
 	}
+
+	public function getPublishedByUser(User $user)
+	{
+		return $user->feeds()->paginate(8);
+
+	}
+
+
 	/**
 	 * Get feeds posted by current user and friends via ajax.
 	 *
