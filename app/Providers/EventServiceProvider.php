@@ -1,7 +1,9 @@
 <?php namespace App\Providers;
 
 use App\Events\UserWasRegistered;
+use App\Events\FriendRequestWasSent;
 use App\Handlers\Events\EmailRegistrationConfirmation;
+use App\Handlers\Events\EmailFriendRequest;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -17,6 +19,11 @@ class EventServiceProvider extends ServiceProvider {
 		UserWasRegistered::class => [
 
 			EmailRegistrationConfirmation::class,
+		],
+
+		FriendRequestWasSent::class => [
+
+			EmailFriendRequest::class,
 		],
 	];
 

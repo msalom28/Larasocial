@@ -16,8 +16,10 @@
             <directory>./tests/controllers/TestSessionController.php</directory>
             <directory>./tests/controllers/TestFeedController.php</directory>
             <directory>./tests/controllers/TestUserController.php</directory>
+            <directory>./tests/controllers/TestFriendRequestController.php</directory>
             <directory>./tests/commands/TestRegisterUserCommand.php</directory>
             <directory>./tests/commands/TestCreateFeedCommand.php</directory>
+            <directory>./tests/commands/TestLoginUserCommand.php</directory>
             <directory>./tests/events/TestUserWasRegistered.php</directory>
             <directory>./tests/handlers/TestEmailRegistrationConfirmation.php</directory>
             <directory>./tests/integration/RegistrationFormValidation.php</directory>

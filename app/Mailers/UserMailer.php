@@ -22,19 +22,22 @@ class UserMailer extends Mailer
 	}
 
 
-	// /**
-	//  * Send alert to user when they have received a friend request.
-	//  *
-	//  * @param User $requestedUser
-	//  *
-	//  * @param User $requesterUser
-	//  *
-	//  */
-	// public function sendFriendRequestAlertTo(User $requestedUser, User $requesterUser)
-	// {
-	// 	$subject = 'Someone would like to be your friend';
-	// 	$view = 'emails.friend-request';
-	// 	$data = ['userFirstname' => $requestedUser->firstname, 'requesterFirstname' => $requesterUser->firstname];
-	// 	return $this->sendTo($requestedUser, $subject, $view, $data);
-	// }	
+	/**
+	 * Send alert to user when friend request is sent to him.
+	 *
+	 * @param User $requestedUser
+	 *
+	 * @param User $requesterUser
+	 *
+	 */
+	public function sendFriendRequestAlertTo(User $requestedUser, User $requesterUser)
+	{
+		$subject = 'Someone would like to be your friend';
+
+		$view = 'email-alerts.friend-request';
+
+		$data = ['userFirstname' => $requestedUser->firstname, 'requesterFirstname' => $requesterUser->firstname];
+
+		return $this->sendTo($requestedUser, $subject, $view, $data);
+	}	
 }

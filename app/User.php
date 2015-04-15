@@ -42,6 +42,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	}
 
 	/**
+	 * A User can have many friend requests.
+	 *
+	 * @return collection
+	 */
+	public function friendRequests()
+	{
+		return $this->hasMany('App\FriendRequest');
+	}
+
+	/**
 	 * A user can have many friends.
 	 * 	
 	 * @return Collection
