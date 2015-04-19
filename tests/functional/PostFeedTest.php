@@ -2,7 +2,7 @@
 
 use Laracasts\TestDummy\Factory; 
 
-class PostFeed extends TestCase
+class PostFeedTest extends TestCase
 {
 	public function testSuccesfulPostFeed()
 	{

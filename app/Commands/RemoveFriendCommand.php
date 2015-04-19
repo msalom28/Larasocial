@@ -41,5 +41,7 @@ class RemoveFriendCommand extends Command implements SelfHandling {
 
 		$otherUser->finishFriendshipWith(Auth::user()->id);
 
+		return true;
+
 	}
 }

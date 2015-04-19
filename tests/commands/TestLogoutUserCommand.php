@@ -1,6 +1,7 @@
 <?php
 
-use App\Commands\LogoutUserCommand; 
+use App\Commands\LogoutUserCommand;
+use Laracasts\TestDummy\Factory; 
 
 class TestLogoutUserCommand extends TestCase
 {

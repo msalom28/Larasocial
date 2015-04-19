@@ -73,6 +73,7 @@ class FriendRequestController extends Controller {
 			$this->dispatchFrom(CreateFriendRequestCommand::class, $request, [ 'requestedId'	=> $request->userId ]);
 			
 			return response()->json(['response' => 'success', 'message' => 'Friend request submitted']);
+
 		}	
 	}
 

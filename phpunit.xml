@@ -11,28 +11,26 @@
          syntaxCheck="false">
     <testsuites>
         <testsuite name="Application Test Suite">
-           <!--  <directory>./tests/</directory>
+            <directory>./tests/functional/</directory>
+            <directory>./tests/commands/TestCreateFeedCommand.php</directory>
+            <directory>./tests/commands/TestCreateFriendRequestCommand.php</directory>
+            <directory>./tests/commands/TestLoginUserCommand.php</directory>
+            <directory>./tests/commands/TestLogoutUserCommand.php</directory>
+            <directory>./tests/commands/TestRegisterUserCommand.php</directory>
+            <directory>./tests/commands/TestRemoveFriendCommand.php</directory>
+            <directory>./tests/controllers/TestFeedController.php</directory>
+            <directory>./tests/controllers/TestFriendController.php</directory>
+            <directory>./tests/controllers/TestFriendRequestController.php</directory>
             <directory>./tests/controllers/TestRegistrationController.php</directory>
             <directory>./tests/controllers/TestSessionController.php</directory>
-            <directory>./tests/controllers/TestFeedController.php</directory>
-            <directory>./tests/controllers/TestUserController.php</directory> -->
-            <!-- <directory>./tests/controllers/TestFriendRequestController.php</directory> -->
-            <directory>./tests/controllers/TestFriendController.php</directory>
-          <!--   <directory>./tests/commands/TestRegisterUserCommand.php</directory>
-            <directory>./tests/commands/TestCreateFeedCommand.php</directory>
-            <directory>./tests/commands/TestLoginUserCommand.php</directory> -->
-            <!-- <directory>./tests/commands/TestCreateFriendRequestCommand.php</directory> -->
-           <!--  <directory>./tests/events/TestUserWasRegistered.php</directory>
+            <directory>./tests/controllers/TestUserController.php</directory>
             <directory>./tests/events/TestFriendRequestWasSent.php</directory>
-            <directory>./tests/handlers/TestEmailRegistrationConfirmation.php</directory>
+            <directory>./tests/events/TestUserWasRegistered.php</directory>
             <directory>./tests/handlers/TestEmailFriendRequest.php</directory>
-            <directory>./tests/functional/RegistrationFormValidation.php</directory>
-            <directory>./tests/functional/LoginFormValidation.php</directory>
-            <directory>./tests/functional/LoginSuccesful.php</directory>
-            <directory>./tests/functional/PostFeed.php</directory> -->
-           <!--  <directory>./tests/repositories/TestFeedRepository.php</directory> -->
-           <!--  <directory>./tests/repositories/TestUserRepository.php</directory> -->
-            <!-- <directory>./tests/repositories/TestFriendRequestRepository.php</directory> -->
+            <directory>./tests/handlers/TestEmailRegistrationConfirmation.php</directory>
+            <directory>./tests/repositories/TestFeedRepository.php</directory>
+            <directory>./tests/repositories/TestFriendRepository.php</directory>
+            <directory>./tests/repositories/TestUserRepository.php</directory>                
         </testsuite>
     </testsuites>
     <php>

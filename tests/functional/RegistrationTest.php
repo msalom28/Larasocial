@@ -2,7 +2,7 @@
 
 use Laracasts\TestDummy\Factory; 
 
-class RegistrationFormValidation extends TestCase
+class RegistrationTest extends TestCase
 {
 	public function testEmptyFirstnameShowsErrorOnSubmit()
 	{

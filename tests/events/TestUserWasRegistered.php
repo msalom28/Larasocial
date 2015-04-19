@@ -5,7 +5,7 @@ use App\Events\UserWasRegistered;
 
 class TestUserWasRegistered extends TestCase
 {
-	public function testUserWasRegisteredClassContainsUserObject()
+	public function testUserObjectExistinClass()
 	{
 		$user = Factory::create('App\User');
 

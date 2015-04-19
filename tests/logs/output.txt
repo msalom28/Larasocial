@@ -1,143 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Larasocial</title>
-	<link rel="stylesheet" href="http://localhost/css/libs.css">
-	<link rel="stylesheet" href="http://localhost/css/main.css">
-</head>
-<body>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="noindex,nofollow" />
+        <style>
+            /* Copyright (c) 2010, Yahoo! Inc. All rights reserved. Code licensed under the BSD License: http://developer.yahoo.com/yui/license.html */
+            html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:text-top;}sub{vertical-align:text-bottom;}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}input,textarea,select{*font-size:100%;}legend{color:#000;}
 
-	<!-- Navbar -->
-<nav class="navbar navbar-inverse">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <div class="navbar-brand"><a href="/">Larasocial</a></div>
-    </div>
+            html { background: #eee; padding: 10px }
+            img { border: 0; }
+            #sf-resetcontent { width:970px; margin:0 auto; }
+                        .sf-reset { font: 11px Verdana, Arial, sans-serif; color: #333 }
+            .sf-reset .clear { clear:both; height:0; font-size:0; line-height:0; }
+            .sf-reset .clear_fix:after { display:block; height:0; clear:both; visibility:hidden; }
+            .sf-reset .clear_fix { display:inline-block; }
+            .sf-reset * html .clear_fix { height:1%; }
+            .sf-reset .clear_fix { display:block; }
+            .sf-reset, .sf-reset .block { margin: auto }
+            .sf-reset abbr { border-bottom: 1px dotted #000; cursor: help; }
+            .sf-reset p { font-size:14px; line-height:20px; color:#868686; padding-bottom:20px }
+            .sf-reset strong { font-weight:bold; }
+            .sf-reset a { color:#6c6159; cursor: default; }
+            .sf-reset a img { border:none; }
+            .sf-reset a:hover { text-decoration:underline; }
+            .sf-reset em { font-style:italic; }
+            .sf-reset h1, .sf-reset h2 { font: 20px Georgia, "Times New Roman", Times, serif }
+            .sf-reset .exception_counter { background-color: #fff; color: #333; padding: 6px; float: left; margin-right: 10px; float: left; display: block; }
+            .sf-reset .exception_title { margin-left: 3em; margin-bottom: 0.7em; display: block; }
+            .sf-reset .exception_message { margin-left: 3em; display: block; }
+            .sf-reset .traces li { font-size:12px; padding: 2px 4px; list-style-type:decimal; margin-left:20px; }
+            .sf-reset .block { background-color:#FFFFFF; padding:10px 28px; margin-bottom:20px;
+                -webkit-border-bottom-right-radius: 16px;
+                -webkit-border-bottom-left-radius: 16px;
+                -moz-border-radius-bottomright: 16px;
+                -moz-border-radius-bottomleft: 16px;
+                border-bottom-right-radius: 16px;
+                border-bottom-left-radius: 16px;
+                border-bottom:1px solid #ccc;
+                border-right:1px solid #ccc;
+                border-left:1px solid #ccc;
+            }
+            .sf-reset .block_exception { background-color:#ddd; color: #333; padding:20px;
+                -webkit-border-top-left-radius: 16px;
+                -webkit-border-top-right-radius: 16px;
+                -moz-border-radius-topleft: 16px;
+                -moz-border-radius-topright: 16px;
+                border-top-left-radius: 16px;
+                border-top-right-radius: 16px;
+                border-top:1px solid #ccc;
+                border-right:1px solid #ccc;
+                border-left:1px solid #ccc;
+                overflow: hidden;
+                word-wrap: break-word;
+            }
+            .sf-reset a { background:none; color:#868686; text-decoration:none; }
+            .sf-reset a:hover { background:none; color:#313131; text-decoration:underline; }
+            .sf-reset ol { padding: 10px 0; }
+            .sf-reset h1 { background-color:#FFFFFF; padding: 15px 28px; margin-bottom: 20px;
+                -webkit-border-radius: 10px;
+                -moz-border-radius: 10px;
+                border-radius: 10px;
+                border: 1px solid #ccc;
+            }
+        </style>
+    </head>
+    <body>
+                    <div id="sf-resetcontent" class="sf-reset">
+                <h1>Sorry, the page you are looking for could not be found.</h1>
+                                        <h2 class="block_exception clear_fix">
+                            <span class="exception_counter">1/1</span>
+                            <span class="exception_title"><abbr title="Symfony\Component\HttpKernel\Exception\NotFoundHttpException">NotFoundHttpException</abbr> in <a title="/home/manny/code/php/Larasocial/vendor/laravel/framework/src/Illuminate/Routing/RouteCollection.php line 145" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">RouteCollection.php line 145</a>:</span>
+                            <span class="exception_message"></span>
+                        </h2>
+                        <div class="block">
+                            <ol class="traces list_exception">
+       <li> in <a title="/home/manny/code/php/Larasocial/vendor/laravel/framework/src/Illuminate/Routing/RouteCollection.php line 145" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">RouteCollection.php line 145</a></li>
+       <li>at <abbr title="Illuminate\Routing\RouteCollection">RouteCollection</abbr>->match(<em>object</em>(<abbr title="Illuminate\Http\Request">Request</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/laravel/framework/src/Illuminate/Routing/Router.php line 720" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">Router.php line 720</a></li>
+       <li>at <abbr title="Illuminate\Routing\Router">Router</abbr>->findRoute(<em>object</em>(<abbr title="Illuminate\Http\Request">Request</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/laravel/framework/src/Illuminate/Routing/Router.php line 643" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">Router.php line 643</a></li>
+       <li>at <abbr title="Illuminate\Routing\Router">Router</abbr>->dispatchToRoute(<em>object</em>(<abbr title="Illuminate\Http\Request">Request</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/laravel/framework/src/Illuminate/Routing/Router.php line 619" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">Router.php line 619</a></li>
+       <li>at <abbr title="Illuminate\Routing\Router">Router</abbr>->dispatch(<em>object</em>(<abbr title="Illuminate\Http\Request">Request</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php line 214" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">Kernel.php line 214</a></li>
+       <li>at <abbr title="Illuminate\Foundation\Http\Kernel">Kernel</abbr>->Illuminate\Foundation\Http\{closure}(<em>object</em>(<abbr title="Illuminate\Http\Request">Request</abbr>))</li>
+       <li>at <abbr title=""></abbr>call_user_func(<em>object</em>(<abbr title="Closure">Closure</abbr>), <em>object</em>(<abbr title="Illuminate\Http\Request">Request</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php line 141" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">Pipeline.php line 141</a></li>
+       <li>at <abbr title="Illuminate\Pipeline\Pipeline">Pipeline</abbr>->Illuminate\Pipeline\{closure}(<em>object</em>(<abbr title="Illuminate\Http\Request">Request</abbr>)) in <a title="/home/manny/code/php/Larasocial/app/Http/Middleware/CustomVerifyCsrfToken.php line 34" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">CustomVerifyCsrfToken.php line 34</a></li>
+       <li>at <abbr title="App\Http\Middleware\CustomVerifyCsrfToken">CustomVerifyCsrfToken</abbr>->handle(<em>object</em>(<abbr title="Illuminate\Http\Request">Request</abbr>), <em>object</em>(<abbr title="Closure">Closure</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php line 125" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">Pipeline.php line 125</a></li>
+       <li>at <abbr title="Illuminate\Pipeline\Pipeline">Pipeline</abbr>->Illuminate\Pipeline\{closure}(<em>object</em>(<abbr title="Illuminate\Http\Request">Request</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php line 55" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">ShareErrorsFromSession.php line 55</a></li>
+       <li>at <abbr title="Illuminate\View\Middleware\ShareErrorsFromSession">ShareErrorsFromSession</abbr>->handle(<em>object</em>(<abbr title="Illuminate\Http\Request">Request</abbr>), <em>object</em>(<abbr title="Closure">Closure</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php line 125" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">Pipeline.php line 125</a></li>
+       <li>at <abbr title="Illuminate\Pipeline\Pipeline">Pipeline</abbr>->Illuminate\Pipeline\{closure}(<em>object</em>(<abbr title="Illuminate\Http\Request">Request</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php line 61" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">StartSession.php line 61</a></li>
+       <li>at <abbr title="Illuminate\Session\Middleware\StartSession">StartSession</abbr>->handle(<em>object</em>(<abbr title="Illuminate\Http\Request">Request</abbr>), <em>object</em>(<abbr title="Closure">Closure</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php line 125" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">Pipeline.php line 125</a></li>
+       <li>at <abbr title="Illuminate\Pipeline\Pipeline">Pipeline</abbr>->Illuminate\Pipeline\{closure}(<em>object</em>(<abbr title="Illuminate\Http\Request">Request</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php line 36" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">AddQueuedCookiesToResponse.php line 36</a></li>
+       <li>at <abbr title="Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse">AddQueuedCookiesToResponse</abbr>->handle(<em>object</em>(<abbr title="Illuminate\Http\Request">Request</abbr>), <em>object</em>(<abbr title="Closure">Closure</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php line 125" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">Pipeline.php line 125</a></li>
+       <li>at <abbr title="Illuminate\Pipeline\Pipeline">Pipeline</abbr>->Illuminate\Pipeline\{closure}(<em>object</em>(<abbr title="Illuminate\Http\Request">Request</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php line 40" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">EncryptCookies.php line 40</a></li>
+       <li>at <abbr title="Illuminate\Cookie\Middleware\EncryptCookies">EncryptCookies</abbr>->handle(<em>object</em>(<abbr title="Illuminate\Http\Request">Request</abbr>), <em>object</em>(<abbr title="Closure">Closure</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php line 125" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">Pipeline.php line 125</a></li>
+       <li>at <abbr title="Illuminate\Pipeline\Pipeline">Pipeline</abbr>->Illuminate\Pipeline\{closure}(<em>object</em>(<abbr title="Illuminate\Http\Request">Request</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php line 42" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">CheckForMaintenanceMode.php line 42</a></li>
+       <li>at <abbr title="Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode">CheckForMaintenanceMode</abbr>->handle(<em>object</em>(<abbr title="Illuminate\Http\Request">Request</abbr>), <em>object</em>(<abbr title="Closure">Closure</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php line 125" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">Pipeline.php line 125</a></li>
+       <li>at <abbr title="Illuminate\Pipeline\Pipeline">Pipeline</abbr>->Illuminate\Pipeline\{closure}(<em>object</em>(<abbr title="Illuminate\Http\Request">Request</abbr>))</li>
+       <li>at <abbr title=""></abbr>call_user_func(<em>object</em>(<abbr title="Closure">Closure</abbr>), <em>object</em>(<abbr title="Illuminate\Http\Request">Request</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php line 101" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">Pipeline.php line 101</a></li>
+       <li>at <abbr title="Illuminate\Pipeline\Pipeline">Pipeline</abbr>->then(<em>object</em>(<abbr title="Closure">Closure</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php line 115" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">Kernel.php line 115</a></li>
+       <li>at <abbr title="Illuminate\Foundation\Http\Kernel">Kernel</abbr>->sendRequestThroughRouter(<em>object</em>(<abbr title="Illuminate\Http\Request">Request</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php line 84" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">Kernel.php line 84</a></li>
+       <li>at <abbr title="Illuminate\Foundation\Http\Kernel">Kernel</abbr>->handle(<em>object</em>(<abbr title="Illuminate\Http\Request">Request</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/laravel/framework/src/Illuminate/Foundation/Testing/ApplicationTrait.php line 57" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">ApplicationTrait.php line 57</a></li>
+       <li>at <abbr title="Illuminate\Foundation\Testing\TestCase">TestCase</abbr>->call('GET', 'http://localhost/messages/compose/52', <em>array</em>()) in <a title="/home/manny/code/php/Larasocial/vendor/laracasts/integrated/src/Extensions/Laravel.php line 61" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">Laravel.php line 61</a></li>
+       <li>at <abbr title="Laracasts\Integrated\Extensions\Laravel">Laravel</abbr>->makeRequest('GET', 'http://localhost/messages/compose/52') in <a title="/home/manny/code/php/Larasocial/vendor/laracasts/integrated/src/Extensions/IntegrationTrait.php line 74" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">IntegrationTrait.php line 74</a></li>
+       <li>at <abbr title="Laracasts\Integrated\Extensions\Laravel">Laravel</abbr>->visit('/messages/compose/52') in <a title="/home/manny/code/php/Larasocial/tests/functional/MessagesTest.php line 13" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">MessagesTest.php line 13</a></li>
+       <li>at <abbr title="MessagesTest">MessagesTest</abbr>->testSendingAmessageToAnotherUser()</li>
+       <li>at <abbr title="ReflectionMethod">ReflectionMethod</abbr>->invokeArgs(<em>object</em>(<abbr title="MessagesTest">MessagesTest</abbr>), <em>array</em>()) in <a title="/home/manny/code/php/Larasocial/vendor/phpunit/phpunit/src/Framework/TestCase.php line 866" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">TestCase.php line 866</a></li>
+       <li>at <abbr title="PHPUnit_Framework_TestCase">PHPUnit_Framework_TestCase</abbr>->runTest() in <a title="/home/manny/code/php/Larasocial/vendor/phpunit/phpunit/src/Framework/TestCase.php line 743" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">TestCase.php line 743</a></li>
+       <li>at <abbr title="PHPUnit_Framework_TestCase">PHPUnit_Framework_TestCase</abbr>->runBare() in <a title="/home/manny/code/php/Larasocial/vendor/phpunit/phpunit/src/Framework/TestResult.php line 609" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">TestResult.php line 609</a></li>
+       <li>at <abbr title="PHPUnit_Framework_TestResult">PHPUnit_Framework_TestResult</abbr>->run(<em>object</em>(<abbr title="MessagesTest">MessagesTest</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/phpunit/phpunit/src/Framework/TestCase.php line 699" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">TestCase.php line 699</a></li>
+       <li>at <abbr title="PHPUnit_Framework_TestCase">PHPUnit_Framework_TestCase</abbr>->run(<em>object</em>(<abbr title="PHPUnit_Framework_TestResult">PHPUnit_Framework_TestResult</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/phpunit/phpunit/src/Framework/TestSuite.php line 722" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">TestSuite.php line 722</a></li>
+       <li>at <abbr title="PHPUnit_Framework_TestSuite">PHPUnit_Framework_TestSuite</abbr>->run(<em>object</em>(<abbr title="PHPUnit_Framework_TestResult">PHPUnit_Framework_TestResult</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/phpunit/phpunit/src/Framework/TestSuite.php line 722" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">TestSuite.php line 722</a></li>
+       <li>at <abbr title="PHPUnit_Framework_TestSuite">PHPUnit_Framework_TestSuite</abbr>->run(<em>object</em>(<abbr title="PHPUnit_Framework_TestResult">PHPUnit_Framework_TestResult</abbr>)) in <a title="/home/manny/code/php/Larasocial/vendor/phpunit/phpunit/src/TextUI/TestRunner.php line 406" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">TestRunner.php line 406</a></li>
+       <li>at <abbr title="PHPUnit_TextUI_TestRunner">PHPUnit_TextUI_TestRunner</abbr>->doRun(<em>object</em>(<abbr title="PHPUnit_Framework_TestSuite">PHPUnit_Framework_TestSuite</abbr>), <em>array</em>('listGroups' => <em>false</em>, 'loader' => <em>null</em>, 'useDefaultConfiguration' => <em>true</em>, 'testSuffixes' => <em>array</em>('Test.php', '.phpt'), 'configuration' => '/home/manny/code/php/Larasocial/phpunit.xml')) in <a title="/home/manny/code/php/Larasocial/vendor/phpunit/phpunit/src/TextUI/Command.php line 153" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">Command.php line 153</a></li>
+       <li>at <abbr title="PHPUnit_TextUI_Command">PHPUnit_TextUI_Command</abbr>->run(<em>array</em>('vendor/bin/phpunit'), <em>true</em>) in <a title="/home/manny/code/php/Larasocial/vendor/phpunit/phpunit/src/TextUI/Command.php line 105" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">Command.php line 105</a></li>
+       <li>at <abbr title="PHPUnit_TextUI_Command">PHPUnit_TextUI_Command</abbr>::main() in <a title="/home/manny/code/php/Larasocial/vendor/phpunit/phpunit/phpunit line 36" ondblclick="var f=this.innerHTML;this.innerHTML=this.title;this.title=f;">phpunit line 36</a></li>
+    </ol>
+</div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-          <form method="POST" action="http://localhost/login" accept-charset="UTF-8" class="navbar-form navbar-right"><input name="_token" type="hidden" value="DQETxsj7zbA4H9fFlWkHaoKEYWOxciHnRdXbsxFp">       
-        <div class="form-group">
-          <input class="form-control login-form" placeholder="Email" required="required" name="email" type="email" value="funk.ryleigh@gmail.com">
-        </div>
-        <div class="form-group">
-          <input class="form-control" placeholder="Password" required="required" name="password" type="password" value="">
-        </div>
-        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span> Sign in</button>
-      </form>
-
-             
-
-
-
-    </div>
-</nav>
-<!-- Navbar -->	<div class="container">
-		
-	<div class="row">
-		<div id="registration-form" class="col-md-5">
-			<div class="row">
-										<div class="alert alert-danger" role="alert">
-							<p><strong>We're sorry!  </strong>We were unable to sign you in. Please check your credentials and try again.</p>
-						</div>
-							
-			</div>
-			<div class="row">
-				<form method="POST" action="http://localhost" accept-charset="UTF-8" enctype="multipart/form-data"><input name="_token" type="hidden" value="DQETxsj7zbA4H9fFlWkHaoKEYWOxciHnRdXbsxFp">
-					<div class="form-group">
-						<label for="firstname" class="sr-only">First Name</label>
-						<input class="form-control" placeholder="Enter first name" name="firstname" type="text" id="firstname">			
-					</div>
-					<div class="form-group">
-						<label for="lastname" class="sr-only">Last Name</label>
-						<input class="form-control" placeholder="Enter last name" name="lastname" type="text" id="lastname">
-					</div>
-					<div class="form-group">
-						<label for="email" class="sr-only">Email</label>
-						<input class="form-control" placeholder="Enter email" name="email" type="email" value="funk.ryleigh@gmail.com" id="email">
-					</div>
-					<div class="form-group">
-						<label for="password" class="sr-only">Password</label>
-						<input class="form-control" placeholder="Enter password" name="password" type="password" value="" id="password">
-					</div>
-					<div class="form-group">
-						<label for="password_confirmation" class="sr-only">Confirm Password</label>
-						<input class="form-control" placeholder="Confirm password" name="password_confirmation" type="password" value="" id="password_confirmation">
-					</div>
-					<p><strong>Gender:</strong></p>
-					<label class="radio-inline">
-						<input id="gender" name="gender" type="radio" value="F">Female
-					</label>
-					<label class="radio-inline">
-						<input id="gender" name="gender" type="radio" value="M">Male
-					</label>
-					<br>
-					<p><strong>Birthday:</strong></p>
-				<div class="row">
-					<div class="col-md-4">
-						<div class="input-group">
-							<div class="input-group-addon">Month</div>
-				        	<select class="form-control" id="month" name="month"><option value="01" selected="selected">1</option><option value="02">2</option><option value="03">3</option><option value="04">4</option><option value="05">5</option><option value="06">6</option><option value="07">7</option><option value="08">8</option><option value="09">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>								        				        
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="input-group">
-							<div class="input-group-addon">Day</div>
-				        	<select class="form-control" id="day" name="day"><option value="01" selected="selected">1</option><option value="02">2</option><option value="03">3</option><option value="04">4</option><option value="05">5</option><option value="06">6</option><option value="07">7</option><option value="08">8</option><option value="09">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>								        				        
-						</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-group">
-								<label for="year" class="sr-only">Year</label>
-							    <div class="input-group">
-							      	<div class="input-group-addon">Year</div>
-							       <input class="form-control" placeholder="Year" name="year" type="text" id="year">					     
-							    </div>		        
-					        </div>
-						</div>
-
-				</div>
-			  	<div class="form-group">
-				  	<label for="profileimage">Profile image</label>
-					<input name="profileimage" type="file" id="profileimage">			    
-				    <p class="help-block">Please select an image.</p>
-			  	</div>
-			  	<input class="btn btn-primary form-control" type="submit" value="Submit">
-
-				</form>
-
-	</div>
-		</div>
-		<div class="col-md-1"></div>
-		<div class="col-md-6">
-			<div id="main-title" class="row text-center">
-				<h1>Larasocial</h2>
-				<h2>A social network app built with Laravel</h3>							
-				<img src="http://laravel.dev:8000/images/larasocial-main.png" class="img-responsive" alt="Larasocial image">				
-			</div>			
-		</div>
-	</div>
-
-
-
-	
-	</div>
-
-	
-	<div class="container" id="chat-container"></div>
-	<footer class="footer">			
-      <div class="container"> 
-        <p class="text-muted"><small>&copy; Larasocial.com 2015</small></p>               
-      </div>
-    </footer>
-    <script src="http://localhost/js/libs.js"></script>
-	<script src="http://localhost/js/main.js"></script>
-</body>
-</htm
+            </div>
+    </body>
+</html>

@@ -50,3 +50,8 @@ Route::get('friends', ['as' => 'friends_path', 'uses' => 'FriendController@index
 
 Route::delete('friends', ['as' => 'friends_path', 'uses' => 'FriendController@destroy']);
 
+/**
+ * Messages
+ */
+Route::get('/messages/compose/{id}', ['as' => 'compose_message_path', 'uses' => 'MessagesController@create']);
+

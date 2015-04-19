@@ -10,7 +10,7 @@ class TestFeedController extends TestCase
 {
 
 
-	public function testIndexReturnsFeedsViewOnSuccesfulRequest()
+	public function testIndexReturnsViewInstance()
 	{
 		$currentUser = Factory::create('App\User');
 
@@ -27,7 +27,7 @@ class TestFeedController extends TestCase
 		$this->assertInstanceOf('Illuminate\View\View', $response);
 	}
 
-	public function testStoreReturnsJsonResponseFeedData()
+	public function testStoreReturnsJsonResponseInstance()
 	{
 		$currentUser = Factory::create('App\User');
 

@@ -18,11 +18,9 @@ class testSessionController extends TestCase
 	public static function tearDownAfterClass()
 	{
 		Auth::logout();
-
-		self::$sessionControlller = '';
 	}
 
-	public function testStoreRedirectToFeedsViewOnSuccesfulRequest()
+	public function testStoreReturnsRedirectResponseInstance()
 	{
 		$tempUser = Factory::create('App\User');
 
@@ -35,7 +33,7 @@ class testSessionController extends TestCase
 	}
 
 
-	public function testStoreReturnsRedirectBackToHomeOnFailedRequest()
+	public function testStoreReturnsRedirectResponseInstanceLoginWrong()
 	{
 		$request = new CreateSessionRequest(['email' => 'jon@example.com', 'password' => 'secret']);
 
@@ -47,7 +45,7 @@ class testSessionController extends TestCase
 
 	}
 
-	public function testDestroyReturnsJsonResponseWithLogoutData()
+	public function testDestroyReturnsJsonResponseInstance()
 	{
 		$tempUser = Factory::create('App\User');
 

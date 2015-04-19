@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class TestUserController extends testCase
 {
-	public function testIndexReturnsUserIndexViewOnSuccesfulRequest()
+	public function testIndexReturnsViewInstance()
 	{
 		$currentUser = Factory::create('App\User');
 
@@ -25,7 +25,7 @@ class TestUserController extends testCase
 		$this->assertInstanceOf('Illuminate\View\View', $response);
 	}
 
-	public function testShowReturnsUserShowViewOnSuccesfulRequest()
+	public function testShowReturnsViewInstance()
 	{
 		$currentUser = Factory::create('App\User');
 

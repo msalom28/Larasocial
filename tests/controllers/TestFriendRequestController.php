@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class TestFriendRequestController extends TestCase
 {
-	public function testStoreReturnsJsonReponseData()
+	public function testStoreReturnsJsonReponseInstance()
 	{
 		$currentUser = Factory::create('App\User');
 
@@ -28,7 +28,7 @@ class TestFriendRequestController extends TestCase
 
 	}
 
-	public function testIndexReturnsViewOnSucesfulRequest()
+	public function testIndexReturnsViewInstance()
 	{
 		$user = Factory::create('App\User');
 
