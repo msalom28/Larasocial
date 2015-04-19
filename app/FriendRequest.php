@@ -9,7 +9,7 @@ class FriendRequest extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['requested_id', 'requester_id'];
+	protected $fillable = ['requester_id'];
 
 
 	/**
@@ -26,14 +26,13 @@ class FriendRequest extends Model {
 	/**
 	 * Send a friend request to a user
 	 *
-	 * @attr int $requested_id
 	 *
 	 * @attr int $requester_id 
 	 *
 	 */
-	public static function prepareFriendRequest($requested_id, $requester_id)
+	public static function prepareFriendRequest($requester_id)
 	{
-		$FriendRequest = new static(compact('requested_id', 'requester_id'));
+		$FriendRequest = new static(compact('requester_id'));
 
 		return $FriendRequest;
 	}

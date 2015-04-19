@@ -2,6 +2,8 @@
 
 use Laracasts\TestDummy\Factory;
 use App\Http\Controllers\FriendRequestController;
+use App\Repositories\FriendRequest\EloquentFriendRequestRepository;
+use App\Repositories\User\EloquentUserRepository;
 use Illuminate\Http\Request;
 
 class TestFriendRequestController extends TestCase
@@ -23,6 +25,26 @@ class TestFriendRequestController extends TestCase
 		$this->assertEquals(1, $otherUser->friendRequests()->count());
 
 		$this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
+
+	}
+
+	public function testIndexReturnsViewOnSucesfulRequest()
+	{
+		$user = Factory::create('App\User');
+
+		$friendRequests = Factory::times(25)->create('App\FriendRequest', ['user_id' => $user->id]);		
+
+		Auth::login($user);
+
+		$friendRequestController = new FriendRequestController($user);
+
+		$friendRequestRepository = new EloquentFriendRequestRepository;
+
+		$userRepository = new EloquentUserRepository;
+
+		$response = $friendRequestController->index($friendRequestRepository, $userRepository);
+
+		$this->assertInstanceOf('Illuminate\View\View', $response);
 
 	}
 }

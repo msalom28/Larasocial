@@ -7,28 +7,12 @@ $primary-color: #CC3341;
 	
 }
 
-@mixin primary-button{
-	.btn-primary{
-		background-color: #3E474F;
-		border-color: #3E474F;
-		color: #EBEBEB;
-		&:hover, &:active, &:focus{
-			background-color: #2E353B;
-			border-color: #2E353B;
-			outline-color: #2E353B;
-		}
-		
-	}
-}
-
 html {
   position: relative;
   min-height: 100%;
 }
 
 body {
-
-@include primary-button;
   margin-bottom: 15px;
   position: relative;
 
@@ -39,6 +23,39 @@ body {
   overflow: hidden;
   }
 
+}
+
+
+.btn{
+	&:focus, &:active:focus, &:active:focus{
+		 outline: 0 none;
+	}
+}
+
+.active{
+	&:focus{
+		 outline: 0 none;
+	}
+}
+
+.btn-primary{
+		background-color: #3E474F;
+		border-color: #3E474F;
+		outline-color: #3E474F;
+		color: #EBEBEB;
+		&:disabled{
+			background-color: #3E474F;	
+		}
+		&:hover, &:active, &:focus{
+			background-color: #2E353B;
+			border-color: #2E353B;
+			outline-color: #2E353B;
+		}		
+	}
+
+.btn-primary.disabled, .btn-primary.disabled.active, .btn-primary.disabled.focus, .btn-primary.disabled:active, .btn-primary.disabled:focus, .btn-primary.disabled:hover, .btn-primary[disabled], .btn-primary[disabled].active, .btn-primary[disabled].focus, .btn-primary[disabled]:active, .btn-primary[disabled]:focus, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary, fieldset[disabled] .btn-primary.active, fieldset[disabled] .btn-primary.focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary:hover {
+  background-color: #3E474F;
+  border-color: #3E474F;
 }
 
   #registration-form{

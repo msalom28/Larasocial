@@ -18,3 +18,8 @@ $factory('App\Feed', [
 	'poster_firstname'  => $faker->firstName,
 	'poster_profile_image'  => $faker->imageUrl($width = 180, $height = 180)
 ]);
+
+$factory('App\FriendRequest', [
+	'user_id' => 1,
+	'requester_id'  => $faker->numberBetween($min = 2, $max = 30)
+]);

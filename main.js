@@ -278,11 +278,11 @@
 
 	$('.friend-request-button').click(handleAjaxRequests);
 
-	$('.add-friend-button').click(handleAjaxRequests);
+	// $('.add-friend-button').click(handleAjaxRequests);
 
 	$('.add-friend-button-2').click(handleAjaxRequests);
 
-	$('.unfriend-button').click(handleAjaxRequests);
+	// $('.unfriend-button').click(handleAjaxRequests);
 
 	$('.unfriend-button-2').click(handleAjaxRequests);
 
@@ -351,32 +351,34 @@
 
 					case 'btn btn-primary add-friend-button-2 btn-sm':
 
-			        button.closest('.friend-request-media').slideUp();			       
+			        button.closest('.listed-object-close').slideUp();
 
-			       
-	        		$('#no-friend-chat-alert').hide();
-
-					$('#friend-list').append('<div id="friend-side-list" class="list-group">'+
-					'<a href="#" class="list-group-item side-list disabled" data-userid = "'+ userId +'">'+						
-					'<div class="media"><div class="pull-left">'+
-					'<img class="media-object avatar small-avatar" src="'+ imgPath+'" alt="'+ friendName+'">'+        
-					'</div><div class="media-body">'+						     	
-					''+ friendName +' <span class="glyphicon glyphicon-flash text-success"></span>'+
-					'</div></div></a></div>');	
-			        
-
-			   		 if(data.count == 0)
+			         if(data.count == 0)
 			        {
 
-			        	$('.friend-request-list').append('<div class="alert alert-info" role="alert">'+
+			        	$('.users-list').append('<div class="alert alert-info" role="alert">'+
 						'<span class="glyphicon glyphicon-info-sign"></span> You don\'t have any friend requests.</div>');
-			        }
+			        }			       
 
-		        	var friendsCount = $('.friends-count').text();
+			       
+	    //     		$('#no-friend-chat-alert').hide();
 
-					var actualFriendsCount = parseInt(friendsCount) + 1;
+					// $('#friend-list').append('<div id="friend-side-list" class="list-group">'+
+					// '<a href="#" class="list-group-item side-list disabled" data-userid = "'+ userId +'">'+						
+					// '<div class="media"><div class="pull-left">'+
+					// '<img class="media-object avatar small-avatar" src="'+ imgPath+'" alt="'+ friendName+'">'+        
+					// '</div><div class="media-body">'+						     	
+					// ''+ friendName +' <span class="glyphicon glyphicon-flash text-success"></span>'+
+					// '</div></div></a></div>');	
+			        
 
-					$('.friends-count').text(actualFriendsCount);						
+			
+
+		   //      	var friendsCount = $('.friends-count').text();
+
+					// var actualFriendsCount = parseInt(friendsCount) + 1;
+
+					// $('.friends-count').text(actualFriendsCount);						
 
 					break;
 
@@ -405,11 +407,11 @@
 
 					case 'btn btn-primary unfriend-button-2 btn-sm':
 
-			         button.closest('.friend-request-media').slideUp();
+			         button.closest('.listed-object-close').slideUp();
 
 			        if(data.count == 0)
 			        {			        	
-			        	$('.friend-request-list').append('<div class="alert alert-info" role="alert">'+
+			        	$('.users-list').append('<div class="alert alert-info" role="alert">'+
 						'<span class="glyphicon glyphicon-info-sign"></span> You don\'t have any friend requests.</div>');
 			        }						
 
@@ -417,26 +419,26 @@
 
 					case 'btn btn-primary unfriend-button-3 btn-sm':
 
-				        button.closest('.friend-request-media').slideUp();
+				        button.closest('.listed-object-close').slideUp();
 
-				        $( "a[data-userid="+button.attr('data-userid')+"]" ).hide('slide', {direction : 'right'}, 300);
+				        // $( "a[data-userid="+button.attr('data-userid')+"]" ).hide('slide', {direction : 'right'}, 300);
 				     
 				        if(data.count == 0)
 				        {			        	
-				        	$('.friend-request-list').append('<div class="alert alert-info" role="alert">'+
+				        	$('.users-list').append('<div class="alert alert-info" role="alert">'+
 							'<span class="glyphicon glyphicon-info-sign"></span> You don\'t have any friends.</div>');
 
-				        	$('#friend-side-list').hide();
-							$('#friend-list').append('<div class="alert alert-info" role="alert">'+
-			 					'<span class="glyphicon glyphicon-info-sign"></span>'+
-			 					' You don\'t have any friends.</div>');
+				   //      	$('#friend-side-list').hide();
+							// $('#friend-list').append('<div class="alert alert-info" role="alert">'+
+			 			// 		'<span class="glyphicon glyphicon-info-sign"></span>'+
+			 			// 		' You don\'t have any friends.</div>');
 				        }
 
-					    var friendsCount = $('.friends-count').text();
+					 //    var friendsCount = $('.friends-count').text();
 
-						var actualFriendsCount = parseInt(friendsCount) - 1;
+						// var actualFriendsCount = parseInt(friendsCount) - 1;
 
-						$('.friends-count').text(actualFriendsCount);						
+						// $('.friends-count').text(actualFriendsCount);						
 
 					break;
 

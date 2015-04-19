@@ -31,3 +31,22 @@ Route::get('users', ['as' => 'users_path', 'uses' => 'UserController@index']);
 
 Route::get('users/{id}', ['as' => 'user_path', 'uses' => 'UserController@show']);
 
+/**
+ * Friend-requests
+ */
+Route::get('friend-requests', ['as' => 'friend_request_path', 'uses' => 'FriendRequestController@index']);
+
+Route::post('friend-requests', ['as' => 'friend_request_path', 'uses' => 'FriendRequestController@store']);
+
+Route::delete('friend-requests', ['as' => 'friend_request_path', 'uses' => 'FriendRequestController@destroy']);
+
+
+/**
+ * Friends
+ */
+Route::post('friends', ['as' => 'friends_path', 'uses' => 'FriendController@store']);
+
+Route::get('friends', ['as' => 'friends_path', 'uses' => 'FriendController@index']);
+
+Route::delete('friends', ['as' => 'friends_path', 'uses' => 'FriendController@destroy']);
+

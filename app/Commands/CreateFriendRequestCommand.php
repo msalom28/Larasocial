@@ -36,7 +36,7 @@ class CreateFriendRequestCommand extends Command implements SelfHandling {
 
 		$requesterUser = Auth::user();
 
-		$friendRequest = FriendRequest::prepareFriendRequest($requestedUser->id, $requesterUser->id);
+		$friendRequest = FriendRequest::prepareFriendRequest($requesterUser->id);
 
 		$requestedUser->friendRequests()->save($friendRequest);
 

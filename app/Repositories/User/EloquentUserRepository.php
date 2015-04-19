@@ -35,6 +35,27 @@ class EloquentUserRepository implements UserRepository
 	{
 		return User::find($id);
 	}
+
+	/**
+	 * Fetch many users by id
+	 *
+	 * @param int $id
+	 *	
+	 * @return mixed
+	 */
+	public function findManyById(array $ids)
+	{
+		$users = [];
+
+		foreach ($ids as $id) {
+			
+			$users[] = User::find($id);	
+		}
+
+		return	$users;
+	}
+
+
 	/**
 	 * Fetch a user by id with feeds attached
 	 *
@@ -88,6 +109,7 @@ class EloquentUserRepository implements UserRepository
 			'friends' => function($query){ 
 			$query->orderBy('firstname', 'desc');
 		}])->findOrFail($userId)->toArray();
+		
 		return $user['friends'];
 	}
 	

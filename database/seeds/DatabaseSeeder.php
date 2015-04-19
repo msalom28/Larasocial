@@ -6,8 +6,8 @@ use App\User;
 
 class DatabaseSeeder extends Seeder {
 
-	protected $tables = ['users', 'feeds'];
-	protected $seeders = ['UserTableSeeder', 'FeedTableSeeder'];
+	protected $tables = ['users', 'feeds', 'friend_requests'];
+	protected $seeders = ['UserTableSeeder', 'FeedTableSeeder', 'FriendRequestTableSeeder'];
 	/**
 	 * Run the database seeds.
 	 *
@@ -29,14 +29,12 @@ class DatabaseSeeder extends Seeder {
 	 */
 	public function cleanDatabase()
 	{
-		// DB::statement('SET FOREIGN_KEY_CHECKS=0');
 
 		foreach ($this->tables as $table) {
 			
 			DB::table($table)->truncate();
 		}
 		
-		// DB::statement('SET FOREIGN_KEY_CHECKS=1');
 	}
 	
 }

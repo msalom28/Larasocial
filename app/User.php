@@ -90,6 +90,33 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	}
 
 	/**
+	 * Add a friend to a user.
+	 *	
+	 * @param int $requestedUserId
+	 *
+	 * @return mixed
+	 */
+	public function createFriendShipWith($requesterUserId)
+	{
+		return $this->friends()->attach($requesterUserId, ['requested_id' => $this->id, 'requester_id' => $requesterUserId]);	
+	}
+
+	
+	/**
+	 * Remove a friend from a user.
+	 *	
+	 * @param int $requestedUserId
+	 *
+	 * @return mixed
+	 */
+	public function finishFriendshipWith($requesterUserId)
+	{
+		return $this->friends()->detach($requesterUserId, ['requested_id' => $this->id, 'requester_id' => $requesterUserId]);
+	}
+
+
+
+	/**
 	 * Update the online status of current user
 	 *	
 	 * @param int $status
@@ -126,7 +153,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	public function sentFriendRequestTo($otherUserId)
 	{
-		$friendRequestedByCurrentUser = DB::table('friend_requests')->where('requester_id', $this->id)->lists('requested_id');
+		$friendRequestedByCurrentUser = DB::table('friend_requests')->where('requester_id', $this->id)->lists('user_id');
 
 		return in_array($otherUserId, $friendRequestedByCurrentUser);
 	}

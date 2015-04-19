@@ -10,12 +10,12 @@
 		</div>
 
 		<div id="center-column" class="row col-md-6">
-			<h4>Active users: </h4>
-			@if($users->count())
+			<h4>Friend requests:</h4>
+			@if($usersWhoRequested)
 				{{-- <div class="friend-request-list"> --}}
 				<div class="users-list">
 
-					@foreach($users as $user)
+					@foreach($usersWhoRequested as $user)
 
 						{{-- <div class="media friend-request-media"> --}}
 						<div class="media listed-object-close">
@@ -24,24 +24,21 @@
 							</div>
 							<div class="media-body">
 								<a href="#"><h4 class="media-heading">{!! $user->firstname !!}</h4></a>								
-								<div class="pull-right">
-									@if( $currentUser->sentFriendRequestTo($user->id))
+								<div class="pull-right">																							
+									<a href="{!! url('friends') !!}" data-method="post" data-userid="{!! $user->id!!}" class="btn btn-primary add-friend-button-2 btn-sm" role="button">Accept</a>
 
-										<a href="#" class="btn btn-primary btn-sm" disabled='disabled' role="button">Request sent</a>
-									@else																							
-										<a href="{!! url('friend-requests') !!}" data-method="post" data-userid="{!! $user->id!!}" class="btn btn-primary friend-request-button btn-sm" role="button">Add friend</a>
-									@endif																
+									<a href="{!! url('friend-requests') !!}" data-method="delete" data-userid="{!! $user->id!!}" class="btn btn-primary unfriend-button-2 btn-sm" role="button">Decline</a>																
 								</div>		
 							</div>
 						</div>
 					@endforeach
 				</div>
 					<div class="paginator text-center">
-						 {!! $users->render() !!}	
+						 	
 					</div>
 			@else
 
-				<div class="alert alert-info" role="alert"><span class="glyphicon glyphicon-info-sign"></span> No users were found.</div>
+				<div class="alert alert-info" role="alert"><span class="glyphicon glyphicon-info-sign"></span> You don't have any friend requests.</div>
 
 			@endif
 		
