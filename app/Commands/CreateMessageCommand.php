@@ -71,6 +71,8 @@ class CreateMessageCommand extends Command implements SelfHandling {
 		$messageRepository->findById($message->id)->messageResponses()->save($response);
 		
 		$userRepository->findById($this->receiverId)->messageResponses()->save($response);
+
+		return true;
 	}
 
 }

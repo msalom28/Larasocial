@@ -23,3 +23,19 @@ $factory('App\FriendRequest', [
 	'user_id' => 1,
 	'requester_id'  => $faker->numberBetween($min = 2, $max = 30)
 ]);
+
+$factory('App\Message', [
+	'body'  => $faker->sentence,
+	'senderid' => $faker->randomDigit,
+	'sendername' => $faker->name,
+	'senderprofileimage' => $faker->imageUrl($width = 180, $height = 180)
+]);
+
+$factory('App\MessageResponse', [
+	'message_id' => 'factory:App\Message',
+	'body'  => $faker->sentence,	
+	'senderid' => $faker->randomDigit,
+	'receiverid' => $faker->randomDigit,
+	'sendername' => $faker->name,
+	'senderprofileimage' => $faker->imageUrl($width = 180, $height = 180)
+]);

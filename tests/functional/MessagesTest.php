@@ -14,7 +14,8 @@ class MessagesTest extends TestCase
 
 		$this->visit('/messages/compose/'.$otherUser->id)
 		->submitForm('Submit', ['body' => 'This is the new message to you.'])
-		->verifyInDatabase('messages', ['body' => 'This is the new message to you.']);		
+		->verifyInDatabase('messages', ['body' => 'This is the new message to you.'])
+		->verifyInDatabase('message_responses', ['body' => 'This is the new message to you.']);		
 	}
 
 	
