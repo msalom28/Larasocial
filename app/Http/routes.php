@@ -53,5 +53,12 @@ Route::delete('friends', ['as' => 'friends_path', 'uses' => 'FriendController@de
 /**
  * Messages
  */
-Route::get('/messages/compose/{id}', ['as' => 'compose_message_path', 'uses' => 'MessagesController@create']);
+
+Route::post('/messages', ['as' => 'save_message_path', 'uses' => 'MessageController@store']);
+
+Route::get('/messages/compose/{id}', ['as' => 'compose_message_path', 'uses' => 'MessageController@create']);
+
+
+
+//continue with messagecontroller (store method)
 

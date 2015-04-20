@@ -6,12 +6,15 @@ class FriendRequestTest extends TestCase
 {
 	public function testAddNewFriendRequest()
 	{
-		// $currentUser = Factory::create('App\User');
+		$currentUser = Factory::create('App\User');
 
-		// $otherUser = Factory::create('App\User');
+		$otherUser = Factory::create('App\User');
 
-		// Auth::login($currentUser);
+		Auth::login($currentUser);
 
-		$this->assertTrue(true, true);
+		$this->visit('users')
+		->click('Add friend');
+
+		$this->assertResponseOk();
 	}
 }

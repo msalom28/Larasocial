@@ -171,7 +171,7 @@
 
 	//Handle ajax form submissions
 
-	// $('.email-form').submit(handleFormSubmisions);
+	$('.message-form').submit(handleFormSubmisions);
 
 	// $('.response-email-form').submit(handleFormSubmisions);
 
@@ -202,7 +202,7 @@
 
 				switch (form.prop('class')) {				   
 
-					case 'email-form':
+					case 'message-form':
 
 			        $('.center-alert').html(data.message).fadeIn(300).delay(2500).fadeOut(300);
 

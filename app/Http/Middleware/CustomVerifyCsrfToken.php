@@ -1,5 +1,7 @@
 <?php namespace App\Http\Middleware;
+
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
+
 class CustomVerifyCsrfToken extends BaseVerifier
 {
     /**
@@ -10,7 +12,7 @@ class CustomVerifyCsrfToken extends BaseVerifier
     protected $routes = [
             'chatstatus',
             'chat',
-            'emails',
+            'messages',
             'responses',
             'friend-requests',
             'friends',

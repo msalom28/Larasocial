@@ -2,10 +2,22 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Repositories\User\UserRepository;
+use App\Commands\CreateMessageCommand;
 use Illuminate\Http\Request;
+use Validator;
+use Auth;
+use App;
 
 class MessageController extends Controller {
+
+
+	public function __construct()
+	{
+		$this->currentUser = Auth::user();
+
+		$this->middleware('auth');
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -14,7 +26,7 @@ class MessageController extends Controller {
 	 */
 	public function index()
 	{
-		//
+
 	}
 
 	/**
@@ -22,9 +34,14 @@ class MessageController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($id, UserRepository $userRepository)
 	{
-		//
+		$currentUser = $this->currentUser;
+
+		$user = $userRepository->findById($id);
+
+		return view('messages.create', compact('currentUser', 'user'));
+
 	}
 
 	/**
@@ -32,9 +49,21 @@ class MessageController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		$validator = Validator::make($request->all(), App::make('MessageRequest')->rules());
+
+		if($validator->fails())
+		{
+			return response()->json(['response' => 'failed', 'message' => $validator->messages()->first('body')]);
+		}
+		else
+		{
+			$this->dispatchFrom(CreateMessageCommand::class, $request);
+			
+			return response()->json(['response' => 'success', 'message' => 'Your message was sent.']);
+		}
+
 	}
 
 	/**

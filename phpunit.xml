@@ -12,7 +12,7 @@
     <testsuites>
         <testsuite name="Application Test Suite">
             <directory>./tests/functional/</directory>
-            <directory>./tests/commands/TestCreateFeedCommand.php</directory>
+<!--             <directory>./tests/commands/TestCreateFeedCommand.php</directory>
             <directory>./tests/commands/TestCreateFriendRequestCommand.php</directory>
             <directory>./tests/commands/TestLoginUserCommand.php</directory>
             <directory>./tests/commands/TestLogoutUserCommand.php</directory>
@@ -30,7 +30,7 @@
             <directory>./tests/handlers/TestEmailRegistrationConfirmation.php</directory>
             <directory>./tests/repositories/TestFeedRepository.php</directory>
             <directory>./tests/repositories/TestFriendRepository.php</directory>
-            <directory>./tests/repositories/TestUserRepository.php</directory>                
+            <directory>./tests/repositories/TestUserRepository.php</directory>  -->               
         </testsuite>
     </testsuites>
     <php>

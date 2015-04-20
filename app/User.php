@@ -62,6 +62,26 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->belongsToMany(Self::class, 'friends', 'requested_id', 'requester_id')->withTimestamps();
 	}
 
+	/**
+	 * A user belons to many messages.
+	 *
+	 * @return Collection
+	 */
+	 public function messages()
+    {
+        return $this->belongsToMany('App\Message')->withTimestamps();
+    }
+
+    /**
+	 * A user has many message responses.
+	 *
+	 * @return Collection
+	 */
+	 public function messageResponses()
+    {
+        return $this->belongsToMany('App\MessageResponse')->withTimestamps();
+    }
+
 
 	/**
 	 * Register a new Larasocial user.

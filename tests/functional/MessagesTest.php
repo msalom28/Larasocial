@@ -10,13 +10,11 @@ class MessagesTest extends TestCase
 
 		$otherUser = Factory::create('App\User');
 
+		Auth::login($currentUser);
+
 		$this->visit('/messages/compose/'.$otherUser->id)
-		->submitForm('Send message', ['body' => 'This is the new message to you.']);
-
-		$this->assertCount(1, $otherUser->messages()->count());
-
-		$this->asserResponseOk();
-		
+		->submitForm('Submit', ['body' => 'This is the new message to you.'])
+		->verifyInDatabase('messages', ['body' => 'This is the new message to you.']);		
 	}
 
 	

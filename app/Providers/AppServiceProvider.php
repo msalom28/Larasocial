@@ -42,6 +42,16 @@ class AppServiceProvider extends ServiceProvider {
 			'App\Repositories\FriendRequest\EloquentFriendRequestRepository'
 		);
 
+		$this->app->bind(
+			'App\Repositories\Message\MessageRepository', 
+			'App\Repositories\Message\EloquentMessageRepository'
+		);
+
+		$this->app->bind(
+			'MessageRequest', 
+			'App\Http\Requests\CreateMessageRequest'
+		);
+
 	}
 
 }

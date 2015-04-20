@@ -11,7 +11,13 @@
 
 		<div id="center-column" class="col-md-6">
 
-			@include('layouts.partials.center-form', ['placeholder' => 'What\'s on your mind?', 'formType' => 'feed-form', 'button' => 'Publish', 'path' => 'feeds_path'])
+			@include('layouts.partials.center-form', [
+			'placeholder' => 'What\'s on your mind?', 
+			'formType' => 'feed-form', 
+			'button' => 'Publish', 
+			'path' => 'feeds_path',
+			'sendingMessage' => false
+			])
 
 				<div class="row feed-list" data-feedcount="{!! $feedsCount !!}">
 				<div id="loader"></div>
