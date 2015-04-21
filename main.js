@@ -487,73 +487,73 @@
 
 		return false
 	}
-	// //End handle ajax friend activity	
+	//End handle ajax friend activity	
 
 
-	// //Update email open status
+	//Update message open status
 
-	// $('.open-email').click(function(){
+	$('.open-message').click(function(){
 
-	// 	var responseId = $(this).attr('data-responseid');
+		var messageResponseId = $(this).attr('data-message-response-id');
 
-	// 	$.ajax({
+		$.ajax({
 
-	// 		type: "put",
-	// 		url: "/responses",
-	// 		data: {openValue: 1, responseId: responseId}
-	// 	})
+			type: "put",
+			url: "/responses",
+			data: {openValue: 1, messageResponseId: messageResponseId}
+		})
 
-	// 	.fail(function(){
+		.fail(function(){
 
-	// 		return alert('something went wrong. Please try again.');
+			return alert('something went wrong. Please try again.');
 
-	// 	});
+		});
 
-	// });//end update email open status
+	});//end update message open status
 
 
-	// //Remove email message
+	//Remove message
 
-	// $('.delete-email').click(function(){
+	$('.delete-message').click(function(){
 
-	// 	$(this).closest($('li')).slideUp();	
+		$(this).closest($('.listed-object-close')).slideUp();	
 
-	// 	var emailId = $(this).attr('data-emailId');
+		var messageId = $(this).attr('data-message-id');
 
-	// 	$.ajax({
+		$.ajax({
 
-	// 		type: "delete",
-	// 		url: "/emails",
-	// 		data: {emailId: emailId}
+			type: "delete",
+			url: "/messages",
+			data: {messageId: messageId}
 
-	// 	}).done(function(data){
+		}).done(function(data){
 
-	// 		var emailCount = $('.email-count').text();
+			var messageCount = $('.message-count').text();
 
-	// 		var actualCount = emailCount - 1;
+			var actualMessageCount = messageCount - 1;
 
-	// 		$('.email-count').text(actualCount);
+			$('.message-count').text(actualMessageCount);
 
-	// 		if(data.count == 0)
-	// 		{
+			if(data.count == 0)
+			{
 				
-	// 			$('.email-list').append('<div class="alert alert-info" role="alert">'+
-	// 				'<span class="glyphicon glyphicon-info-sign"></span> Your inbox is empty.</div>');
-	// 		}
+				$('.message-list').append('<div class="alert alert-info" role="alert">'+
+					'<span class="glyphicon glyphicon-info-sign"></span> Your inbox is empty.</div>');
+			}
 
-	// 	})
-	// 	.fail(function(){
+		})
+		.fail(function(){
 
-	// 		return alert('something went wrong. Please try again.');
+			return alert('something went wrong. Please try again.');
 
-	// 	});
+		});
 
-	// 	return false;
+		return false;
 
-	// });//End remove email message
+	});//End remove message
 
 
-	// //show email responses
+	//show message responses
 
 	// $('.response-list').first().find($('.email-body')).css('display', 'block');
 

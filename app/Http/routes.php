@@ -53,6 +53,7 @@ Route::delete('friends', ['as' => 'friends_path', 'uses' => 'FriendController@de
 /**
  * Messages
  */
+Route::get('/messages', ['as' => 'message_path', 'uses' => 'MessageController@index']);
 
 Route::post('/messages', ['as' => 'save_message_path', 'uses' => 'MessageController@store']);
 

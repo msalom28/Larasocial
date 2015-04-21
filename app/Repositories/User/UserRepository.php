@@ -8,6 +8,6 @@ interface UserRepository
 	public function findById($id);
 	public function findManyById(array $ids);
 	public function findByIdWithFeeds($id);
-	public function findByIdWithEmails($id);
+	public function findByIdWithMessages($id);
 	public function findByIdWithFriends($userId);
 }

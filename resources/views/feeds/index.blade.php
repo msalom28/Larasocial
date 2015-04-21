@@ -9,7 +9,7 @@
 			This is the profile section
 		</div>
 
-		<div id="center-column" class="col-md-6">
+		<div id="center-column" class="row col-md-6">
 
 			@include('layouts.partials.center-form', [
 			'placeholder' => 'What\'s on your mind?', 

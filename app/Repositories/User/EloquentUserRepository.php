@@ -77,9 +77,9 @@ class EloquentUserRepository implements UserRepository
 	 *	
 	 * @return mixed
 	 */
-	public function findByIdWithEmails($id)
+	public function findByIdWithMessages($id)
 	{
-		return User::find($id)->emails()->paginate(10);
+		return User::find($id)->messages()->paginate(10);
 	}
 	/**
 	 * Fetch friend requests for a user

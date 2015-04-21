@@ -55,4 +55,14 @@ class MessageResponse extends Model {
 		return $response;
 	}
 
+	/**
+	 * Get the message response subject.
+     *
+	 * @return string
+	 */
+	public function getMessageResponseSubject()
+	{
+	 	return substr($this->body, 0, 35)."...";
+	}
+
 }

@@ -24,8 +24,13 @@ class MessageController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index(UserRepository $userRepository)
 	{
+		$user = $this->currentUser;
+
+		$messages = $userRepository->findByIdWithMessages($this->currentUser->id);
+
+		return view('messages.index', compact('messages', 'user'));
 
 	}
 
@@ -100,14 +105,23 @@ class MessageController extends Controller {
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Remove the specified email from storage.
 	 *
-	 * @param  int  $id
+	 * @param Request $request
+	 *
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(Request $request)
 	{
-		//
+		$validator = Validator::make($request->all(), ['messageId' => 'required']);
+
+		if($validator->fails()) return abort(403);
+
+		$this->currentUser->messages()->detach($request->messageId);
+
+		$messageCount = $this->currentUser->messages()->count();
+
+		return response()->json(['count' => $messageCount ]);
 	}
 
 }
