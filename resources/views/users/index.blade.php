@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-3">
 
-			users profile section
+			@include('users.partials.profile-section')
 			
 		</div>
 
@@ -18,19 +18,34 @@
 					@foreach($users as $user)
 
 						{{-- <div class="media friend-request-media"> --}}
-						<div class="media listed-object-close">
+						<div class="row media listed-object-close">
 							<div class="pull-left">		
 								<a href="#"><img class="media-object avatar medium-avatar" src="{!! $user->profileimage !!}" alt="{!! $user->firstname !!}"></a>		
 							</div>
 							<div class="media-body">
 								<a href="#"><h4 class="media-heading">{!! $user->firstname !!}</h4></a>								
 								<div class="pull-right">
-									@if( $currentUser->sentFriendRequestTo($user->id))
 
-										<a href="#" class="btn btn-primary btn-sm" disabled='disabled' role="button">Request sent</a>
-									@else																							
-										<a href="{!! url('friend-requests') !!}" data-method="post" data-userid="{!! $user->id!!}" class="btn btn-primary friend-request-button btn-sm" role="button">Add friend</a>
-									@endif																
+									@if(Auth::user()->isFriendsWith($user->id))
+											<a href="{!! url('friends') !!}" data-method="delete" data-userid="{!! $user->id!!}" class="btn btn-primary unfriend-button btn-sm" role="button">Unfriend</a>
+												
+									@else
+
+											@if( Auth::user()->sentFriendRequestTo($user->id))
+
+												<button class="btn btn-primary btn-sm" disabled="disabled" type="submit">Request sent</button>								
+
+											@elseif(Auth::user()->receivedFriendRequestFrom($user->id))
+
+												<a href="{!! url('friends') !!}" data-method="post" data-userid="{!! $user->id!!}" class="btn btn-primary add-friend-button btn-sm" role="button">Add friend</a>				
+
+											@else												
+												<a href="{!! url('friend-requests') !!}" data-method="post" data-userid="{!! $user->id!!}" class="btn btn-primary friend-request-button btn-sm" role="button">Add friend</a>					
+
+											@endif
+
+									@endif
+																									
 								</div>		
 							</div>
 						</div>

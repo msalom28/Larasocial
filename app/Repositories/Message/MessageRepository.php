@@ -6,6 +6,6 @@ use App\User;
 interface MessageRepository
 {
 	public function findById($id);
-	public function findByIdWithResponses($id);
+	public function findByIdWithMessageResponses($id);
 	
 }

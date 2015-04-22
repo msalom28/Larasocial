@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-3">
 
-			users profile section
+			@include('users.partials.profile-section')
 			
 		</div>
 

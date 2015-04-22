@@ -12,11 +12,11 @@ class CustomVerifyCsrfToken extends BaseVerifier
     protected $routes = [
             'chatstatus',
             'chat',
-            'messages',
-            'responses',
+            'message-response',
             'friend-requests',
             'friends',
-            'logout'
+            'logout',
+            'message-delete'
     ];
      /**
      * Handle an incoming request.

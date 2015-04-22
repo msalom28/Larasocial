@@ -52,6 +52,11 @@ class AppServiceProvider extends ServiceProvider {
 			'App\Http\Requests\CreateMessageRequest'
 		);
 
+		$this->app->bind(
+			'MessageResponseRequest', 
+			'App\Http\Requests\CreateMessageResponseRequest'
+		);
+
 	}
 
 }

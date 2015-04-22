@@ -32,11 +32,11 @@ class UserController extends Controller {
 	 */
 	public function index(Request $request, UserRepository $userRepository)
 	{
-		$currentUser = $this->currentUser;
+		$user = $this->currentUser;
 
 		$users = $userRepository->getPaginated(null, $request->firstname);
 
-		return view('users.index', compact('users', 'currentUser'));
+		return view('users.index', compact('users', 'user'));
 	}
 
 	/**

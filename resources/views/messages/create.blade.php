@@ -4,7 +4,7 @@
 
 	<div class="row">
 		<div class="col-md-3">
-			This is the profile section
+			@include('users.partials.profile-section')
 		</div>
 			<div id="center-column" class="col-md-6">
 				<h4>Send private message:</h4>

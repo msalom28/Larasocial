@@ -53,13 +53,22 @@ Route::delete('friends', ['as' => 'friends_path', 'uses' => 'FriendController@de
 /**
  * Messages
  */
-Route::get('/messages', ['as' => 'message_path', 'uses' => 'MessageController@index']);
 
-Route::post('/messages', ['as' => 'save_message_path', 'uses' => 'MessageController@store']);
+Route::get('messages/{id}', ['as' => 'show_message_path', 'uses' => 'MessageController@show'])->where('id', '[0-9]+');
 
-Route::get('/messages/compose/{id}', ['as' => 'compose_message_path', 'uses' => 'MessageController@create']);
+Route::get('messages', ['as' => 'message_path', 'uses' => 'MessageController@index']);
 
+Route::post('messages', ['as' => 'save_message_path', 'uses' => 'MessageController@store']);
 
+Route::get('messages/compose/{id}', ['as' => 'compose_message_path', 'uses' => 'MessageController@create']);
 
-//continue with messagecontroller (store method)
+Route::delete('message-delete', ['as' => 'delete_message_path', 'uses' => 'MessageController@destroy']);
+
+/**
+ * MessageResponses
+ */
+Route::put('message-response', ['as' => 'message_responses_path', 'uses' => 'MessageResponseController@update']);
+
+Route::post('message-response', ['as' => 'message_responses_path', 'uses' => 'MessageResponseController@store']);
+
 

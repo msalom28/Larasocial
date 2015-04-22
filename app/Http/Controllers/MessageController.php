@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\User\UserRepository;
+use App\Repositories\Message\MessageRepository;
 use App\Commands\CreateMessageCommand;
 use Illuminate\Http\Request;
 use Validator;
@@ -72,14 +73,19 @@ class MessageController extends Controller {
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Display the specified message.
 	 *
-	 * @param  int  $id
+	 * @param  int $id
+	 *
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($id, MessageRepository $messageRepository)
 	{
-		//
+		$user = $this->currentUser;
+
+		$message = $messageRepository->findByIdWithMessageResponses($id);
+
+		return view('messages.show', compact('user', 'message'));
 	}
 
 	/**

@@ -173,7 +173,7 @@
 
 	$('.message-form').submit(handleFormSubmisions);
 
-	// $('.response-email-form').submit(handleFormSubmisions);
+	$('.message-response-form').submit(handleFormSubmisions);
 
 	$('.feed-form').submit(handleFormSubmisions);	
 
@@ -210,25 +210,17 @@
 
 					break;
 
-					case 'response-email-form':
+					case 'message-response-form':
 
-			        $('.center-alert').html(data.message).fadeIn(300).delay(2500).fadeOut(300);			       
+			        // $('.center-alert').html(data.message).fadeIn(300).delay(2500).fadeOut(300);			       
 
-			        $('.email-list').prepend('<li>'+
-							'<div class="media">'+
-								'<div class="pull-left">'+
-							         '<img class="media-object avatar small-avatar" src='+userProfileImage+' alt='+userFirstname+'>'+        
-							     '</div>'+
+			        $('.message-response-list').prepend('<div class="row media listed-object-close">'+
+						'<div class="pull-left"><a href="#"><img class="media-object avatar small-avatar"'+ 
+						'src="'+userProfileImage+'" alt="'+userFirstname+'"></a>'+		
+						'</div><div class="media-body"><p><span class="text-muted">Just now you wrote:</span>'+
+						'<a href="#"><span></span></a></p><div class="message-body">'+form.find('textarea').val()+'</div></div></div>');
 
-							     '<div class="media-body">'+
-							     	'<p><span class="text-muted">Just now you wrote:</span></p>'+feedBody+'</div></div>'+
-							'<div class="email-body" style="display: block;">'+
-								 form.find('textarea').val()+
-							'</div>'+
-						'</li>'
-						);
-
-			         form.find('textarea').val("");
+			        form.find('textarea').val("");
 
 					break;
 
@@ -496,13 +488,18 @@
 
 		var messageResponseId = $(this).attr('data-message-response-id');
 
+		var openValue = 1;
+
 		$.ajax({
 
 			type: "put",
-			url: "/responses",
-			data: {openValue: 1, messageResponseId: messageResponseId}
+			url: "/message-response",
+			data: {openValue : openValue, "messageResponseId": messageResponseId}
 		})
+		.done(function(data){
 
+			return false
+		})
 		.fail(function(){
 
 			return alert('something went wrong. Please try again.');
@@ -523,7 +520,7 @@
 		$.ajax({
 
 			type: "delete",
-			url: "/messages",
+			url: "/message-delete",
 			data: {messageId: messageId}
 
 		}).done(function(data){
@@ -552,12 +549,32 @@
 
 	});//End remove message
 
-
 	//show message responses
+	
+	$('.media-body').first().find($('span')).switchClass('glyphicon-chevron-down', 'glyphicon-chevron-up');
 
-	// $('.response-list').first().find($('.email-body')).css('display', 'block');
+	$('.message-body').first().css('display', 'block');
 
-	// $('.response-list').first().find($('span')).switchClass('glyphicon-chevron-down', 'glyphicon-chevron-up');
+
+	//Open / close email message
+
+	$('.expand-message').click(function(){
+
+		if($(this).hasClass('glyphicon-chevron-down'))
+		{
+			$(this).switchClass( "glyphicon-chevron-down", "glyphicon-chevron-up");
+		}
+		else if($(this).hasClass('glyphicon-chevron-up')) 
+		{
+			$(this).switchClass( "glyphicon-chevron-up", "glyphicon-chevron-down");
+		};
+
+		$(this).closest('.media-body').find($('.message-body')).toggle("slide", { direction: "up"} );
+
+
+		return false;
+
+	}); //End open / close email message
 
 	
 	// //Handling chat activity//
@@ -778,7 +795,7 @@
 
 	// 				$.ajax({
 	// 					type: "POST",
-	// 					url: "http://localhost:8000/chat",
+	// 					url: "/chat",
 	// 					data: { receiverId: friendId, message: userFirstname+": "+message }
 	// 				})
 
@@ -836,25 +853,7 @@
 	// }//End generate chat form
 	
 
-	// //Open / close email message
-
-	// $('.expand-message').click(function(){
-
-	// 	if($(this).hasClass('glyphicon-chevron-down'))
-	// 	{
-	// 		$(this).switchClass( "glyphicon-chevron-down", "glyphicon-chevron-up");
-	// 	}
-	// 	else if($(this).hasClass('glyphicon-chevron-up')) 
-	// 	{
-	// 		$(this).switchClass( "glyphicon-chevron-up", "glyphicon-chevron-down");
-	// 	};
-
-	// 	$(this).closest('li').find($('.email-body')).toggle("slide", { direction: "up"} );
-
-
-	// 	return false;
-
-	// }); //End open / close email message
+	
 
 
 	// Loading feeds when scrolling

@@ -6,7 +6,7 @@
 
 	<div class="row">
 		<div class="col-md-3">
-			This is the profile section
+			@include('users.partials.profile-section')
 		</div>
 
 		<div id="center-column" class="row col-md-6">
@@ -16,7 +16,7 @@
 			'formType' => 'feed-form', 
 			'button' => 'Publish', 
 			'path' => 'feeds_path',
-			'sendingMessage' => false
+			'postingFeed' => true
 			])
 
 				<div class="row feed-list" data-feedcount="{!! $feedsCount !!}">

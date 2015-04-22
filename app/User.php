@@ -192,4 +192,18 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return in_array($otherUserId, $friendRequestsReceivedByCurrentUser);
 	}
 
+
+	/**
+	 * Determine if the current user is the same as the given one.
+	 *
+	 * @param User $user 
+	 *
+	 * @return boolean
+	 *
+	 */
+	public function is(User $user)
+	{
+		return $this->id == $user->id;
+	}
+
 }

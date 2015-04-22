@@ -34,13 +34,13 @@ class FriendRequestController extends Controller {
 	 */
 	public function index(FriendRequestRepository $friendRequestRepository, UserRepository $userRepository)
 	{
-		$currentUser = $this->currentUser;
+		$user = $this->currentUser;
 
-		$requesterIds = $friendRequestRepository->getIdsThatSentRequestToCurrentUser($currentUser->id);
+		$requesterIds = $friendRequestRepository->getIdsThatSentRequestToCurrentUser($user->id);
 
 		$usersWhoRequested = $userRepository->findManyById($requesterIds);		
 
-		return view('friend-requests.index', compact('currentUser', 'usersWhoRequested'));
+		return view('friend-requests.index', compact('user', 'usersWhoRequested'));
 	}
 
 	/**

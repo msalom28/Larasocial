@@ -4,7 +4,7 @@
 
 	<div class="row">
 		<div class="col-md-3">
-			This is the profile section
+			@include('users.partials.profile-section')
 		</div>
 			<div id="center-column" class="row col-md-6">
 				<div class="row">
@@ -18,17 +18,17 @@
 
 				<div class="row message-list">
 					@foreach($messages as $message)
-						<div class="media listed-object-close">
+						<div class="row media listed-object-close">
 							<div class="pull-left">		
-								<a href="#"><img class="media-object avatar small-avatar" src="{!! $message->MessageResponses()->first()->senderprofileimage  !!}" alt="{!! $message->MessageResponses()->first()->sendername !!}"></a>		
+								<a href="#"><img class="media-object avatar small-avatar" src="{!! $message->messageResponses()->first()->senderprofileimage  !!}" alt="{!! $message->messageResponses()->first()->sendername !!}"></a>		
 							</div>
 							<div class="media-body">
 								<p>
-								    <a data-message-response-id="{!! $message->messageResponses()->first()->id !!}" class="open-message" href="#">{!! $message->MessageResponses()->first()->getMessageResponseSubject() !!}
+								    <a data-message-response-id="{!! $message->messageResponses()->first()->id !!}" class="open-message" href="{!! url('messages', $message->id) !!}">{!! $message->messageResponses()->first()->getMessageResponseSubject() !!}
 							 		</a> 
 							     	<a data-message-id ="{!! $message->id !!}" class="delete-message" href="#"><span class="glyphicon glyphicon-trash pull-right"></span></a>
 
-							     	<a data-message-response-id="{!! $message->messageResponses()->first()->id !!}" class="open-message" href="#"><span class="glyphicon glyphicon-eye-open pull-right"></span></a>
+							     	<a data-message-response-id="{!! $message->messageResponses()->first()->id !!}" class="open-message" href="{!! url('messages', $message->id) !!}"><span class="glyphicon glyphicon-eye-open pull-right"></span></a>
 							     	<span class="text-muted pull-right"> {!! $message->messageResponses()->first()->created_at->diffForHumans() !!} </span> 
 
 							 	</p>								
@@ -38,10 +38,11 @@
 						<div class="text-center">
 						 	{!! $messages->render() !!}	
 						</div>
+				</div>
 
 			@else
 
-				<div class="row	alert alert-info" role="alert"><span class="glyphicon glyphicon-info-sign"></span> Your inbox is empty.</div>
+				<div class="row alert alert-info" role="alert"><span class="glyphicon glyphicon-info-sign"></span> Your inbox is empty.</div>
 
 			@endif			
 
@@ -50,6 +51,7 @@
 		<div class="col-md-3">
 			This is the Chat with friends section
 		</div>
-	</div>	
+
+	</div>
 
 @stop

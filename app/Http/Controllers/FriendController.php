@@ -25,11 +25,11 @@ class FriendController extends Controller {
 	 */
 	public function index(UserRepository $repository)
 	{
-		$currentUser = $this->currentUser;
+		$user = $this->currentUser;
 
-		$friends = $repository->findByIdWithFriends($currentUser->id);
+		$friends = $repository->findByIdWithFriends($user->id);
 
-		return view('friends.index', compact('friends', 'currentUser'));
+		return view('friends.index', compact('friends', 'user'));
 	}
 
 	/**

@@ -23,7 +23,7 @@ class EloquentMessageRepository implements MessageRepository
 	 *	
 	 * @return mixed
 	 */
-	public function findByIdWithResponses($id)
+	public function findByIdWithMessageResponses($id)
 	{		
 		return Message::with(['MessageResponses'])->find($id);
 	}

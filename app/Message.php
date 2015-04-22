@@ -50,4 +50,35 @@ class Message extends Model {
         return $this->hasMany('App\MessageResponse')->orderBy('created_at', 'desc');
     }
 
+    /**
+	 * Get the last receiver id from the first response attached to an message.
+     *
+	 * @return mixed
+	 */
+	public function getLastReceiverId()
+	{
+		return $this->messageResponses()->first()->receiverid;
+	}
+
+	/**
+	 * Determine if a message belongs to a user.
+	 *	
+	 * @param int $userId
+     *
+	 * @return mixed
+	 */
+	public function belongsToUser($userId)
+	{
+		$users = $this->users()->get();
+
+		$userIds = [];
+
+		foreach ($users as $user) {
+			
+			$userIds[] = $user->id;
+		}
+		
+		return in_array($userId, $userIds);
+	}
+
 }
