@@ -10,6 +10,7 @@
 	<div id="go-up"><a href="#main-feed"><span class="glyphicon glyphicon-eject"></span></a></div>
 	@include('layouts.partials.nav')
 	<div class="container">
+	@include('layouts.partials.center-alert')
 		@yield('content')	
 	</div>	
 	@include('users.partials.userid')

@@ -23,18 +23,18 @@
           {!! Auth::user()->firstname !!} 
           <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Members</a></li>
-          <li><a href="#">Friends</a></li>
-          <li><a href="#">Friend Requests</a></li>
-          <li><a href="#">Messages</a></li>             
+          <li><a href="/">Home</a></li>
+          <li><a href="{!! url('users') !!}">Users</a></li>
+          <li><a href="{!! url('friends') !!}">Friends</a></li>
+          <li><a href="{!! url('friend-requests') !!}">Friend Requests</a></li>
+          <li><a href="{!! url('messages') !!}">Messages</a></li>             
           <li class="divider"></li>
-          <li><a class="logout-link" data-method="DELETE" href="http://localhost:8000/logout">Logout</a></li>
+          <li><a class="logout-link" data-method="DELETE" href="/logout">Logout</a></li>
           </ul>
         </li>
       </ul>
 
-      {!! Form::open(['route' => 'registration_path', 'class'=>'navbar-form navbar-right']) !!}
+      {!! Form::open(['route' => 'users_path', 'class'=>'navbar-form navbar-right']) !!}
           <div class="form-group">
             {!! Form::text('firstname', null, array('class' => 'form-control', 'placeholder' => 'Find users by name...', 'required' => 'required')) !!}
           </div>                   

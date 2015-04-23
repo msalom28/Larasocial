@@ -1,6 +1,7 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class MessageResponse extends Model {
 
@@ -63,6 +64,32 @@ class MessageResponse extends Model {
 	public function getMessageResponseSubject()
 	{
 	 	return substr($this->body, 0, 35)."...";
+	}
+
+
+	/**
+	 *  Determine if message response was opened by current user.
+	 *
+	 *	@param int userId
+	 *
+	 *	@return boolean
+	 */
+	public function hasBeenOpenedBy($userId)
+	{
+		return DB::table('message_response_user')->where('user_id', $userId)->where('message_response_id', $this->id)->pluck('open');
+	}
+
+
+	/**
+	 *  Determine if message response was sent by a user.
+	 *
+	 *	@param int userId
+	 *
+	 *	@return boolean
+	 */
+	public function wasSentByThisUser($userId)
+	{
+		return ($this->senderid == $userId) ? true : false;
 	}
 
 }

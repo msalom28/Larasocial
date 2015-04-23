@@ -2,7 +2,7 @@
 
 	<div id="profile-card" class="media">
 
-		@if($user->is(Auth::user()))	
+		@if($user->is(Auth::user()->id))	
 
 			<img class="avatar large-avatar pull-left" src="{!! Auth::user()->profileimage !!}" alt="{!! Auth::user()->firstname !!}">			
 
@@ -57,7 +57,7 @@
 		</ul>
 	</div>
 
-	@if($user->is(Auth::user()))
+	@if($user->is(Auth::user()->id))
 
 		<div class="list-group">
 			<a href="{!! url('users') !!}" class="list-group-item" role="button">Users</a>

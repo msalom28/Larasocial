@@ -6,46 +6,68 @@
 		<div class="col-md-3">
 			@include('users.partials.profile-section')
 		</div>
-			<div id="center-column" class="row col-md-6">
-				<div class="row">
-					<ul class="nav nav-pills" role="tablist">
-						<li role="presentation" class="inactive"><h4>Inbox</h4></li>
-						<li role="presentation" class="active pull-right"><a href="#">Total <span class="badge message-count">{!! $messages->total() !!}</span></a></li>						  
-					</ul>
-				</div>
-
-			@if($messages->count())
-
-				<div class="row message-list">
+			<div id="center-column" class="col-md-6">
+			<ul class="nav nav-pills" role="tablist">
+				<li role="presentation" class="inactive"><h4>Inbox</h4></li>
+				<li role="presentation" class="active pull-right"><a href="#">Total <span class="badge message-count">{!! $messages->total() !!}</span></a></li>						  
+			</ul>				
+			<div class="message-list">
+			@if($messages->count())	
+				
 					@foreach($messages as $message)
-						<div class="row media listed-object-close">
+						<div class="media listed-object-close">
 							<div class="pull-left">		
-								<a href="#"><img class="media-object avatar small-avatar" src="{!! $message->messageResponses()->first()->senderprofileimage  !!}" alt="{!! $message->messageResponses()->first()->sendername !!}"></a>		
+								<img class="media-object avatar small-avatar" src="{!! $message->messageResponses()->first()->senderprofileimage  !!}" alt="{!! $message->messageResponses()->first()->sendername !!}">	
 							</div>
 							<div class="media-body">
 								<p>
-								    <a data-message-response-id="{!! $message->messageResponses()->first()->id !!}" class="open-message" href="{!! url('messages', $message->id) !!}">{!! $message->messageResponses()->first()->getMessageResponseSubject() !!}
-							 		</a> 
-							     	<a data-message-id ="{!! $message->id !!}" class="delete-message" href="#"><span class="glyphicon glyphicon-trash pull-right"></span></a>
 
-							     	<a data-message-response-id="{!! $message->messageResponses()->first()->id !!}" class="open-message" href="{!! url('messages', $message->id) !!}"><span class="glyphicon glyphicon-eye-open pull-right"></span></a>
-							     	<span class="text-muted pull-right"> {!! $message->messageResponses()->first()->created_at->diffForHumans() !!} </span> 
+									 <a data-message-response-id="{!! $message->messageResponses()->first()->id !!}" class="open-message" href="{!! url('messages', $message->id) !!}">{!! $message->messageResponses()->first()->getMessageResponseSubject() !!}
+								 		</a> 
+
+									@if($message->messageResponses()->first()->wasSentByThisUser($user->id))
+
+										<a data-message-id ="{!! $message->id !!}" class="delete-message" href="#"> <span class="glyphicon glyphicon-trash pull-right"></span></a>
+
+								     	<a data-message-response-id="{!! $message->messageResponses()->first()->id !!}" class="open-message" href="{!! url('messages', $message->id) !!}"> <span class="text-muted glyphicon glyphicon-eye-open pull-right"></span></a>
+								     	<span class="text-muted pull-right"> {!! $message->messageResponses()->first()->created_at->diffForHumans() !!}  </span>
+
+
+									@elseif($message->messageResponses()->first()->hasBeenOpenedBy($user->id))
+
+										<a data-message-id ="{!! $message->id !!}" class="delete-message" href="#"> <span class="glyphicon glyphicon-trash pull-right"></span></a>
+
+								     	<a data-message-response-id="{!! $message->messageResponses()->first()->id !!}" class="open-message" href="{!! url('messages', $message->id) !!}"> <span class="text-muted glyphicon glyphicon-eye-open pull-right"></span></a>
+								     	<span class="text-muted pull-right"> {!! $message->messageResponses()->first()->created_at->diffForHumans() !!}  </span>
+
+
+								 
+
+
+									@else
+
+								     	<a data-message-id ="{!! $message->id !!}" class="delete-message" href="#"> <span class="glyphicon glyphicon-trash pull-right"></span></a>
+
+								     	<a data-message-response-id="{!! $message->messageResponses()->first()->id !!}" class="open-message" href="{!! url('messages', $message->id) !!}"> <span class="glyphicon glyphicon-eye-open pull-right"></span></a>
+								     	<span class="text-muted pull-right"> {!! $message->messageResponses()->first()->created_at->diffForHumans() !!}  </span>
+
+							     	@endif 
 
 							 	</p>								
 							</div>
-						</div>
+							</div>
 					@endforeach
-						<div class="text-center">
+						<div class="paginator text-center">
 						 	{!! $messages->render() !!}	
 						</div>
-				</div>
+				
 
 			@else
 
-				<div class="row alert alert-info" role="alert"><span class="glyphicon glyphicon-info-sign"></span> Your inbox is empty.</div>
+				<div class="alert alert-info" role="alert"><span class="glyphicon glyphicon-info-sign"></span> Your inbox is empty.</div>
 
 			@endif			
-
+			</div>
 			</div>
 
 		<div class="col-md-3">

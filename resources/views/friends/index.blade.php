@@ -9,21 +9,17 @@
 			
 		</div>
 
-		<div id="center-column" class="row col-md-6">
-			<h4>Friends:</h4>
+		<div id="center-column" class="col-md-6">
 			@if(count($friends))
-				{{-- <div class="friend-request-list"> --}}
 				<div class="users-list">
 
 					@foreach($friends as $friend)
-
-						{{-- <div class="media friend-request-media"> --}}
 						<div class="media listed-object-close">
 							<div class="pull-left">		
-								<a href="#"><img class="media-object avatar medium-avatar" src="{!! $friend['profileimage'] !!}" alt="{!! $friend['firstname'] !!}"></a>		
+								<a href="{!! url('/users/'.$friend['id']) !!}"><img class="media-object avatar medium-avatar" src="{!! $friend['profileimage'] !!}" alt="{!! $friend['firstname'] !!}"></a>		
 							</div>
 							<div class="media-body">
-								<a href="#"><h4 class="media-heading">{!! $friend['firstname'] !!}</h4></a>								
+								<h4 class="media-heading">{!! $friend['firstname'] !!}</h4>								
 								<div class="pull-right">																							
 									<a href="#" data-method="delete" data-userid="{!! $friend['id'] !!}" class="btn btn-primary unfriend-button-3 btn-sm" role="button">Unfriend</a>															
 								</div>		

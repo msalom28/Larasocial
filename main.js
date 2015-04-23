@@ -5,168 +5,167 @@
 	//login bottom message alert
 	$('.welcome-alert').fadeIn(300).delay(3500).fadeOut(300);
 
-	// //Register and Connect to websocket
-	// var socket = io.connect('http://localhost:1337');
+	//Register and Connect to websocket
+	var socket = io.connect('http://localhost:1337');
             
- //    socket.emit('register', {'userId': userId});
+    socket.emit('register', {'userId': userId});
 
+	//Listening to websocket alerts//
+ 	socket.on(userId, function(data){
 
-	// //Listening to websocket alerts//
- // 	socket.on(userId, function(data){
+ 		//Updating chat status
+ 		if(data.clientcode == 21)
+ 		{
+ 			//Update chat status on current user 
+ 			if(data.relatedToId == userId)
+ 			{
+ 				if(data.message == true)
+ 				{
+ 					$('#friend-list .wrapper-2').hide();
 
- // 		//Updating chat status
- // 		if(data.clientcode == 21)
- // 		{
- // 			//Update chat status on current user 
- // 			if(data.relatedToId == userId)
- // 			{
- // 				if(data.message == true)
- // 				{
- // 					$('#friend-list .wrapper-2').hide();
+ 					$('#friend-list .wrapper').hide();
+ 				}
+ 				else
+ 				{	
+ 					$('#friend-list .wrapper-2').hide();
 
- // 					$('#friend-list .wrapper').hide();
- // 				}
- // 				else
- // 				{	
- // 					$('#friend-list .wrapper-2').hide();
+ 					$('#friend-list .wrapper').show(); 					
+ 				}
+ 			}
+ 			else
+ 			{	
+ 				//Alert/changeStatus on all connected friends of currentuser who changed chat status 
+	 			if(data.message == true)
+	 			{
+	 				$( "a[data-userid="+data.relatedToId+"]" ).removeClass('disabled');		
+	 			}
+	 			else
+	 			{
+	 				$( "a[data-userid="+data.relatedToId+"]" ).addClass('disabled');	
+	 			}
 
- // 					$('#friend-list .wrapper').show(); 					
- // 				}
- // 			}
- // 			else
- // 			{	
- // 				//Alert/changeStatus on all connected friends of currentuser who changed chat status 
-	//  			if(data.message == true)
-	//  			{
-	//  				$( "a[data-userid="+data.relatedToId+"]" ).removeClass('disabled');		
-	//  			}
-	//  			else
-	//  			{
-	//  				$( "a[data-userid="+data.relatedToId+"]" ).addClass('disabled');	
-	//  			}
-
- // 			} 			
+ 			} 			
  			
- // 		}
- // 		else if(data.clientcode == 22)//Alerting all connected friends that current user has logged in/out
- // 		{	
+ 		}
+ 		else if(data.clientcode == 22)//Alerting all connected friends that current user has logged in/out
+ 		{	
  			
- // 			if(data.message == true)
- // 			{
- // 				$( "a[data-userid="+data.relatedToId+"]" ).removeClass('disabled');
- // 			}
- // 			else
- // 			{
- // 				$( "a[data-userid="+data.relatedToId+"]" ).addClass('disabled');
- // 			}			
+ 			if(data.message == true)
+ 			{
+ 				$( "a[data-userid="+data.relatedToId+"]" ).removeClass('disabled');
+ 			}
+ 			else
+ 			{
+ 				$( "a[data-userid="+data.relatedToId+"]" ).addClass('disabled');
+ 			}			
 
  				
- // 		}
- // 		else if(data.clientcode == 23)//Record chat messages sent to current user
- // 		{
- // 			//Determine if current user is available to chat
- // 			var availabilityStatus = $('input[name="chatStatus"]').is(":checked") ? true : false;
+ 		}
+ 		else if(data.clientcode == 23)//Record chat messages sent to current user
+ 		{
+ 			//Determine if current user is available to chat
+ 			var availabilityStatus = $('input[name="chatStatus"]').is(":checked") ? true : false;
 
- // 			if(availabilityStatus)
- // 			{	
-	//  			//Determine if message sender available to chat
-	//  			var friendLink = $("a[data-userid = "+data.relatedToId+"]");
+ 			if(availabilityStatus)
+ 			{	
+	 			//Determine if message sender available to chat
+	 			var friendLink = $("a[data-userid = "+data.relatedToId+"]");
 
-	//  			if(friendLink.hasClass('disabled'))
-	//  			{
-	//  				return false;
-	//  			}
-	//  			else
-	//  			{	 				
-	//  				//Handle chat messages when both users are available to chat
-	//  				handleChatMessages({"friendId": data.relatedToId, "message" : data.message});
+	 			if(friendLink.hasClass('disabled'))
+	 			{
+	 				return false;
+	 			}
+	 			else
+	 			{	 				
+	 				//Handle chat messages when both users are available to chat
+	 				handleChatMessages({"friendId": data.relatedToId, "message" : data.message});
 
-	// 	 			if($('#chatwithuser'+data.relatedToId).length)
-	// 	 			{
-	// 	 				$('#chatwithuser'+data.relatedToId).find('ul').append('<li>'+data.message+'</li>');
+		 			if($('#chatwithuser'+data.relatedToId).length)
+		 			{
+		 				$('#chatwithuser'+data.relatedToId).find('ul').append('<li>'+data.message+'</li>');
 
-	// 	 				$('#chatwithuser'+data.relatedToId).show();	
-	// 	 			}
-	// 	 			else
-	// 	 			{
-	// 					var friendProfileImage = friendLink.find('.avatar').attr('src');
+		 				$('#chatwithuser'+data.relatedToId).show();	
+		 			}
+		 			else
+		 			{
+						var friendProfileImage = friendLink.find('.avatar').attr('src');
 
-	// 					var friendName = friendLink.find('.avatar').attr('alt');
+						var friendName = friendLink.find('.avatar').attr('alt');
 
-	// 	 				openChatBox({"friendProfileImage": friendProfileImage, "friendName": friendName, "friendId": data.relatedToId});
-	// 		 		}
+		 				openChatBox({"friendProfileImage": friendProfileImage, "friendName": friendName, "friendId": data.relatedToId});
+			 		}
 
-	//  			}//End checking if sender is available to chat
+	 			}//End checking if sender is available to chat
 
- // 			}
- // 			else
- // 			{
- // 				return availabilityStatus;
+ 			}
+ 			else
+ 			{
+ 				return availabilityStatus;
 
- // 			}//End checking if current user is available to chat 			
+ 			}//End checking if current user is available to chat 			
  			
- // 		}
- // 		else if(data.clientcode == 24)//Alerting connected friend when a user has terminated the friendship with her
- // 		{
- // 			if(! data.message)
- // 			{
- // 				$('#friend-side-list').hide();
+ 		}
+ 		else if(data.clientcode == 24)//Alerting connected friend when a user has terminated the friendship with her
+ 		{
+ 			if(! data.message)
+ 			{
+ 				$('#friend-side-list').hide();
  				
- // 				$('#friend-list').append('<div class="alert alert-info" role="alert">'+
- // 					'<span class="glyphicon glyphicon-info-sign"></span>'+
- // 					' You don\'t have any friends.</div>');
+ 				$('#friend-list').append('<div class="alert alert-info" role="alert">'+
+ 					'<span class="glyphicon glyphicon-info-sign"></span>'+
+ 					' You don\'t have any friends.</div>');
 
- // 				var friendsCount = $('.friends-count').text();
+ 				var friendsCount = $('.friends-count').text();
 
-	// 			var actualFriendsCount = parseInt(friendsCount) - 1;
+				var actualFriendsCount = parseInt(friendsCount) - 1;
 
-	// 			$('.friends-count').text(actualFriendsCount);
+				$('.friends-count').text(actualFriendsCount);
 
- // 				if($(location).attr('href') == "http://localhost:8000/friends")
- // 				{
+ 				if($(location).attr('href') == "http://localhost:8000/friends")
+ 				{
 
- // 					$( "a[data-userid = "+data.relatedToId+"]" ).closest('.friend-request-media').hide();
+ 					$( "a[data-userid = "+data.relatedToId+"]" ).closest('.friend-request-media').hide();
 
- // 					$('.friend-request-list').append('<div class="alert alert-info" role="alert">'+
-	// 				'<span class="glyphicon glyphicon-info-sign"></span> You don\'t have any friends.</div>');
- // 				}
- // 				else if($(location).attr('href') == "http://localhost:8000/users")
- // 				{
- // 					$( "a[data-userid = "+data.relatedToId+"]" ).attr('disabled', 'disabled').text('removed');
- // 				}
- // 				else if($(location).attr('href') == "http://localhost:8000/users/"+data.relatedToId)
- // 				{
- // 					$( "a[data-userid = "+data.relatedToId+"]" ).attr('disabled', 'disabled').text('removed');
- // 				}		
- // 			}
- // 			else
- // 			{	
- // 				var friendsCount = $('.friends-count').text();
+ 					$('.friend-request-list').append('<div class="alert alert-info" role="alert">'+
+					'<span class="glyphicon glyphicon-info-sign"></span> You don\'t have any friends.</div>');
+ 				}
+ 				else if($(location).attr('href') == "http://localhost:8000/users")
+ 				{
+ 					$( "a[data-userid = "+data.relatedToId+"]" ).attr('disabled', 'disabled').text('removed');
+ 				}
+ 				else if($(location).attr('href') == "http://localhost:8000/users/"+data.relatedToId)
+ 				{
+ 					$( "a[data-userid = "+data.relatedToId+"]" ).attr('disabled', 'disabled').text('removed');
+ 				}		
+ 			}
+ 			else
+ 			{	
+ 				var friendsCount = $('.friends-count').text();
 
-	// 			var actualFriendsCount = parseInt(friendsCount) - 1;
+				var actualFriendsCount = parseInt(friendsCount) - 1;
 
-	// 			$('.friends-count').text(actualFriendsCount);
+				$('.friends-count').text(actualFriendsCount);
 
- // 				$( "a[data-userid="+data.relatedToId+"]" ).hide('slide', {direction : 'right'}, 300);
+ 				$( "a[data-userid="+data.relatedToId+"]" ).hide('slide', {direction : 'right'}, 300);
 
- // 				if($(location).attr('href') == "http://localhost:8000/friends")
- // 				{
- // 					$( "a[data-userid = "+data.relatedToId+"]" ).closest('.friend-request-media').hide();
- // 				}
- // 				else if($(location).attr('href') == "http://localhost:8000/users")
- // 				{
- // 					$( "a[data-userid = "+data.relatedToId+"]" ).attr('disabled', 'disabled').text('removed');
- // 				}
- // 				else if($(location).attr('href') == "http://localhost:8000/users/"+data.relatedToId)
- // 				{
- // 					$( "a[data-userid = "+data.relatedToId+"]" ).attr('disabled', 'disabled').text('removed');
- // 				}
+ 				if($(location).attr('href') == "http://localhost:8000/friends")
+ 				{
+ 					$( "a[data-userid = "+data.relatedToId+"]" ).closest('.friend-request-media').hide();
+ 				}
+ 				else if($(location).attr('href') == "http://localhost:8000/users")
+ 				{
+ 					$( "a[data-userid = "+data.relatedToId+"]" ).attr('disabled', 'disabled').text('removed');
+ 				}
+ 				else if($(location).attr('href') == "http://localhost:8000/users/"+data.relatedToId)
+ 				{
+ 					$( "a[data-userid = "+data.relatedToId+"]" ).attr('disabled', 'disabled').text('removed');
+ 				}
 
- // 			} 			
+ 			} 			
 
- // 		}		
+ 		}		
 
-	//  }); //End listening for socket alerts
+	 }); //End listening for socket alerts
 
 
 	//Handle ajax form submissions
@@ -212,13 +211,13 @@
 
 					case 'message-response-form':
 
-			        // $('.center-alert').html(data.message).fadeIn(300).delay(2500).fadeOut(300);			       
+			        $('.center-alert').html(data.message).fadeIn(300).delay(2500).fadeOut(300);			       
 
-			        $('.message-response-list').prepend('<div class="row media listed-object-close">'+
+			        $('.message-response-list').prepend('<div class="media listed-object-close">'+
 						'<div class="pull-left"><a href="#"><img class="media-object avatar small-avatar"'+ 
 						'src="'+userProfileImage+'" alt="'+userFirstname+'"></a>'+		
 						'</div><div class="media-body"><p><span class="text-muted">Just now you wrote:</span>'+
-						'<a href="#"><span></span></a></p><div class="message-body">'+form.find('textarea').val()+'</div></div></div>');
+						'<a href="#"><span></span></a></p><div>'+form.find('textarea').val()+'</div></div></div>');
 
 			        form.find('textarea').val("");
 
@@ -249,6 +248,21 @@
 			}
 			else if(data.response == 'failed')
 			{
+				switch (form.prop('class')) {				   
+
+					case 'message-form':
+
+			        	$('.center-alert').html('Your message is empty').fadeIn(300).delay(2000).fadeOut(300);
+
+					break;
+
+					case 'message-response-form':
+
+						 $('.center-alert').html('Your message is empty').fadeIn(300).delay(2000).fadeOut(300);
+
+					break;
+				}
+
 		        form.find('textarea').val("");					
 			}			
 		})
@@ -270,11 +284,11 @@
 
 	$('.friend-request-button').click(handleAjaxRequests);
 
-	// $('.add-friend-button').click(handleAjaxRequests);
+	$('.add-friend-button').click(handleAjaxRequests);
 
 	$('.add-friend-button-2').click(handleAjaxRequests);
 
-	// $('.unfriend-button').click(handleAjaxRequests);
+	$('.unfriend-button').click(handleAjaxRequests);
 
 	$('.unfriend-button-2').click(handleAjaxRequests);
 
@@ -380,20 +394,20 @@
 
 					button.attr('disabled', 'disabled').text('Removed');
 
-					 if(data.count == 0)
-				        {			        	
+					//  if(data.count == 0)
+				 //        {			        	
 
-				        	$('#friend-side-list').hide();
-							$('#friend-list').append('<div class="alert alert-info" role="alert">'+
-			 					'<span class="glyphicon glyphicon-info-sign"></span>'+
-			 					' You don\'t have any friends.</div>');
-				        }
+				 //        	$('#friend-side-list').hide();
+					// 		$('#friend-list').append('<div class="alert alert-info" role="alert">'+
+			 	// 				'<span class="glyphicon glyphicon-info-sign"></span>'+
+			 	// 				' You don\'t have any friends.</div>');
+				 //        }
 
-				    var friendsCount = $('.friends-count').text();
+				 //    var friendsCount = $('.friends-count').text();
 
-					var actualFriendsCount = parseInt(friendsCount) - 1;
+					// var actualFriendsCount = parseInt(friendsCount) - 1;
 
-					$('.friends-count').text(actualFriendsCount);	
+					// $('.friends-count').text(actualFriendsCount);	
 
 					break;
 
@@ -550,8 +564,8 @@
 	});//End remove message
 
 	//show message responses
-	
-	$('.media-body').first().find($('span')).switchClass('glyphicon-chevron-down', 'glyphicon-chevron-up');
+
+	$('.glyphicon-chevron-down').first().switchClass('glyphicon-chevron-down', 'glyphicon-chevron-up');
 
 	$('.message-body').first().css('display', 'block');
 
@@ -577,280 +591,279 @@
 	}); //End open / close email message
 
 	
-	// //Handling chat activity//
+	//Handling chat activity//
 
 
-	// //Update current user's chat status
+	//Update current user's chat status
+	var chatStatus = $('input[name="chatStatus"]').bootstrapSwitch();
 
-	// var chatStatus = $('input[name="chatStatus"]').bootstrapSwitch();
+	chatStatus.on('switchChange.bootstrapSwitch', function(event, state) {
 
-	// chatStatus.on('switchChange.bootstrapSwitch', function(event, state) {
+		$.post( "/chatstatus", { chatStatus: Number(state) } );
 
-	// 	$.post( "/chatstatus", { chatStatus: Number(state) } );
-
-	// });//end Update current user's chat status
+	});//end Update current user's chat status
 
 	
-	// //Getting conversation data from session storage
- //    function getChatConversationData(userId)
- //    {
- //    	if (localStorage)
- //    	{
-	//     	var conversation = [];
+	//Getting conversation data from session storage
+    function getChatConversationData(userId)
+    {
+    	if (localStorage)
+    	{
+	    	var conversation = [];
 
-	//     	conversation = JSON.parse( sessionStorage.getItem( 'conversation-with-'+userId ) );
+	    	conversation = JSON.parse( sessionStorage.getItem( 'conversation-with-'+userId ) );
 
-	//     	return conversation;
- //    	}
- //    }
+	    	return conversation;
+    	}
+    }
 
- //    //Saving messages in session storage
- //    function handleChatMessages(params)
- //    {
- //    	var conversation = getChatConversationData(params.friendId);
+    //Saving messages in session storage
+    function handleChatMessages(params)
+    {
+    	var conversation = getChatConversationData(params.friendId);
 
- //    	if(!conversation)
- //    	{
- //    		sessionStorage.setItem('conversation-with-'+params.friendId, JSON.stringify({"messages": [params.message]}));  		
- //    	}
- //    	else
- //    	{
- //    		conversation["messages"].push(params.message);
+    	if(!conversation)
+    	{
+    		sessionStorage.setItem('conversation-with-'+params.friendId, JSON.stringify({"messages": [params.message]}));  		
+    	}
+    	else
+    	{
+    		conversation["messages"].push(params.message);
 
- //    		sessionStorage.setItem('conversation-with-'+params.friendId, JSON.stringify(conversation));
- //    	}
+    		sessionStorage.setItem('conversation-with-'+params.friendId, JSON.stringify(conversation));
+    	}
     	
- //    }
+    }
 
 
- //    //Opening chat box when clicking any friends on side list
+    //Opening chat box when clicking any friends on side list
 
-	// $('a', $('#friend-list')).click(function(){
+	$('a', $('#friend-list')).click(function(){
 
-	// 	if(! $(this).hasClass('disabled'))
-	// 		{
-	// 			var friendProfileImage = $(this).attr('data-profileimage');
+		if(! $(this).hasClass('disabled'))
+			{
+				var friendProfileImage = $(this).attr('data-profileimage');
 
-	// 			var friendName = $(this).attr('data-firstname');
+				var friendName = $(this).attr('data-firstname');
 
-	// 			var friendId = $(this).attr('data-userid');
+				var friendId = $(this).attr('data-userid');
 
-	// 			if ($('#chatwithuser'+friendId).length){
+				if ($('#chatwithuser'+friendId).length){
 
-	// 				$('#chatwithuser'+ friendId).show();
-	// 			}
-	// 			else
-	// 			{
-	// 				openChatBox({"friendProfileImage": friendProfileImage, "friendName": friendName, "friendId": friendId});
-	// 			}
+					$('#chatwithuser'+ friendId).show();
+				}
+				else
+				{
+					openChatBox({"friendProfileImage": friendProfileImage, "friendName": friendName, "friendId": friendId});
+				}
 				
-	// 		}
+			}
 
-	// 		return false
-	// });
-
-
- //    //end handling chat activity
+			return false
+	});
 
 
-	// function openChatBox(params)
-	// {
-	// 	var friendProfileImage = params.friendProfileImage;
+    //end handling chat activity
 
-	// 	var friendName = params.friendName;
 
-	// 	var friendId = params.friendId;
+	function openChatBox(params)
+	{
+		var friendProfileImage = params.friendProfileImage;
 
-	// 	var marginLeft = "";
+		var friendName = params.friendName;
+
+		var friendId = params.friendId;
+
+		var marginLeft = "";
 	
 
-	// 	//margin left of newly created form
-	// 	if($('.chat-room').length)
-	// 	{
-	// 		marginLeft = parseInt($('.chat-room' ).last().css('margin-left').slice(0, -2)) + 273;
-	// 	}
-	// 	else
-	// 	{
-	// 		marginLeft = 0;
-	// 	}				
+		//margin left of newly created form
+		if($('.chat-room').length)
+		{
+			marginLeft = parseInt($('.chat-room' ).last().css('margin-left').slice(0, -2)) + 273;
+		}
+		else
+		{
+			marginLeft = 0;
+		}				
 
-	// 	//This will not allow a 5th chat window to open
-	// 	if(marginLeft < 819)
-	// 	{
-	// 		$('#chat-container').append(generateChatForm(friendProfileImage, friendName, friendId, marginLeft));
-	// 	}	
+		//This will not allow a 5th chat window to open
+		if(marginLeft < 819)
+		{
+			$('#chat-container').append(generateChatForm(friendProfileImage, friendName, friendId, marginLeft));
+		}	
 						
 
-	// }//End openChatBox
+	}//End openChatBox
 
 
-	// function generateChatForm(friendProfileImage, friendName, friendId, marginLeft)
-	// {
+	function generateChatForm(friendProfileImage, friendName, friendId, marginLeft)
+	{
 
-	// 	//create each form element
+		//create each form element
 
-	// 	var $mainDiv = $("<div></div>").attr("id", "chatwithuser"+friendId).css('margin-left', marginLeft+'.px').addClass("chat-room chat-full col-md-3");
+		var $mainDiv = $("<div></div>").attr("id", "chatwithuser"+friendId).css('margin-left', marginLeft+'.px').addClass("chat-room chat-full col-md-3");
 
-	// 	var $mediaClass = $("<div></div>").addClass("media").appendTo($mainDiv);
+		var $mediaClass = $("<div></div>").addClass("media").appendTo($mainDiv);
 
-	// 	var $mediaLeftClass = $("<div></div>").addClass("media-left").appendTo($mediaClass);
-
-
-	// 	var $mediaObjectClass = $("<img/>", {
-
-	// 		"class" : "media-object avatar small-avatar",
-	// 		"src"	: friendProfileImage,
-	// 		"alt"	: friendName
-
-	// 	}).appendTo($mediaLeftClass);
-
-	// 	var $mediaBodyClass = $("<div></div>").addClass("media-body").appendTo($mediaClass);
+		var $mediaLeftClass = $("<div></div>").addClass("media-left").appendTo($mediaClass);
 
 
-	// 	var $mediaHeadingClass = $("<p></p>").addClass('media-heading').text(friendName).appendTo($mediaBodyClass);
+		var $mediaObjectClass = $("<img/>", {
+
+			"class" : "media-object avatar small-avatar",
+			"src"	: friendProfileImage,
+			"alt"	: friendName
+
+		}).appendTo($mediaLeftClass);
+
+		var $mediaBodyClass = $("<div></div>").addClass("media-body").appendTo($mediaClass);
 
 
-	// 	var $closeButton = $("<a/>", {
-
-	// 			'href': '#',
-	// 			click : function() {
-
-	// 				$(this).closest("#chatwithuser"+friendId).hide();
-
-	// 				return false;
-	// 			}
-
-	// 		}).appendTo($mediaHeadingClass);
+		var $mediaHeadingClass = $("<p></p>").addClass('media-heading').text(friendName).appendTo($mediaBodyClass);
 
 
-	// 	var $closeSpan = $("<span></span>").addClass('glyphicon glyphicon-remove').appendTo($closeButton);
+		var $closeButton = $("<a/>", {
 
-	// 	var $minimizeButton = $("<a/>", {
+				'href': '#',
+				click : function() {
 
-	// 			'href': '#',
-	// 			click : function() {
+					$(this).closest("#chatwithuser"+friendId).hide();
 
-	// 				if($(this).children('span').hasClass('glyphicon-chevron-down'))
-	// 				{
-	// 					$(this).children('span').switchClass( "glyphicon-chevron-down", "glyphicon-chevron-up");	
-	// 				}
-	// 				else if($(this).children('span').hasClass('glyphicon-chevron-up'))
-	// 				{
-	// 					$(this).children('span').switchClass( "glyphicon-chevron-up", "glyphicon-chevron-down");	
-	// 				}
+					return false;
+				}
 
-	// 				$(this).closest("#chatwithuser"+friendId).find(".chat-body-form").toggle( "slide", { direction: "down"} );
+			}).appendTo($mediaHeadingClass);
+
+
+		var $closeSpan = $("<span></span>").addClass('glyphicon glyphicon-remove').appendTo($closeButton);
+
+		var $minimizeButton = $("<a/>", {
+
+				'href': '#',
+				click : function() {
+
+					if($(this).children('span').hasClass('glyphicon-chevron-down'))
+					{
+						$(this).children('span').switchClass( "glyphicon-chevron-down", "glyphicon-chevron-up");	
+					}
+					else if($(this).children('span').hasClass('glyphicon-chevron-up'))
+					{
+						$(this).children('span').switchClass( "glyphicon-chevron-up", "glyphicon-chevron-down");	
+					}
+
+					$(this).closest("#chatwithuser"+friendId).find(".chat-body-form").toggle( "slide", { direction: "down"} );
 
 				
 
-	// 				return false;
-	// 			}
+					return false;
+				}
 
-	// 		}).appendTo($mediaHeadingClass);
+			}).appendTo($mediaHeadingClass);
 
-	// 	var $minimizeSpan = $("<span></span>").addClass('glyphicon glyphicon-chevron-down').appendTo($minimizeButton);
-
-
-	// 	var $chatBodyFormClass = $("<div></div>").addClass("chat-body-form").appendTo($mediaBodyClass);
+		var $minimizeSpan = $("<span></span>").addClass('glyphicon glyphicon-chevron-down').appendTo($minimizeButton);
 
 
-	// 	var $chatBodyClass = $("<div></div>").addClass("chat-body").appendTo($chatBodyFormClass);
-
-	// 	var $messagesClass = $("<ul></lu>").addClass("messages").appendTo($chatBodyClass);
+		var $chatBodyFormClass = $("<div></div>").addClass("chat-body-form").appendTo($mediaBodyClass);
 
 
-	// 	var chatConversationWithFriend = [];
+		var $chatBodyClass = $("<div></div>").addClass("chat-body").appendTo($chatBodyFormClass);
 
-	// 	chatConversationWithFriend = JSON.parse( sessionStorage.getItem( 'conversation-with-'+friendId ) );
-
-
-	// 	if(chatConversationWithFriend)
-	// 	{
-	// 		for(i = 0; i < chatConversationWithFriend['messages'].length; i++)
-	// 		{
-	// 			var $eachMessage = $("<li></li>").text(chatConversationWithFriend['messages'][i]).appendTo($messagesClass);
-	// 		}						
-	// 	}				
+		var $messagesClass = $("<ul></lu>").addClass("messages").appendTo($chatBodyClass);
 
 
-	// 	var $chatForm = $("<form/>", {
+		var chatConversationWithFriend = [];
 
-	// 		submit: function(){
-
-	// 			parentDiv = $(this).closest('#chatwithuser'+friendId);
-
-	// 			messageBody = parentDiv.find('ul');
-
-	// 			textField = $(this).find('textarea');
-
-	// 			message = textField.val();
-
-	// 			if(message == ""){
-
-	// 				return false;
-	// 			}
-	// 			else
-	// 			{					
-	// 				textField.val('');
-
-	// 				$.ajax({
-	// 					type: "POST",
-	// 					url: "/chat",
-	// 					data: { receiverId: friendId, message: userFirstname+": "+message }
-	// 				})
-
-	// 				.done(function(data){
-
-	// 					if(data.availableToChat == true) //Determine the receiver is available to chat
-	// 					{
-	// 						messageBody.append(($('<li>').text(userFirstname+": "+message)));
-
-	// 						handleChatMessages({"friendId": friendId, "message" : userFirstname+": "+message});
-	// 					}
-	// 					else
-	// 					{
-	// 						//user is not available to chat
-	// 						messageBody.append(($('<li>').text(friendName+" is offline").css("color", "red")));
-	// 					}
+		chatConversationWithFriend = JSON.parse( sessionStorage.getItem( 'conversation-with-'+friendId ) );
 
 
-	// 				})
-	// 				.fail(function() {
+		if(chatConversationWithFriend)
+		{
+			for(i = 0; i < chatConversationWithFriend['messages'].length; i++)
+			{
+				var $eachMessage = $("<li></li>").text(chatConversationWithFriend['messages'][i]).appendTo($messagesClass);
+			}						
+		}				
 
-	// 					return alert('something went wrong. Please try again.');
 
-	// 				});
+		var $chatForm = $("<form/>", {
+
+			submit: function(){
+
+				parentDiv = $(this).closest('#chatwithuser'+friendId);
+
+				messageBody = parentDiv.find('ul');
+
+				textField = $(this).find('textarea');
+
+				message = textField.val();
+
+				if(message == ""){
+
+					return false;
+				}
+				else
+				{					
+					textField.val('');
+
+					$.ajax({
+						type: "POST",
+						url: "/chat",
+						data: { receiverId: friendId, message: userFirstname+": "+message }
+					})
+
+					.done(function(data){
+
+						if(data.availableToChat == true) //Determine the receiver is available to chat
+						{
+							messageBody.append(($('<li>').text(userFirstname+": "+message)));
+
+							handleChatMessages({"friendId": friendId, "message" : userFirstname+": "+message});
+						}
+						else
+						{
+							//user is not available to chat
+							messageBody.append(($('<li>').text(friendName+" is offline").css("color", "red")));
+						}
+
+
+					})
+					.fail(function() {
+
+						return alert('something went wrong. Please try again.');
+
+					});
 					
-	// 			}
+				}
 
-	// 			return false							
+				return false							
 
 				
-	// 		}//end submit
+			}//end submit
 
-	// 	}).appendTo($chatBodyFormClass);
+		}).appendTo($chatBodyFormClass);
 
-	// 	var $formGroupClass = $("<div></div>").addClass("form-group form-group-sm").appendTo($chatForm);
+		var $formGroupClass = $("<div></div>").addClass("form-group form-group-sm").appendTo($chatForm);
 
-	// 	var $formTextArea = $("<textarea></textarea>")
-	// 	.addClass("form-control")
-	// 	.attr( "placeholder", "Enter message" )
-	// 	.attr("rows", "1")
-	// 	.attr("name", "body")
-	// 	.appendTo($formGroupClass);
+		var $formTextArea = $("<textarea></textarea>")
+		.addClass("form-control")
+		.attr( "placeholder", "Enter message" )
+		.attr("rows", "1")
+		.attr("name", "body")
+		.appendTo($formGroupClass);
 
-	// 	var $formButton = $("<button/>", {
+		var $formButton = $("<button/>", {
 
-	// 		"type" : "submit",
-	// 		"class": "btn btn-default",
-	// 		text    : "Submit"
+			"type" : "submit",
+			"class": "btn btn-default",
+			text    : "Submit"
 
-	// 	}).appendTo($chatForm);
+		}).appendTo($chatForm);
 
 
-	// 	return $mainDiv;
+		return $mainDiv;
 
-	// }//End generate chat form
+	}//End generate chat form
 	
 
 	

@@ -18,12 +18,27 @@ body {
 
   > .container {
 
-  padding: 35px 20px 0;
-  margin-bottom: 10px;
-  overflow: hidden;
-  }
+	  padding: 35px 20px 0;
+	  margin-bottom: 10px;
+	  overflow: hidden;
+  	}
 
-}
+  	a{
+  		color: $primary-color;
+  	}
+ 
+ }
+
+ .glyphicon-chevron-down{
+ 	color: $primary-color;
+ }
+
+  .glyphicon-chevron-up{
+ 	color: $primary-color;
+ }
+
+
+
 
 
 .btn{
@@ -36,6 +51,10 @@ body {
 	&:focus{
 		 outline: 0 none;
 	}
+}
+
+.alert{
+	border-radius: 0px;
 }
 
 .btn-primary{
@@ -56,6 +75,16 @@ body {
 .btn-primary.disabled, .btn-primary.disabled.active, .btn-primary.disabled.focus, .btn-primary.disabled:active, .btn-primary.disabled:focus, .btn-primary.disabled:hover, .btn-primary[disabled], .btn-primary[disabled].active, .btn-primary[disabled].focus, .btn-primary[disabled]:active, .btn-primary[disabled]:focus, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary, fieldset[disabled] .btn-primary.active, fieldset[disabled] .btn-primary.focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary:hover {
   background-color: #3E474F;
   border-color: #3E474F;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+  color: #fff;
+  background-color: #2E353B;
+}
+
+list-group-item.active>.badge, .nav-pills>.active>a>.badge {
+  color: $primary-color;
+  background-color: #fff;
 }
 
   #registration-form{
@@ -161,8 +190,25 @@ body {
 	left: 43%;	
 }
 
+.message-body{
+	display: none;
+}
+
+.message-list{
+	margin-top: 10px;
+}
+
+.message-response-list{
+	margin-top: 10px;
+}
+
+.glyphicon-eye-open{
+	margin-left: 5px;
+}
+
 
 .center-form{
+	margin-top: 15px;
 	border: 1px solid #e3e3e3;
 	background: white;
 	margin-bottom: 3em;
@@ -202,6 +248,21 @@ body {
 
 #center-column{
 	margin-top: 45px;
+}
+
+#profile-card{
+	margin-top: 45px;
+	padding: 1em;
+	border: 1px solid #e3e3e3;
+	background: white;
+}
+
+.list-group-item:first-child {
+  border-radius: 0px;
+}
+
+.list-group-item:last-child {
+  border-radius: 0px;
 }
 
 
@@ -270,5 +331,130 @@ body {
   color: $primary-color;
   background-color: #eee;
   border-color: #ddd;
+}
+
+
+/*friend side list*/
+
+#right-side-column{
+	margin-top: 45px;
+}
+
+.chat-switch{
+	border: 1px solid #e3e3e3;
+	padding: .5em;
+	background: white;
+}
+
+.chat-switch .chat-button{
+	margin-top: 7px;
+}
+
+
+#friend-list{
+	border: 1px solid #e3e3e3;
+	background: white;
+	margin-bottom: 3em;
+	padding-top: 0px;
+	height: 400px;
+	overflow-y:scroll;
+}
+
+#friend-list .list-group-item{
+	border: none;
+}
+
+#friend-list .list-group-item span{
+
+	float: right;
+}
+
+#friend-list .list-group-item{
+
+	background: white;
+}
+
+#friend-list .disabled{
+
+  opacity: 0.5;
+
+}
+
+#friend-list .wrapper{
+
+	position:absolute;
+    left:0;
+    top:51px;
+    background: rgba(255,255,255,.5);
+    width:260px;
+    height:400px;
+    z-index: 101;
+    display: none;   
+}
+
+#friend-list .wrapper-2{
+
+	position:absolute;
+    left:0;
+    top:51px;
+    background: rgba(255,255,255,.5);
+    width:260px;
+    height:400px;
+    z-index: 102; 
+    display: block; 
+}
+
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary, .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary {
+  color: #fff;
+  background: $primary-color;
+}
+
+
+/*chat box*/
+
+#chat-container{
+	overflow: visible;
+}
+
+.chat-room{
+
+	position: fixed;
+	background: white;
+	bottom: 35px;
+	margin-left:0px;
+	width: 20%;
+	border: 1px solid #e3e3e3;
+	padding: 1em;
+	z-index: 101;
+	
+}
+
+.chat-room a{
+	float: right;
+	margin-left: 3px;
+}
+
+.chat-room .chat-body{
+
+	border: 1px solid #e3e3e3;
+	background: white;
+	overflow-y:scroll;
+	height: 100px;
+	margin-bottom: 5px;
+	
+}
+
+.messages{
+
+	list-style-type: none; margin: 0; padding: 0;
+}
+
+.chat-body .messages li {
+	padding: 5px 10px; 
+}
+
+.chat-room .close{
+	/*margin-left: 6px;
+	margin-top: -10px;*/
 }
 

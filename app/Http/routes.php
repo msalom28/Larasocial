@@ -29,7 +29,9 @@ Route::get('feeds/more', ['as' => 'feeds_path_more', 'uses' => 'FeedController@m
  */
 Route::get('users', ['as' => 'users_path', 'uses' => 'UserController@index']);
 
-Route::get('users/{id}', ['as' => 'user_path', 'uses' => 'UserController@show']);
+Route::get('users/{id}', ['as' => 'user_profile_path', 'uses' => 'UserController@show']);
+
+Route::post('users', ['as' => 'users_path', 'uses' => 'UserController@index']);
 
 /**
  * Friend-requests
@@ -70,5 +72,10 @@ Route::delete('message-delete', ['as' => 'delete_message_path', 'uses' => 'Messa
 Route::put('message-response', ['as' => 'message_responses_path', 'uses' => 'MessageResponseController@update']);
 
 Route::post('message-response', ['as' => 'message_responses_path', 'uses' => 'MessageResponseController@store']);
+
+/**
+ * Chat Status
+ */
+Route::post('chatstatus', ['as' => 'chat_status_path', 'uses' => 'ChatStatusController@update']);
 
 

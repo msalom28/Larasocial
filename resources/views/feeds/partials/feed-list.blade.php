@@ -1,7 +1,7 @@
 <div id="feedid{!! $feed->id !!}" class="media listed-object">
 	<div class="pull-left">
-
-		<img class="media-object avatar medium-avatar" src="{!! $feed->user->profileimage !!}" alt="{!! $feed->user->firstname !!}">
+		<a href="{!! url('/users/'.$feed->user->id) !!}"><img class="media-object avatar medium-avatar" src="{!! $feed->user->profileimage !!}" alt="{!! $feed->user->firstname !!}"></a>
+		
 		
 	</div>
 	<div class="media-body">

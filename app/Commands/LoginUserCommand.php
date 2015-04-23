@@ -36,13 +36,14 @@ class LoginUserCommand extends Command implements SelfHandling {
 	public function handle()
 	{
 		if(! Auth::attempt(['email' => $this->email, 'password' => $this->password])) return false;
-		// $user = Auth::user();
+		$user = Auth::user();
 		// $friendsUserIds = $user->friends()->where('onlinestatus', 1)->lists('requester_id');
 		// $relatedToId = $user->id;
  	// 	$clientCode = 22;
  	// 	$message = true;
 		// $this->socketClient->updateChatStatusBar($friendsUserIds, $clientCode, $relatedToId, $message);
-		// $user->updateOnlineStatus(1);
+		$user->updateOnlineStatus(1);
+		
 		return true;
 	}
 }

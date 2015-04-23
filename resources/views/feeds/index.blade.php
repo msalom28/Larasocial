@@ -4,12 +4,12 @@
 
 	@include('layouts.partials.welcome-alert')
 
-	<div class="row">
+	<div id="main-feed" class="row">
 		<div class="col-md-3">
 			@include('users.partials.profile-section')
 		</div>
 
-		<div id="center-column" class="row col-md-6">
+		<div id="center-column" class="col-md-6">
 
 			@include('layouts.partials.center-form', [
 			'placeholder' => 'What\'s on your mind?', 
@@ -19,7 +19,7 @@
 			'postingFeed' => true
 			])
 
-				<div class="row feed-list" data-feedcount="{!! $feedsCount !!}">
+				<div class="feed-list" data-feedcount="{!! $feedsCount !!}">
 				<div id="loader"></div>
 
 					@if($feeds->count())
@@ -39,8 +39,8 @@
 
 		</div>
 
-		<div class="col-md-3">
-			This is the Chat with friends section
+		<div id="right-side-column" class="col-md-3">
+			@include('friends.partials.friend-chat-list')
 		</div>
 	</div>	
 

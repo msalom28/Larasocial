@@ -9,21 +9,21 @@
 			
 		</div>
 
-		<div id="center-column" class="row col-md-6">
-			<h4>Friend requests:</h4>
-			@if($usersWhoRequested)
-				{{-- <div class="friend-request-list"> --}}
+		<div id="center-column" class="col-md-6">
+
+			@if($usersWhoRequested->count())
+				
 				<div class="users-list">
 
 					@foreach($usersWhoRequested as $user)
 
-						{{-- <div class="media friend-request-media"> --}}
+				
 						<div class="media listed-object-close">
 							<div class="pull-left">		
-								<a href="#"><img class="media-object avatar medium-avatar" src="{!! $user->profileimage !!}" alt="{!! $user->firstname !!}"></a>		
+								<a href="{!! url('/users/'.$user->id) !!}"><img class="media-object avatar medium-avatar" src="{!! $user->profileimage !!}" alt="{!! $user->firstname !!}"></a>		
 							</div>
 							<div class="media-body">
-								<a href="#"><h4 class="media-heading">{!! $user->firstname !!}</h4></a>								
+								<h4 class="media-heading">{!! $user->firstname !!}</h4>							
 								<div class="pull-right">																							
 									<a href="{!! url('friends') !!}" data-method="post" data-userid="{!! $user->id!!}" class="btn btn-primary add-friend-button-2 btn-sm" role="button">Accept</a>
 
@@ -31,10 +31,11 @@
 								</div>		
 							</div>
 						</div>
+						
 					@endforeach
 				</div>
 					<div class="paginator text-center">
-						 	
+						 	{!! $usersWhoRequested->render() !!}
 					</div>
 			@else
 

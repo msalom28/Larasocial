@@ -57,7 +57,7 @@ class MessageController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		$validator = Validator::make($request->all(), App::make('MessageRequest')->rules());
+		$validator = Validator::make($request->all(), ['body' => 'required']);
 
 		if($validator->fails())
 		{

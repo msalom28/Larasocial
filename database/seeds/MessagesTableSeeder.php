@@ -15,7 +15,7 @@ class MessagesTableSeeder extends Seeder {
 
 		$userIds = DB::table('users')->where('id', '!=', 1)->lists('id');
 
-		foreach (range(1, 5) as $index) {
+		foreach (range(1, 25) as $index) {
 		
 			Message::create([
 				'body'		=> $faker->sentence(),

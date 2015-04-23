@@ -24,8 +24,17 @@
 						 	{!! $feeds->render() !!}	
 						</div>
 					@else
-						<div class="alert alert-info no-feeds-info" role="alert"><span class="glyphicon glyphicon-info-sign"></span> You haven't posted anything yet.
+						@if(Auth::user()->is($user->id))
+							<div class="alert alert-info no-feeds-info" role="alert"><span class="glyphicon glyphicon-info-sign"></span> You haven't posted anything yet.
+							</div>
+
+						@else
+							<div class="alert alert-info no-feeds-info" role="alert"><span class="glyphicon glyphicon-info-sign"></span> {!! $user->firstname !!} has't posted anything yet.
 						</div>
+
+						@endif
+
+						
 						
 					@endif
 

@@ -187,7 +187,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	public function receivedFriendRequestFrom($otherUserId)
 	{
-		$friendRequestsReceivedByCurrentUser = DB::table('friend_requests')->where('requested_id', $this->id)->lists('requester_id');
+		$friendRequestsReceivedByCurrentUser = DB::table('friend_requests')->where('user_id', $this->id)->lists('requester_id');
 		
 		return in_array($otherUserId, $friendRequestsReceivedByCurrentUser);
 	}
@@ -196,14 +196,48 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	/**
 	 * Determine if the current user is the same as the given one.
 	 *
-	 * @param User $user 
+	 * @param int $id
 	 *
 	 * @return boolean
 	 *
 	 */
-	public function is(User $user)
+	public function is($id)
 	{
-		return $this->id == $user->id;
+		return $this->id == $id;
+	}
+
+	/**
+	 * Determine if current user is available to chat.
+     *
+	 * @return boolean
+	 */
+	public function isAvailableToChat()
+	{
+	 	return $this->chatstatus;
+	}
+
+	/**
+	 * Update current user's chat status.
+	 *	
+	 * @param  boolean $chatStatus
+     *
+	 * @return mixed
+	 */
+	public function updateChatStatus($chatStatus)
+	{
+		$this->chatstatus = $chatStatus;
+		
+		$this->save();	
+	}
+
+	/**
+	 * Determine if current user is online.
+	 *	
+	 * @return boolean
+	 */
+	public function isOnline()
+	{
+	 	return $this->onlinestatus;
 	}
 
 }

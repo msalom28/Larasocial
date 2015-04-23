@@ -1,1 +1,1 @@
-<div class="alert alert-warning flash-alert center-alert">Hello there</div>
+<div class="alert alert-warning flash-alert center-alert"></div>

@@ -18,7 +18,7 @@ class FriendRequestTableSeeder extends Seeder {
 		$userIds = DB::table('users')->where('id', '!=', 1)->lists('id');
 
 
-		foreach (range(1, 5) as $index) {	
+		foreach (range(1, 25) as $index) {	
 			
 				FriendRequest::create([
 					'user_id'	=> 1,

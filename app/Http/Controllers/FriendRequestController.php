@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Commands\CreateFriendRequestCommand;
 use App\Repositories\FriendRequest\FriendRequestRepository;
 use App\Repositories\User\UserRepository;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\FriendRequest;
 use Auth;
 
@@ -38,7 +39,9 @@ class FriendRequestController extends Controller {
 
 		$requesterIds = $friendRequestRepository->getIdsThatSentRequestToCurrentUser($user->id);
 
-		$usersWhoRequested = $userRepository->findManyById($requesterIds);		
+		$userObjects = $userRepository->findManyById($requesterIds);
+
+		$usersWhoRequested =  new LengthAwarePaginator($userObjects, count($userObjects), 10, 1, ['path' => '/friend-requests']);		
 
 		return view('friend-requests.index', compact('user', 'usersWhoRequested'));
 	}

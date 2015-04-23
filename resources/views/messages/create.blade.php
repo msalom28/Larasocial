@@ -7,7 +7,6 @@
 			@include('users.partials.profile-section')
 		</div>
 			<div id="center-column" class="col-md-6">
-				<h4>Send private message:</h4>
 				@include('layouts.partials.center-form', [
 				'placeholder' => 'Type your message..', 
 				'formType' => 'message-form', 

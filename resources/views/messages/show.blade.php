@@ -6,40 +6,67 @@
 		<div class="col-md-3">
 			@include('users.partials.profile-section')
 		</div>
-			<div id="center-column" class="row col-md-6">
-				<div class="row">
-					<ul class="nav nav-pills pull-right" role="tablist">
-					  <li role="presentation"class="active"><a href="/messages"><span class="glyphicon glyphicon-menu-left"></span> Back</a></li>
-					</ul>
-				</div>
-
+			<div id="center-column" class="col-md-6">
 
 			@if($message->count())
 
-				<div class="row message-response-list">
+				<ul class="nav nav-pills" role="tablist">
+				  <li role="presentation"class="active pull-right"><a href="/messages"><span class="glyphicon glyphicon-menu-left"></span> Back</a></li>
+				</ul>
+
+				<div class="message-response-list">
 
 					@foreach($message->MessageResponses as $messageResponse)
 
-						<div class="row media listed-object-close">
-							<div class="pull-left">		
-								<a href="#"><img class="media-object avatar small-avatar" src="{!! $messageResponse->senderprofileimage  !!}" alt="{!! $messageResponse->sendername !!}"></a>		
-							</div>
-							<div class="media-body">
-								<p>	
-									<span class="text-muted">{!! $messageResponse->created_at->diffForHumans() !!} {!! $messageResponse->sendername !!} wrote:</span>
-									<a href="#"><span class="glyphicon glyphicon-chevron-down pull-right expand-message"></span></a>
-								</p>
-								<div class="message-body">
-								 
-								 	{!! $messageResponse->body !!}
+						@if(Auth::user()->is($messageResponse->senderid))
 
-								</div>								
+							<div class="media listed-object-close">
+						
+								<div class="pull-left">		
+									<img class="media-object avatar small-avatar" src="{!! $messageResponse->senderprofileimage  !!}" alt="{!! $messageResponse->sendername !!}">	
+								</div>
+
+								<div class="media-body">
+									<p>	
+										<span class="text-muted">{!! $messageResponse->created_at->diffForHumans() !!} you wrote:</span>
+										<a href="#"><span class="glyphicon glyphicon-chevron-down pull-right expand-message"></span></a>
+									</p>
+									<div class="message-body">
+									 
+									 	{!! $messageResponse->body !!}
+
+									</div>							
+								</div>
 							</div>
-						</div>
+
+						@else
+
+							<div class="media listed-object-close">
+							
+								<div class="pull-left">		
+									<img class="media-object avatar small-avatar" src="{!! $messageResponse->senderprofileimage  !!}" alt="{!! $messageResponse->sendername !!}">	
+								</div>
+
+								<div class="media-body">
+									<p>	
+										<span class="text-muted">{!! $messageResponse->created_at->diffForHumans() !!} {!! $messageResponse->sendername !!} wrote:</span>
+										<a href="#"><span class="glyphicon glyphicon-chevron-down pull-right expand-message"></span></a>
+									</p>
+									<div class="message-body">
+									 
+									 	{!! $messageResponse->body !!}
+
+									</div>							
+								</div>
+							</div>
+							
+						@endif
+
+						
 
 					@endforeach
 
-					@include('layouts.partials.center-form', [
+				@include('layouts.partials.center-form', [
 							
 							'placeholder' => 'Write a reply..', 
 							'formType' => 'message-response-form', 
@@ -53,18 +80,15 @@
 							'senderName' => $user->firstname,
 							'sendingResponseMessage' => true
 					])
+
+				
 						
-				</div>
-				
-
-				
-
-										
+				</div>										
 				
 
 				@else
 
-					<div class="row alert alert-info" role="alert"><span class="glyphicon glyphicon-info-sign"></span> Your inbox is empty.</div>
+					<div class="alert alert-info" role="alert"><span class="glyphicon glyphicon-info-sign"></span> Your inbox is empty.</div>
 
 				@endif		
 

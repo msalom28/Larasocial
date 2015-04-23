@@ -9,21 +9,18 @@
 			
 		</div>
 
-		<div id="center-column" class="row col-md-6">
-			<h4>Active users: </h4>
+		<div id="center-column" class="col-md-6">
 			@if($users->count())
-				{{-- <div class="friend-request-list"> --}}
 				<div class="users-list">
 
 					@foreach($users as $user)
 
-						{{-- <div class="media friend-request-media"> --}}
-						<div class="row media listed-object-close">
+						<div class="media listed-object-close">
 							<div class="pull-left">		
-								<a href="#"><img class="media-object avatar medium-avatar" src="{!! $user->profileimage !!}" alt="{!! $user->firstname !!}"></a>		
+								<a href="{!! url('/users/'.$user->id) !!}"><img class="media-object avatar medium-avatar" src="{!! $user->profileimage !!}" alt="{!! $user->firstname !!}"></a>		
 							</div>
 							<div class="media-body">
-								<a href="#"><h4 class="media-heading">{!! $user->firstname !!}</h4></a>								
+								<h4 class="media-heading">{!! $user->firstname !!}</h4>							
 								<div class="pull-right">
 
 									@if(Auth::user()->isFriendsWith($user->id))
@@ -64,10 +61,7 @@
 
 		</div>
 
-		<div class="col-md-3">
-			chat with friends panel
-		</div>
-	</div>
-	
+		<div class="col-md-3">chat with friends panel</div>
+	</div>	
 
 @stop

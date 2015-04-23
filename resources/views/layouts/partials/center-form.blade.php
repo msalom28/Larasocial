@@ -1,4 +1,4 @@
-<div class="row center-form">
+<div class="center-form">
 	{!! Form::open(['route' => $path, 'class' => $formType]) !!}
 		<div class="form-group">
 			{!! Form::textarea('body', null, ['class' => 'form-control', 'rows' => 3, 'placeholder' => $placeholder]) !!}
