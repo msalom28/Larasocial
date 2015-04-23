@@ -40,8 +40,8 @@
 
 		</div>
 
-		<div class="col-md-3">
-			chat with friends panel
+		<div id="right-side-column" class="col-md-3">
+			@include('friends.partials.friend-chat-list')
 		</div>
 	</div>
 	

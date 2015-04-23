@@ -3,6 +3,7 @@
 use App\Commands\Command;
 use Auth;
 use Illuminate\Contracts\Bus\SelfHandling;
+use App\Realtime\Events as SocketClient;
 
 class UpdateChatStatusCommand extends Command implements SelfHandling {
 
@@ -18,6 +19,13 @@ class UpdateChatStatusCommand extends Command implements SelfHandling {
 	 * @var Object
 	 */
 	protected $currentUser;
+
+	/**
+	 * @var Object
+	 */
+	protected $socketClient;
+
+	
 	/**
 	 * Create a new command instance.
 	 *
@@ -28,7 +36,7 @@ class UpdateChatStatusCommand extends Command implements SelfHandling {
 	public function __construct($chatStatus)
 	{
 		$this->chatStatus = $chatStatus;
-		// $this->socketClient = new SocketClient;
+		$this->socketClient = new SocketClient;
 		$this->currentUser = Auth::user();
 	}
 	/**
@@ -42,7 +50,7 @@ class UpdateChatStatusCommand extends Command implements SelfHandling {
 		$relatedToId = $this->currentUser->id;
 		$friendsUserIds = $this->currentUser->friends()->where('onlinestatus', 1)->lists('requester_id');
 		$friendsUserIds[] = $relatedToId;
-		// $this->socketClient->updateChatStatusBar($friendsUserIds, 21, $relatedToId, $this->chatStatus);
+		$this->socketClient->updateChatStatusBar($friendsUserIds, 21, $relatedToId, $this->chatStatus);
 	}
 
 }

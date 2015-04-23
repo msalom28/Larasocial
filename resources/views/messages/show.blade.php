@@ -94,8 +94,8 @@
 
 			</div>
 
-		<div class="col-md-3">
-			This is the Chat with friends section
+		<div id="right-side-column" class="col-md-3">
+			@include('friends.partials.friend-chat-list')
 		</div>
 
 	</div>

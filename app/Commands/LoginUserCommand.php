@@ -2,6 +2,7 @@
 
 use App\Commands\Command;
 use Auth;
+use App\Realtime\Events as SocketClient;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 class LoginUserCommand extends Command implements SelfHandling {
@@ -15,6 +16,11 @@ class LoginUserCommand extends Command implements SelfHandling {
 	public $password;
 
 	/**
+	 * @var Object
+	 */
+	public $socketClient;
+
+	/**
 	 * Create a new command instance.
 	 *
 	 * @param string $email
@@ -26,7 +32,10 @@ class LoginUserCommand extends Command implements SelfHandling {
 	public function __construct($email, $password)
 	{
 		$this->email = $email;
+
 		$this->password = $password;
+
+		$this->socketClient = new SocketClient;
 	}
 	/**
 	 * Execute the command.
@@ -37,11 +46,11 @@ class LoginUserCommand extends Command implements SelfHandling {
 	{
 		if(! Auth::attempt(['email' => $this->email, 'password' => $this->password])) return false;
 		$user = Auth::user();
-		// $friendsUserIds = $user->friends()->where('onlinestatus', 1)->lists('requester_id');
-		// $relatedToId = $user->id;
- 	// 	$clientCode = 22;
- 	// 	$message = true;
-		// $this->socketClient->updateChatStatusBar($friendsUserIds, $clientCode, $relatedToId, $message);
+		$friendsUserIds = $user->friends()->where('onlinestatus', 1)->lists('requester_id');
+		$relatedToId = $user->id;
+ 		$clientCode = 22;
+ 		$message = true;
+		$this->socketClient->updateChatStatusBar($friendsUserIds, $clientCode, $relatedToId, $message);
 		$user->updateOnlineStatus(1);
 		
 		return true;

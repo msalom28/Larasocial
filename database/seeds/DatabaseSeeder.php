@@ -8,22 +8,22 @@ class DatabaseSeeder extends Seeder {
 
 	protected $tables = [
 		'users', 
-		'feeds', 
-		'friend_requests',
-		'messages', 
-		'message_user',
-		'message_responses',
-		'message_response_user'
+		'feeds'
+		// 'friend_requests',
+		// 'messages', 
+		// 'message_user',
+		// 'message_responses',
+		// 'message_response_user'
 	];
 
 	protected $seeders = [
 		'UserTableSeeder', 
-		'FeedTableSeeder', 
-		'FriendRequestTableSeeder',
-		'MessagesTableSeeder',
-		'MessageUserTableSeeder',
-		'MessageResponsesTableSeeder',
-		'MessageResponseUserTableSeeder'
+		'FeedTableSeeder' 
+		// 'FriendRequestTableSeeder',
+		// 'MessagesTableSeeder',
+		// 'MessageUserTableSeeder',
+		// 'MessageResponsesTableSeeder',
+		// 'MessageResponseUserTableSeeder'
 	];
 
 	/**

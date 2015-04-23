@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2f080f3e61344444037a494d23dca9cc",
+    "hash": "d46328846a1373aa08c9a146952c74b9",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -322,12 +322,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/image.git",
-                "reference": "0c6767c7be0e0c73df05c77ffc72eaed91ed2aed"
+                "reference": "9c26a834ff7d1c2bb4e88f98228030eed26960d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image/zipball/0c6767c7be0e0c73df05c77ffc72eaed91ed2aed",
-                "reference": "0c6767c7be0e0c73df05c77ffc72eaed91ed2aed",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/9c26a834ff7d1c2bb4e88f98228030eed26960d4",
+                "reference": "9c26a834ff7d1c2bb4e88f98228030eed26960d4",
                 "shasum": ""
             },
             "require": {
@@ -370,7 +370,7 @@
                 "thumbnail",
                 "watermark"
             ],
-            "time": "2015-04-14 20:20:45"
+            "time": "2015-04-22 16:05:20"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -1951,6 +1951,72 @@
                 "environment"
             ],
             "time": "2014-12-05 15:19:21"
+        },
+        {
+            "name": "wisembly/elephant.io",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Wisembly/elephant.io.git",
+                "reference": "61f7eb8dcc2ac939aad526745c8042ce1cd4a54d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Wisembly/elephant.io/zipball/61f7eb8dcc2ac939aad526745c8042ce1cd4a54d",
+                "reference": "61f7eb8dcc2ac939aad526745c8042ce1cd4a54d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "psr/log": "~1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ElephantIO\\": [
+                        "src/",
+                        "test/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Baptiste Clavié",
+                    "email": "baptiste@wisembly.com",
+                    "homepage": "http://baptiste.xn--clavi-fsa.net/",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Guillaume Potier",
+                    "email": "guillaume@wisembly.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Ludovic Barreca",
+                    "email": "ludogp2@gmail.com",
+                    "role": "Project Founder"
+                },
+                {
+                    "name": "Elephant.IO Community",
+                    "role": "Contributors :)"
+                }
+            ],
+            "description": "Send events to a websocket real time engine though PHP",
+            "homepage": "http://elephant.io",
+            "keywords": [
+                "dialog",
+                "nodejs",
+                "real time",
+                "websocket"
+            ],
+            "time": "2014-09-08 10:52:10"
         }
     ],
     "packages-dev": [

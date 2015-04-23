@@ -2,6 +2,7 @@
 
 use App\Commands\Command;
 use App\Repositories\User\UserRepository;
+use App\Realtime\Events as SocketClient;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Auth;
 
@@ -12,6 +13,13 @@ class RemoveFriendCommand extends Command implements SelfHandling {
 	 * @var int
 	 */
 	protected $userId;
+
+	/**
+	 * @var Object
+	 */
+	protected $socketClient;
+
+
 	/**
 	 * Create a new command instance.
 	 *
@@ -22,6 +30,8 @@ class RemoveFriendCommand extends Command implements SelfHandling {
 	public function __construct($userId)
 	{
 		$this->userId = $userId;
+
+		$this->socketClient = new SocketClient;
 	}
 
 	/**
@@ -40,6 +50,8 @@ class RemoveFriendCommand extends Command implements SelfHandling {
 		$currentUser->finishFriendshipWith($this->userId);
 
 		$otherUser->finishFriendshipWith(Auth::user()->id);
+
+		$this->socketClient->updateChatListFriendRemoved($otherUser->id, 24, $currentUser->id, $otherUser->friends()->count());
 
 		return true;
 

@@ -78,4 +78,9 @@ Route::post('message-response', ['as' => 'message_responses_path', 'uses' => 'Me
  */
 Route::post('chatstatus', ['as' => 'chat_status_path', 'uses' => 'ChatStatusController@update']);
 
+ /**
+  * Chat Message
+  */
+ Route::post('chat', ['as' => 'conversation_path', 'uses' => 'ChatController@sendMessage']);
+
 
