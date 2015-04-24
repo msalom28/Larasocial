@@ -29,7 +29,7 @@
           <li><a href="{!! url('friend-requests') !!}">Friend Requests</a></li>
           <li><a href="{!! url('messages') !!}">Messages</a></li>             
           <li class="divider"></li>
-          <li><a class="logout-link" data-method="DELETE" href="/logout">Logout</a></li>
+          <li><a class="logout-link" data-method="delete" href="{!! url('/logout') !!}">Logout</a></li>
           </ul>
         </li>
       </ul>

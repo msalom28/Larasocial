@@ -27,9 +27,6 @@
 						</div>
 					@endforeach
 				</div>
-					<div class="paginator text-center">
-						 	
-					</div>
 			@else
 
 				<div class="alert alert-info" role="alert"><span class="glyphicon glyphicon-info-sign"></span> You don't have any friends.</div>

@@ -33,6 +33,7 @@ gulp.task('scriptLibs', function(){
 gulp.task('script', function(){
 	gulp.src('main.js')
 	.pipe(uglify())
+	.on('error', errorLog)
 	.pipe(gulp.dest('public/js'));
 
 });
@@ -54,6 +55,7 @@ gulp.task('cssLibs', function(){
 //Updates main css when saas changes
 gulp.task('sass', function(){
 	return sass('resources/assets/sass/main.scss', { style: 'compressed' })
+	.on('error', errorLog)
 	.pipe(gulp.dest('public/css/'));
 });
 

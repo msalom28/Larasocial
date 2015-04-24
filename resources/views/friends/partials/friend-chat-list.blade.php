@@ -41,7 +41,7 @@
 
 						@if($friend->isOnline())				
 						
-							<a href="#" class="list-group-item side-list" data-userid = "{!! $friend->id !!}" data-profileimage="{!! $friend->profileimage !!}" data-firstname ="{!! $friend->firstname !!}">						
+							<a id="chat-list-user-{!! $friend->id !!}" href="#" class="list-group-item side-list" data-userid = "{!! $friend->id !!}" data-profileimage="{!! $friend->profileimage !!}" data-firstname ="{!! $friend->firstname !!}">						
 
 								<div class="media">
 

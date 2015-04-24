@@ -37,10 +37,12 @@
  				//Alert/changeStatus on all connected friends of currentuser who changed chat status 
 	 			if(data.message == true)
 	 			{
+	 				console.log(data.relatedToId);
 	 				$( "a[data-userid="+data.relatedToId+"]" ).removeClass('disabled');		
 	 			}
 	 			else
 	 			{
+	 				console.log(data.relatedToId);
 	 				$( "a[data-userid="+data.relatedToId+"]" ).addClass('disabled');	
 	 			}
 
@@ -50,11 +52,7 @@
  		else if(data.clientcode == 22)//Alerting all connected friends that current user has logged in/out
  		{	
  			
- 			if(data.message == true)
- 			{
- 				$( "a[data-userid="+data.relatedToId+"]" ).removeClass('disabled');
- 			}
- 			else
+ 			if(data.message == false)
  			{
  				$( "a[data-userid="+data.relatedToId+"]" ).addClass('disabled');
  			}			
@@ -84,7 +82,9 @@
 		 			{
 		 				$('#chatwithuser'+data.relatedToId).find('ul').append('<li>'+data.message+'</li>');
 
-		 				$('#chatwithuser'+data.relatedToId).show();	
+		 				$('#chatwithuser'+data.relatedToId).show();
+
+		 				console.log('opened already created chat object');	
 		 			}
 		 			else
 		 			{
@@ -93,6 +93,8 @@
 						var friendName = friendLink.find('.avatar').attr('alt');
 
 		 				openChatBox({"friendProfileImage": friendProfileImage, "friendName": friendName, "friendId": data.relatedToId});
+
+		 				console.log('created new chat box object');
 			 		}
 
 	 			}//End checking if sender is available to chat
@@ -111,7 +113,7 @@
  			{
  				$('#friend-side-list').hide();
  				
- 				$('#friend-list').append('<div class="alert alert-info" role="alert">'+
+ 				$('#friend-list').append('<div id="no-friend-chat-alert" class="alert alert-info" role="alert">'+
  					'<span class="glyphicon glyphicon-info-sign"></span>'+
  					' You don\'t have any friends.</div>');
 
@@ -121,21 +123,21 @@
 
 				$('.friends-count').text(actualFriendsCount);
 
- 				if($(location).attr('href') == "http://localhost:8000/friends")
+ 				if($(location).attr('href') == "/friends")
  				{
+ 					$('.users-list').hide();
 
- 					$( "a[data-userid = "+data.relatedToId+"]" ).closest('.friend-request-media').hide();
-
- 					$('.friend-request-list').append('<div class="alert alert-info" role="alert">'+
+ 					$('#center-column').append('<div class="alert alert-info" role="alert">'+
 					'<span class="glyphicon glyphicon-info-sign"></span> You don\'t have any friends.</div>');
+ 			
  				}
- 				else if($(location).attr('href') == "http://localhost:8000/users")
+ 				else if($(location).attr('href') == "/users")
  				{
- 					$( "a[data-userid = "+data.relatedToId+"]" ).attr('disabled', 'disabled').text('removed');
+ 					$( "a[data-userid = "+data.relatedToId+"]" ).attr('disabled', 'disabled').text('Removed');
  				}
- 				else if($(location).attr('href') == "http://localhost:8000/users/"+data.relatedToId)
+ 				else if($(location).attr('href') == "/users/"+data.relatedToId)
  				{
- 					$( "a[data-userid = "+data.relatedToId+"]" ).attr('disabled', 'disabled').text('removed');
+ 					$( "a[data-userid = "+data.relatedToId+"]" ).attr('disabled', 'disabled').text('Removed');
  				}		
  			}
  			else
@@ -146,19 +148,19 @@
 
 				$('.friends-count').text(actualFriendsCount);
 
- 				$( "a[data-userid="+data.relatedToId+"]" ).hide('slide', {direction : 'right'}, 300);
+ 				$( "#chat-list-user-"+data.relatedToId ).hide('slide', {direction : 'right'}, 300);
 
- 				if($(location).attr('href') == "http://localhost:8000/friends")
+ 				if($(location).attr('href') == "/friends")
  				{
- 					$( "a[data-userid = "+data.relatedToId+"]" ).closest('.friend-request-media').hide();
+ 					$( "a[data-userid = "+data.relatedToId+"]" ).closest('.listed-object-close').hide();
  				}
- 				else if($(location).attr('href') == "http://localhost:8000/users")
+ 				else if($(location).attr('href') == "/users")
  				{
- 					$( "a[data-userid = "+data.relatedToId+"]" ).attr('disabled', 'disabled').text('removed');
+ 					$( "a[data-userid = "+data.relatedToId+"]" ).attr('disabled', 'disabled').text('Removed');
  				}
- 				else if($(location).attr('href') == "http://localhost:8000/users/"+data.relatedToId)
+ 				else if($(location).attr('href') == "/users/"+data.relatedToId)
  				{
- 					$( "a[data-userid = "+data.relatedToId+"]" ).attr('disabled', 'disabled').text('removed');
+ 					$( "a[data-userid = "+data.relatedToId+"]" ).attr('disabled', 'disabled').text('Removed');
  				}
 
  			} 			
@@ -227,9 +229,9 @@
 
 					var feedsCount = $('.feeds-count').text();
 
-					// var actualFeedsCount = parseInt(feedsCount) + 1;
+					var actualFeedsCount = parseInt(feedsCount) + 1;
 
-					// $('.feeds-count').text(actualFeedsCount);
+					$('.feeds-count').text(actualFeedsCount);
 
 					$('.feed-list').prepend('<div id="feedid" class="media listed-object">'+
 						'<div class="pull-left"><img class="media-object avatar medium-avatar" src="'+data.userProfileImage+'" alt="'+data.userFirstname+'">'+
@@ -238,7 +240,7 @@
 
 					form.find('textarea').val("");
 
-					// $('.no-feeds-info').hide();
+					$('.no-feeds-info').hide();
 				
 
 			       	break;			
@@ -309,10 +311,10 @@
 
 		var className = button.attr('class');
 
-		var imgPath = button.closest('.friend-request-media').find('.avatar').attr('src') || button.closest('#profile-card').find('.avatar').attr('src');
+		var imgPath = button.closest('.listed-object-close').find('.avatar').attr('src') || button.closest('#profile-card').find('.avatar').attr('src');
 
-		var friendName = button.closest('.friend-request-media').find('.avatar').attr('alt') || button.closest('#profile-card').find('.avatar').attr('alt');
-	
+		var friendName = button.closest('.listed-object-close').find('.avatar').attr('alt') || button.closest('#profile-card').find('.avatar').attr('alt');
+
 
 		$.ajax({
 
@@ -367,47 +369,45 @@
 			        }			       
 
 			       
-	    //     		$('#no-friend-chat-alert').hide();
+	        		$('#no-friend-chat-alert').hide();
 
-					// $('#friend-list').append('<div id="friend-side-list" class="list-group">'+
-					// '<a href="#" class="list-group-item side-list disabled" data-userid = "'+ userId +'">'+						
-					// '<div class="media"><div class="pull-left">'+
-					// '<img class="media-object avatar small-avatar" src="'+ imgPath+'" alt="'+ friendName+'">'+        
-					// '</div><div class="media-body">'+						     	
-					// ''+ friendName +' <span class="glyphicon glyphicon-flash text-success"></span>'+
-					// '</div></div></a></div>');	
-			        
+					$('#friend-list').append('<div id="friend-side-list" class="list-group">'+
+					'<a href="#" class="list-group-item side-list disabled" data-userid = "'+ userId +'">'+						
+					'<div class="media"><div class="pull-left">'+
+					'<img class="media-object avatar small-avatar" src="'+imgPath+'" alt="'+ friendName+'">'+        
+					'</div><div class="media-body">'+						     	
+					''+ friendName +' <span class="glyphicon glyphicon-flash text-success"></span>'+
+					'</div></div></a></div>');			
 
-			
+		        	var friendsCount = $('.friends-count').text();
 
-		   //      	var friendsCount = $('.friends-count').text();
+					var actualFriendsCount = parseInt(friendsCount) + 1;
 
-					// var actualFriendsCount = parseInt(friendsCount) + 1;
-
-					// $('.friends-count').text(actualFriendsCount);						
+					$('.friends-count').text(actualFriendsCount);						
 
 					break;
 
 					case 'btn btn-primary unfriend-button btn-sm':
-					//Enable if you want the center alert to show
-			        // $('.center-alert').html(data.message).fadeIn(300).delay(2500).fadeOut(300);
+
+					 if(data.count == 0)
+				       {			        	
+
+				        	$('#friend-side-list').hide();
+
+							$('#friend-list').append('<div id="no-friend-chat-alert" class="alert alert-info" role="alert">'+
+			 					'<span class="glyphicon glyphicon-info-sign"></span>'+
+			 					' You don\'t have any friends.</div>');
+				       }
+
+				    var friendsCount = $('.friends-count').text();
+
+					var actualFriendsCount = parseInt(friendsCount) - 1;
+
+					$('.friends-count').text(actualFriendsCount);
+
+					$( "#chat-list-user-"+userId ).hide('slide', {direction : 'right'}, 300);
 
 					button.attr('disabled', 'disabled').text('Removed');
-
-					//  if(data.count == 0)
-				 //        {			        	
-
-				 //        	$('#friend-side-list').hide();
-					// 		$('#friend-list').append('<div class="alert alert-info" role="alert">'+
-			 	// 				'<span class="glyphicon glyphicon-info-sign"></span>'+
-			 	// 				' You don\'t have any friends.</div>');
-				 //        }
-
-				 //    var friendsCount = $('.friends-count').text();
-
-					// var actualFriendsCount = parseInt(friendsCount) - 1;
-
-					// $('.friends-count').text(actualFriendsCount);	
 
 					break;
 
@@ -427,47 +427,46 @@
 
 				        button.closest('.listed-object-close').slideUp();
 
-				        // $( "a[data-userid="+button.attr('data-userid')+"]" ).hide('slide', {direction : 'right'}, 300);
+				        $( "a[data-userid="+button.attr('data-userid')+"]" ).hide('slide', {direction : 'right'}, 300);
 				     
 				        if(data.count == 0)
 				        {			        	
 				        	$('.users-list').append('<div class="alert alert-info" role="alert">'+
 							'<span class="glyphicon glyphicon-info-sign"></span> You don\'t have any friends.</div>');
 
-				   //      	$('#friend-side-list').hide();
-							// $('#friend-list').append('<div class="alert alert-info" role="alert">'+
-			 			// 		'<span class="glyphicon glyphicon-info-sign"></span>'+
-			 			// 		' You don\'t have any friends.</div>');
+				        	$('#friend-side-list').hide();
+							$('#friend-list').append('<div class="alert alert-info" role="alert">'+
+			 					'<span class="glyphicon glyphicon-info-sign"></span>'+
+			 					' You don\'t have any friends.</div>');
 				        }
 
-					 //    var friendsCount = $('.friends-count').text();
+					    var friendsCount = $('.friends-count').text();
 
-						// var actualFriendsCount = parseInt(friendsCount) - 1;
+						var actualFriendsCount = parseInt(friendsCount) - 1;
 
-						// $('.friends-count').text(actualFriendsCount);						
+						$('.friends-count').text(actualFriendsCount);						
 
 					break;
 
 					case 'logout-link':
 
-						if(('#no-friend-chat-alert').length)
-						{							
-							window.location.replace("/");
+						if($('#no-friend-chat-alert').is(":visible"))
+						{
+							window.location.replace("/");	
 						}
 						else
 						{
-							// $('.side-list').each(function(){
+							$('.side-list').each(function(){
 
-							// var friendListUserId = $(this).attr('data-userid');
+							var friendListUserId = $(this).attr('data-userid');
 
-							// sessionStorage.removeItem('conversation-with-'+friendListUserId);							
+							sessionStorage.removeItem('conversation-with-'+friendListUserId);							
 
-							// });	
+							});	
 
 							window.location.replace("/");
-								
-						}
 
+						}
 										
 
 					break;
@@ -481,8 +480,9 @@
 			}
 			else
 			{
-				alert('Something went wrong. Please try again later.')	
-			}
+				alert('Something went wrong. Please try again later.');	
+			}	
+			
 
 		})
 
