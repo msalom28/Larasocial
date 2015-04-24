@@ -18,6 +18,7 @@ class FriendRequestController extends Controller {
 	 *  @var User
 	 */
 	protected $currentUser;
+
 	/**
 	 * Create a new instance of FriendRequestController.
 	 */
@@ -78,39 +79,6 @@ class FriendRequestController extends Controller {
 			return response()->json(['response' => 'success', 'message' => 'Friend request submitted']);
 
 		}	
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
 	}
 
 	/**

@@ -2,7 +2,8 @@ var gulp 	= require('gulp'),
 	uglify	= require('gulp-uglify'),
 	sass	= require('gulp-ruby-sass'),
 	concat	= require('gulp-concat'),
-	minify	= require('gulp-clean-css');
+	minify	= require('gulp-clean-css'),
+	prefix	= require('gulp-autoprefixer');
 
 
 //Display error messages 
@@ -44,7 +45,9 @@ gulp.task('cssLibs', function(){
 	gulp.src([
 		'bower_components/bootstrap/dist/css/bootstrap.css',
 		'bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css',
-		'public/css/fonts/registration.css'])
+		'public/css/fonts/registration.css',
+		'public/css/fonts/font-awesome.css'
+		])
 	.pipe(minify())
 	.pipe(concat('libs.css'))
 	.pipe(gulp.dest('public/css'));
@@ -56,6 +59,7 @@ gulp.task('cssLibs', function(){
 gulp.task('sass', function(){
 	return sass('resources/assets/sass/main.scss', { style: 'compressed' })
 	.on('error', errorLog)
+	.pipe(prefix('last 2 versions'))
 	.pipe(gulp.dest('public/css/'));
 });
 

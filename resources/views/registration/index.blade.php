@@ -133,8 +133,9 @@
 		<div class="col-md-6">
 			<div id="main-title" class="row text-center">
 				<h1>Larasocial</h2>
-				<h2>A social network app built with Laravel</h3>							
-				<img src="http://laravel.dev:8000/images/larasocial-main.png" class="img-responsive" alt="Larasocial image">				
+				<h2>A social network app built with Laravel 5.0</h3>
+				<a href="#"><i class="fa fa-github fa-3x"></i></a>						
+				<img src="/images/larasocial-main.png" class="img-responsive" alt="Larasocial image">				
 			</div>			
 		</div>
 	</div>
