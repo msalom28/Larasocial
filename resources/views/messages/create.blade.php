@@ -8,7 +8,7 @@
 		</div>
 			<div id="center-column" class="col-md-6">
 				@include('layouts.partials.center-form', [
-				'placeholder' => 'Type your message..', 
+				'placeholder' => 'Send a private message to ' .$user->firstname.'...', 
 				'formType' => 'message-form', 
 				'button' => 'Submit', 
 				'path' => 'save_message_path',

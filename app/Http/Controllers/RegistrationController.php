@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Commands\RegisterUserCommand;
 use App;
 use Carbon\Carbon;
+use App\User;
 
 use Illuminate\Http\Request;
 
@@ -25,7 +26,20 @@ class RegistrationController extends Controller {
 	 */
 	public function create()
 	{
-		return view('registration.index');
+		$loginIdsRange = range(1, 30);
+
+		shuffle($loginIdsRange);
+
+		$loginIds = array_slice($loginIdsRange, 0, 2);
+
+		$randomLogins = [];
+
+		foreach ($loginIds as $loginId) {
+			
+			$randomLogins[] = User::find($loginId);
+		}
+
+		return view('registration.index', compact('randomLogins'));
 	}
 
 	/**

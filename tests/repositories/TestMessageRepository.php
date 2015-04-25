@@ -26,7 +26,7 @@ class TestMessageRepository extends TestCase
 
 		$messageRepository = new EloquentMessageRepository;
 
-		$response = $messageRepository->findByIdWithResponses($message->id);
+		$response = $messageRepository->findByIdWithMessageResponses($message->id);
 
 		$this->assertInstanceOf('App\Message', $response);
 

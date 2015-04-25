@@ -3,6 +3,34 @@
 @section('content')
 	
 	<div class="row">
+		
+  <div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="welcomeModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 class="modal-title" id="myModalLabel">Welcome</h3>
+      </div>
+      <div class="modal-body">
+        <p><strong>Please note that this app is a prototype</strong> it was intended for demonstration purposes only.</p>
+         <p>If you would like take a look inside, We have generated 2 random demo accounts so you can interact and explore some of the app features like: friend requesting, private messaging, chat, etc. Just be sure to login with different browsers for each dugh!</p>
+
+         @foreach($randomLogins as $randomLogin)
+
+        	 <p><strong>email:</strong> {!! $randomLogin->email !!}</p>
+        	 <p><strong>password:</strong> "secret"</p>
+        	 <br>
+
+        @endforeach
+    
+          <p>Thanks for stopping by!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 		<div id="registration-form" class="col-md-5">
 			<div class="row">
 				@if($errors->count())
@@ -133,8 +161,9 @@
 		<div class="col-md-6">
 			<div id="main-title" class="row text-center">
 				<h1>Larasocial</h2>
-				<h2>A social network app built with Laravel 5.0</h3>
-				<a href="#"><i class="fa fa-github fa-3x"></i></a>						
+				<h2>A Social network app built with Laravel</h3>
+				<a href="#"><i class="fa fa-github fa-2x"></i></a> <a href="#" data-toggle="modal" data-target="#welcomeModal"><i class="fa fa-info-circle fa-2x"></i></a>
+
 				<img src="/images/larasocial-main.png" class="img-responsive" alt="Larasocial image">				
 			</div>			
 		</div>

@@ -213,7 +213,7 @@
 
 					case 'message-response-form':
 
-			        $('.center-alert').html(data.message).fadeIn(300).delay(2500).fadeOut(300);			       
+			        // $('.center-alert').html(data.message).fadeIn(300).delay(2500).fadeOut(300);			       
 
 			        $('.message-response-list').prepend('<div class="media listed-object-close">'+
 						'<div class="pull-left"><a href="#"><img class="media-object avatar small-avatar"'+ 
@@ -333,7 +333,7 @@
 					//Enable if you want the center alert to show
 			        // $('.center-alert').html(data.message).fadeIn(300).delay(2500).fadeOut(300);
 
-					button.attr('disabled', 'disabled').text('Request sent');
+					button.attr('disabled', 'disabled').text('Requested');
 
 					break;
 

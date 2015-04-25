@@ -28,6 +28,12 @@ body {
 
   	a{
   		color: $primary-color;
+  		
+  		&:focus, &:hover{
+  			color: $primary-color;
+  			text-decoration: none;
+  		}
+  	
   	}
  
  }
@@ -480,5 +486,17 @@ list-group-item.active>.badge, .nav-pills>.active>a>.badge {
 .chat-room .close{
 	/*margin-left: 6px;
 	margin-top: -10px;*/
+}
+
+
+/*Media queries*/
+@media screen and (max-width: 990px) {
+
+	#right-side-column{
+		display: none;
+	}
+
+
+
 }
 

@@ -30,7 +30,7 @@
 
 											@if( Auth::user()->sentFriendRequestTo($user->id))
 
-												<button class="btn btn-primary btn-sm" disabled="disabled" type="submit">Request sent</button>								
+												<button class="btn btn-primary btn-sm" disabled="disabled" type="submit">Requested</button>								
 
 											@elseif(Auth::user()->receivedFriendRequestFrom($user->id))
 
