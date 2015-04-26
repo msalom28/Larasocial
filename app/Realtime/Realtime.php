@@ -14,7 +14,7 @@ abstract class Realtime
 	 */
 	public function __construct()
 	{
-		$this->socketClient = new Client(new Version1X('http://localhost:1337'));
+		$this->socketClient = new Client(new Version1X('http://larasocial.info:1337'));
 	}
 	/**
 	 * Send a websocket broadcast to all connected users.
