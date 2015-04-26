@@ -6,7 +6,7 @@
 	$('.welcome-alert').fadeIn(300).delay(3500).fadeOut(300);
 
 	//Register and Connect to websocket
-	var socket = io.connect('http://localhost:1337');
+	var socket = io.connect('http://larasocial.info:1337');
             
     socket.emit('register', {'userId': userId});
 
@@ -871,7 +871,7 @@
 
 	// Loading feeds when scrolling
 
-	if($(location).attr('href') == "http://localhost:8000/feeds")
+	if($(location).attr('href') == "http://larasocial.info/feeds")
 	{	
 
 		$(window).scroll(function(){
