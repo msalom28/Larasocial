@@ -22,7 +22,7 @@
       </div>
     </footer>
     <script src="{{ asset('js/libs.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
+    <script src="http://larasocial.info/socket.io/socket.io.js"></script>
 	<script src="{{ asset('js/main.js') }}"></script>
 </body>
 </htm>
