@@ -1,8 +1,8 @@
-var app        = require('express')(),
-    server     = require('http').Server(app),
-    io         = require('socket.io')(server),
-    logger     = require('winston'),
-    port       = 1337;
+var server = require('http').createServer(),
+    io     = require('socket.io')(server),
+    logger = require('winston'),
+    port   = 3000;
+
 
 // Logger config
 logger.remove(logger.transports.Console);
