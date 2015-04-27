@@ -6,7 +6,7 @@
 	$('.welcome-alert').fadeIn(300).delay(3500).fadeOut(300);
 
 	//Register and Connect to websocket
-	var socket = io.connect('http://45.55.233.57:3000');
+	var socket = io.connect('http://larasocial.info:3000');
             
     socket.emit('register', {'userId': userId});
 
