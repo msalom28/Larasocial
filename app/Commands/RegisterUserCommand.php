@@ -77,6 +77,8 @@ class RegisterUserCommand extends Command implements SelfHandling {
 
 		Auth::login($user);
 
+		$user->updateOnlineStatus(1);
+
 		return $user;
 	}
 }

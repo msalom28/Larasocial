@@ -13,7 +13,7 @@
       </div>
       <div class="modal-body">
         <p><strong>Please note that this app is a prototype</strong> it was intended for demonstration purposes only.</p>
-         <p>If you would like take a look inside, We have generated 2 random demo accounts so you can interact and explore some of the app features like: friend requesting, private messaging, chat, etc. Just be sure to login with different browsers for each dugh!</p>
+         <p>If you would like to take a look inside, you can create a new profile or choose from one of the 2 random demo accounts stored in our system. To interact and explore some of the app features such as: friend requesting, private messaging, chat, etc. Just be sure to login with different browsers for each profile.</p>
 
          @foreach($randomLogins as $randomLogin)
 
@@ -162,7 +162,7 @@
 			<div id="main-title" class="row text-center">
 				<h1>Larasocial</h2>
 				<h2>A Social network app built with Laravel</h3>
-				<a href="#"><i class="fa fa-github fa-2x"></i></a> <a href="#" data-toggle="modal" data-target="#welcomeModal"><i class="fa fa-info-circle fa-2x"></i></a>
+				<a href="https://github.com/msalom28/Larasocial"><i class="fa fa-github fa-2x"></i></a> <a href="#" data-toggle="modal" data-target="#welcomeModal"><i class="fa fa-info-circle fa-2x"></i></a>
 
 				<img src="/images/larasocial-main.png" class="img-responsive" alt="Larasocial image">				
 			</div>			

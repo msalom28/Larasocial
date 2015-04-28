@@ -186,8 +186,8 @@ list-group-item.active>.badge, .nav-pills>.active>a>.badge {
 		border-radius: 0px;
 		border-color: $primary-color;
 		position: fixed;
-		z-index: 100;
-		width: 100%;
+		z-index: 104;
+		width: 103%;
 
 		a{
 			color: white;
@@ -208,6 +208,10 @@ list-group-item.active>.badge, .nav-pills>.active>a>.badge {
 
 .navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-text {
   color: white;
+}
+
+.dropdown-menu{
+  z-index: 104;
 }
 
 
