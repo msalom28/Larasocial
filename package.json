@@ -6,7 +6,6 @@
     "start": "supervisor --debug server.js"
   },
   "dependencies": {
-    "express": "^4.12.0",
     "socket.io": "~1.0.6",
     "winston": "*"
   },
