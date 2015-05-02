@@ -4,6 +4,7 @@ use App\Events\UserWasRegistered;
 use App\Commands\Command;
 use Illuminate\Contracts\Bus\SelfHandling;
 use App\User;
+use Auth;
 
 class RegisterUserCommand extends Command implements SelfHandling {
 	
