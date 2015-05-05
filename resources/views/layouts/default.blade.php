@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Larasocial</title>
+	<meta name="viewport" content="width=device-width">
 	<link rel="shortcut icon" href="{{ asset('larasocialfavicon.ico') }}">
 	<link rel="stylesheet" href="{{ asset('css/libs.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/main.css') }}">
