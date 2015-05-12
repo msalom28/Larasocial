@@ -70,6 +70,8 @@ class EloquentUserRepository implements UserRepository
 			$query->latest();
 		}])->findOrFail($id);
 	}
+
+
 	/**
 	 * Fetch a user by id with emails attached
 	 *
@@ -96,6 +98,7 @@ class EloquentUserRepository implements UserRepository
 		}])->findOrFail($userId)->toArray();
 		return $user['friend_requests'];
 	}
+	
 	/**
 	 * Fetch friends for a user
 	 *
