@@ -134,7 +134,7 @@ class CachingUserRepository implements UserRepository
 	 */
 	public function findByIdWithFriends($id)
 	{
-		return $this->repository->findByIdWithFriendRequests($id);
+		return $this->repository->findByIdWithFriends($id);
 	}
 
 }
