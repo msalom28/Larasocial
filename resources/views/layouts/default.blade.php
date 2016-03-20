@@ -23,7 +23,7 @@
       </div>
     </footer>
     <script src="{{ asset('js/libs.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/socket.io-client/1.3.2/socket.io.min.js"></script>
+    <script src="/js/socketio.min.js"></script>
 	<script src="{{ asset('js/main.js') }}"></script>
 </body>
 </htm>
