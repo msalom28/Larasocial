@@ -23,7 +23,8 @@
       </div>
     </footer>
     <script src="{{ asset('js/libs.js') }}"></script>
-    <script src="/js/socketio.min.js"></script>
+    <!-- <script src="/js/socketio.min.js"></script> -->
+    <script src="http://larasocial.info/socket.io/socket.io.js"></script>
 	<script src="{{ asset('js/main.js') }}"></script>
 </body>
 </htm>
