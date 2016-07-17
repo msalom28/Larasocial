@@ -1,8 +1,7 @@
 <?php namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-
-class CreateSessionRequest extends Request {
+class CreateSessionRequest extends Request
+{
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -22,7 +21,6 @@ class CreateSessionRequest extends Request {
 	public function rules()
 	{
 		return [
-		
 			'email' => 'required|email',
 			'password' => 'required'
 		];
