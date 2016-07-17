@@ -1,59 +1,54 @@
 <?php namespace App\Commands;
 
-use App\Commands\Command;
-use App\Repositories\User\UserRepository;
 use App\Realtime\Events as SocketClient;
-use Illuminate\Contracts\Bus\SelfHandling;
+use App\Repositories\User\UserRepository;
 use Auth;
+use Illuminate\Contracts\Bus\SelfHandling;
 
-class RemoveFriendCommand extends Command implements SelfHandling {
+class RemoveFriendCommand extends Command implements SelfHandling
+{
+    /**
+     * @var int
+     */
+    protected $userId;
+
+    /**
+     * @var Object
+     */
+    protected $socketClient;
 
 
-	/**
-	 * @var int
-	 */
-	protected $userId;
+    /**
+     * Create a new command instance.
+     *
+     * @param $userId
+     */
+    public function __construct($userId)
+    {
+        $this->userId = $userId;
 
-	/**
-	 * @var Object
-	 */
-	protected $socketClient;
+        $this->socketClient = new SocketClient;
+    }
 
+    /**
+     * Execute the command.
+     *
+     * @param UserRepository $userRepository
+     *
+     * @return bool
+     */
+    public function handle(UserRepository $userRepository)
+    {
+        $otherUser = $userRepository->findById($this->userId);
 
-	/**
-	 * Create a new command instance.
-	 *
-	 * @param User $user
-	 *
-	 * @return void
-	 */
-	public function __construct($userId)
-	{
-		$this->userId = $userId;
+        $currentUser = Auth::user();
 
-		$this->socketClient = new SocketClient;
-	}
+        $currentUser->finishFriendshipWith($this->userId);
 
-	/**
-	 * Execute the command.
-	 *
-	 * @param FriendRepository $friendRepository
-	 *
-	 * @return void
-	 */
-	public function handle(UserRepository $userRepository)
-	{
-		$otherUser = $userRepository->findById($this->userId);
+        $otherUser->finishFriendshipWith(Auth::user()->id);
 
-		$currentUser = Auth::user();
+        $this->socketClient->updateChatListFriendRemoved($otherUser->id, 24, $currentUser->id, $otherUser->friends()->count());
 
-		$currentUser->finishFriendshipWith($this->userId);
-
-		$otherUser->finishFriendshipWith(Auth::user()->id);
-
-		$this->socketClient->updateChatListFriendRemoved($otherUser->id, 24, $currentUser->id, $otherUser->friends()->count());
-
-		return true;
-
-	}
+        return true;
+    }
 }

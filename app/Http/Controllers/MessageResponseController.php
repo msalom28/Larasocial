@@ -1,7 +1,6 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use DB;
 use Illuminate\Http\Request;
 use App\Commands\CreateMessageResponseCommand;
@@ -9,9 +8,8 @@ use Auth;
 use App;
 use Validator;
 
-class MessageResponseController extends Controller {
-
-
+class MessageResponseController extends Controller
+{
 	/**
 	 * Create a new instance of ResponsesController
 	 */
@@ -47,13 +45,14 @@ class MessageResponseController extends Controller {
 
 			]);
 
-			return response()->json(['response' => 'success', 'message' => 'Your message was sent.']);
+			return response()->json(['response' => 'success', 'message' => trans('messages.sent-successfully')]);
 	}
 
 	/**
 	 * Update the specified message response in storage.
 	 *
 	 * @param Request $request
+     *
 	 * @return mixed
 	 */
 	public function update(Request $request)
@@ -65,5 +64,4 @@ class MessageResponseController extends Controller {
 
 		return response()->json(['response' => 'success']);	
 	}
-
 }

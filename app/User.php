@@ -125,7 +125,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	/**
 	 * Remove a friend from a user.
 	 *	
-	 * @param int $requestedUserId
+	 * @param int $requesterUserId
 	 *
 	 * @return mixed
 	 */
@@ -199,7 +199,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * @param int $id
 	 *
 	 * @return boolean
-	 *
 	 */
 	public function is($id)
 	{
@@ -239,5 +238,4 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	{
 	 	return $this->onlinestatus;
 	}
-
 }

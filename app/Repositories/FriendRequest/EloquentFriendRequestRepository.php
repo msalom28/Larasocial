@@ -1,7 +1,5 @@
 <?php namespace App\Repositories\FriendRequest;
 
-use App\User;
-use App\FriendRequest;
 use DB;
 
 class EloquentFriendRequestRepository implements FriendRequestRepository

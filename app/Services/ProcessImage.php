@@ -4,27 +4,31 @@ use Faker\Factory as Faker;
 use Image;
 
 class ProcessImage
-{	
-	/**
-	 * Save Image to the public folder
-	 *
-	 * @param $file, $path, $width, $height
-	 *
-	 * @return $filePath
-	 */
+{
+    /**
+     * Save Image to the public folder
+     *
+     * @param $file
+     * @param $path
+     * @param $width
+     * @param $height
+     *
+     * @return string $filePath
+     */
 	public function execute($file, $path, $width, $height)
 	{
 		$filename = $this->rename($file);
 		Image::make($file)->resize($width, $height)->save($path.$filename);
 		return asset('images/profileimages/'.$filename);
 	}
-	/**
-	 * Rename image
-	 *
-	 * @param $file
-	 *
-	 * @return $filename
-	 */
+
+    /**
+     * Rename image
+     *
+     * @param $file
+     * 
+     * @return string $filename
+     */
 	public function rename($file)
 	{
 		$faker = Faker::create();

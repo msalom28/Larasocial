@@ -1,47 +1,48 @@
 <?php namespace App\Commands;
 
-use App\Commands\Command;
-use App\Repositories\User\UserRepository;
 use App\Events\FriendRequestWasSent;
-use Illuminate\Contracts\Bus\SelfHandling;
 use App\FriendRequest;
+use App\Repositories\User\UserRepository;
 use Auth;
+use Illuminate\Contracts\Bus\SelfHandling;
 
-class CreateFriendRequestCommand extends Command implements SelfHandling {
+class CreateFriendRequestCommand extends Command implements SelfHandling
+{
 
-	/**
-	 *  @var int
-	 */
-	protected $requestedId;
+    /**
+     * @var int
+     */
+    protected $requestedId;
 
-	/**
-	 * Create a new command instance.
-	 *
-	 * @return void
-	 */
-	public function __construct($requestedId)
-	{		
-		$this->requestedId = $requestedId;
-	}
-	/**
-	 * Execute the command.
-	 *
-	 * @param UserRepository $userRepository
-	 *
-	 * @return void
-	 */
-	public function handle(UserRepository $userRepository)
-	{
-		$requestedUser = $userRepository->findById($this->requestedId);
+    /**
+     * Create a new command instance.
+     *
+     * @param $requestedId
+     */
+    public function __construct($requestedId)
+    {
+        $this->requestedId = $requestedId;
+    }
 
-		$requesterUser = Auth::user();
+    /**
+     * Execute the command.
+     *
+     * @param UserRepository $userRepository
+     *
+     * @return boolean
+     */
+    public function handle(UserRepository $userRepository)
+    {
+        $requestedUser = $userRepository->findById($this->requestedId);
 
-		$friendRequest = FriendRequest::prepareFriendRequest($requesterUser->id);
+        $requesterUser = Auth::user();
 
-		$requestedUser->friendRequests()->save($friendRequest);
+        $friendRequest = FriendRequest::prepareFriendRequest($requesterUser->id);
 
-		event(new FriendRequestWasSent($requestedUser, $requesterUser));
+        $requestedUser->friendRequests()->save($friendRequest);
 
-		return true;
-	}
+        event(new FriendRequestWasSent($requestedUser, $requesterUser));
+
+        return true;
+    }
 }

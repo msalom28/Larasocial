@@ -1,8 +1,7 @@
 <?php namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-
-class CreateMessageResponseRequest extends Request {
+class CreateMessageResponseRequest extends Request
+{
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -32,5 +31,4 @@ class CreateMessageResponseRequest extends Request {
 
 		];
 	}
-
 }
