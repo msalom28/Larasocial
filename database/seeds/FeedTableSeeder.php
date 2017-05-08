@@ -13,7 +13,7 @@ class FeedTableSeeder extends Seeder {
 	public function run()
 	{
 		$faker = Faker::create();
-		$userIds = User::lists('id');
+		$userIds = User::pluck('id');
 		$date = new DateTime();
 		$day = 1;
 		$users = [1,2,3,4,5];
@@ -22,10 +22,10 @@ class FeedTableSeeder extends Seeder {
 
 			foreach (range(1, 30) as $index) {
 
-				$day++;	
+				$day++;
 
 				$date->setDate(2015, 1, $day);
-			
+
 				Feed::create([
 					'user_id'	=> $user,
 					'body'		=> $faker->sentence(),
@@ -35,9 +35,9 @@ class FeedTableSeeder extends Seeder {
 					'updated_at'=> $date->format('Y-m-d H:i:s')
 				]);
 			}
-			
+
 		}
-		
-		
+
+
 	}
 }
