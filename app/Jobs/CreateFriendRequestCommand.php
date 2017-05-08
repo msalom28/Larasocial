@@ -1,13 +1,12 @@
-<?php namespace App\Commands;
+<?php namespace App\Jobs;
 
-use App\Commands\Command;
+use App\Jobs\Command;
 use App\Repositories\User\UserRepository;
 use App\Events\FriendRequestWasSent;
-use Illuminate\Contracts\Bus\SelfHandling;
 use App\FriendRequest;
 use Auth;
 
-class CreateFriendRequestCommand extends Command implements SelfHandling {
+class CreateFriendRequestCommand extends Command {
 
 	/**
 	 *  @var int
@@ -43,5 +42,6 @@ class CreateFriendRequestCommand extends Command implements SelfHandling {
 		event(new FriendRequestWasSent($requestedUser, $requesterUser));
 
 		return true;
+
 	}
 }

@@ -5,7 +5,9 @@ use App\Events\FriendRequestWasSent;
 
 class TestFriendRequestWasSent extends TestCase
 {
-	public function testBothUserObjectsExistInClass()
+    use \Illuminate\Foundation\Testing\DatabaseTransactions;
+
+    public function testBothUserObjectsExistInClass()
 	{
 		$requestedUser = Factory::create('App\User');
 

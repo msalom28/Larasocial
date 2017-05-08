@@ -1,1 +1,1 @@
-Hey {!! $userFirstname !!}, {!! $requesterFirstname !!} wants to be your friend!
+Hey {{ $userFirstname }}, {{ $requesterFirstname }} wants to be your friend!

@@ -1,13 +1,17 @@
-<?php namespace App\Http\Controllers;
+<?php
+
+namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterUserRequest;
+use App\Events\UserWasRegistered;
 use App\Http\Controllers\Controller;
-use App\Commands\RegisterUserCommand;
 use App;
+
 use Carbon\Carbon;
 use App\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RegistrationController extends Controller {
 
@@ -49,14 +53,27 @@ class RegistrationController extends Controller {
 	 */
 	public function store(RegisterUserRequest $request)
 	{
-		$newUserProfileImagePath = $profileImagePath = App::make('ProcessImage')->execute($request->file('profileimage'), 'images/profileimages/', 180, 180);
+		$newUserProfileImagePath = $profileImagePath = app('ProcessImage')->execute($request->file('profileimage'), public_path('images/profileimages'), 180, 180);
 
 		$newUserBirthday = Carbon::createFromDate($request->year, $request->month, $request->day);
 
-		$newUser = $this->dispatchFrom(RegisterUserCommand::class, $request, [
-			'birthday' => $newUserBirthday, 
-			'profileImagePath' => $newUserProfileImagePath
-		]);
+        $user = User::register(
+            $request->get('firstname'),
+            $request->get('lastname'),
+            $request->get('email'),
+            bcrypt($request->get('password')),
+            $request->get('gender'),
+            $newUserBirthday,
+            $newUserProfileImagePath
+        );
+
+        $user->save();
+
+        event(new UserWasRegistered($user));
+
+        Auth::login($user);
+
+        $user->updateOnlineStatus(1);
 
 		return redirect()->route('feeds_path');
 

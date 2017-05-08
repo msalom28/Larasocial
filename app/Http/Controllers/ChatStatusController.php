@@ -4,7 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Validator;
 use Illuminate\Http\Request;
-use App\Commands\UpdateChatStatusCommand;
+use App\Jobs\UpdateChatStatusCommand;
 
 class ChatStatusController extends Controller {
 
@@ -18,18 +18,19 @@ class ChatStatusController extends Controller {
 	}
 
 
-	/**
-	 * Update current user's chat status.
-	 *
-	 * @param Request $request
-	 *
-	 * @return Mixed
-	 */
+    /**
+     *
+     * Update current user's chat status.
+     *
+     * @param Request $request
+     */
 	public function update(Request $request)
 	{
 		$validator = Validator::make($request->all(), ['chatStatus' => 'required']);
+
 		if($validator->fails()) return abort(403);
-		$this->dispatchFrom(UpdateChatStatusCommand::class, $request);
+
+		$this->dispatch( new UpdateChatStatusCommand( $request->get('chatStatus') ) );
 	}
 
 }

@@ -7,7 +7,9 @@ use App\User;
 class TestFeedRepository extends TestCase
 {
 
-	public function testGetPublishedByUserAndFriendsReturnArrayWithResults()
+    use \Illuminate\Foundation\Testing\DatabaseTransactions;
+
+    public function testGetPublishedByUserAndFriendsReturnArrayWithResults()
 	{
 
 		$user = Factory::create('App\User');

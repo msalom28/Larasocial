@@ -1,12 +1,15 @@
 <?php
 
-use App\Commands\CreateFeedCommand; 
+use App\Jobs\CreateFeedCommand;
 use Laracasts\TestDummy\Factory;
 use App\Feed;
 
-class TestCreateFeedCommand extends TestCase
+class TestCreateFeedCommand extends BrowserKitTestCase
 {
-	public function testHandleReturnsTheNewlyCreatedFeed()
+
+    use \Illuminate\Foundation\Testing\DatabaseTransactions;
+
+    public function testHandleReturnsTheNewlyCreatedFeed()
 	{
 		$currentUser = Factory::create('App\User');
 

@@ -2,13 +2,13 @@
 
 use App\Http\Requests\CreateSessionRequest;
 use App\Http\Controllers\Controller;
-use App\Commands\LoginUserCommand;
-use App\Commands\LogoutUserCommand;
-use Auth;
+use App\Jobs\LoginUserCommand;
+use App\Jobs\LogoutUserCommand;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SessionController extends Controller {
-
 
 	/**
 	 * Store a new session.
@@ -17,25 +17,26 @@ class SessionController extends Controller {
 	 */
 	public function store(CreateSessionRequest $request)
 	{
-		$response = $this->dispatchFrom(LoginUserCommand::class, $request);
+        $authResult = Auth::attempt(['email' => $request->get('email'), 'password' => $request->get('password')]);
 
-		if($response) return redirect()->route('feeds_path')->with('welcome-message', 'You are now logged in.');
-		
+        if( $authResult )
+        {
+            $this->dispatch(new LoginUserCommand(Auth::user()));
+
+            return redirect()->route('feeds_path')->with('welcome-message', 'You are now logged in.');
+        }
+
 		return redirect()->back()->withInput()->with('error', 'We were unable to sign you in. Please check your credentials and try again.');
 	}
 
-	
 
-	/**
-	 * Logout the user.
-	 *
-	 * @param Request $request
-	 *
-	 * @return Response
-	 */
-	public function destroy(Request $request)
+    /**
+     * Logout the user.
+     * @return array
+     */
+	public function destroy()
 	{
-		$this->dispatchFrom(LogoutUserCommand::class, $request, ['userId' => Auth::user()->id]);
+		$this->dispatch(new LogoutUserCommand(Auth::user()->id));
 
 		return response()->json(['response' => 'success']);
 	}

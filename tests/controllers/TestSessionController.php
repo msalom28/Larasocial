@@ -3,21 +3,19 @@
 use Laracasts\TestDummy\Factory;
 use App\Http\Controllers\SessionController;
 use App\Http\Requests\CreateSessionRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class testSessionController extends TestCase
 {
 
-	protected static $sessionControlller; 
+    use \Illuminate\Foundation\Testing\DatabaseTransactions;
+
+    protected static $sessionControlller;
 
 	public static function setUpBeforeClass()
 	{
 		self::$sessionControlller = new SessionController;
-	}
-
-	public static function tearDownAfterClass()
-	{
-		Auth::logout();
 	}
 
 	public function testStoreReturnsRedirectResponseInstance()
@@ -29,6 +27,8 @@ class testSessionController extends TestCase
 		$response =  self::$sessionControlller->store($request);
 
 		$this->assertInstanceOf('Illuminate\Http\RedirectResponse', $response);
+
+        Auth::logout();
 
 	}
 
@@ -42,6 +42,8 @@ class testSessionController extends TestCase
 		$this->assertFalse(Auth::check());
 
 		$this->assertInstanceOf('Illuminate\Http\RedirectResponse', $response);
+
+        Auth::logout();
 
 	}
 
@@ -58,6 +60,8 @@ class testSessionController extends TestCase
 		$this->assertFalse(Auth::check());
 
 		$this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
+
+        Auth::logout();
 
 	}	
 }

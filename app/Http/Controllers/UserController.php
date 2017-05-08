@@ -19,7 +19,6 @@ class UserController extends Controller {
 	{
 		$this->middleware('auth');
 
-		$this->currentUser = Auth::user();
 	}
 
 
@@ -32,7 +31,7 @@ class UserController extends Controller {
 	 */
 	public function index(Request $request, UserRepository $userRepository)
 	{
-		$user = $this->currentUser;
+		$user = Auth::user();
 
 		$users = $userRepository->getPaginated(null, $request->firstname);
 
@@ -49,7 +48,7 @@ class UserController extends Controller {
 	 */
 	public function show($id, UserRepository $userRepository, FeedRepository $feedRepository)
 	{
-		$currentUser = $this->currentUser;
+		$currentUser = Auth::user();
 
 		$user = $userRepository->findById($id);
 

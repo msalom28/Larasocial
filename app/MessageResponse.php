@@ -76,7 +76,7 @@ class MessageResponse extends Model {
 	 */
 	public function hasBeenOpenedBy($userId)
 	{
-		return DB::table('message_response_user')->where('user_id', $userId)->where('message_response_id', $this->id)->pluck('open');
+		return DB::table('message_response_user')->where('user_id', $userId)->where('message_response_id', $this->id)->value('open');
 	}
 
 

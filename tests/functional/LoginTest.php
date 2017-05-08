@@ -2,39 +2,40 @@
 
 use Laracasts\TestDummy\Factory;
 
-class LoginTest extends TestCase
+class LoginTest extends BrowserKitTestCase
 {
+    use \Illuminate\Foundation\Testing\DatabaseTransactions;
 
 	public function testEmptyEmailShowsErrorOnSubmit()
 	{
 	    $this->visit('/')
         ->submitForm('Sign in', ['email' => '', 'password' => 'secret'])
-        ->andSee('The email field is required')
-        ->onPage('/');
+        ->See('The email field is required')
+        ->seePageIs('/');
 	}
 
 	public function testInvalidEmailShowsErrorOnSubmit()
 	{
 	    $this->visit('/')
         ->submitForm('Sign in', ['email' => 'jondoe.com', 'password' => 'secret'])
-        ->andSee('The email must be a valid email address.')
-        ->onPage('/');
+        ->See('The email must be a valid email address.')
+        ->seePageIs('/');
 	}
 
 	public function testEmptyPasswordShowsErrorOnSubmit()
 	{
 	    $this->visit('/')
         ->submitForm('Sign in', ['email' => 'jon@Doe.com', 'password' => ''])
-        ->andSee('The password field is required')
-        ->onPage('/');
+        ->See('The password field is required')
+        ->seePageIs('/');
 	}
 
 	public function testLoginWithWrongCedentialsShowsError()
 	{
 	    $this->visit('/')
         ->submitForm('Sign in', ['email' => 'jon@Doe.com', 'password' => 'heheheh'])
-        ->andSee('We were unable to sign you in. Please check your credentials and try again.')
-        ->onPage('/');
+        ->See('We were unable to sign you in. Please check your credentials and try again.')
+        ->seePageIs('/');
 	}
 
 }

@@ -5,7 +5,9 @@ use App\Events\FriendRequestWasSent;
 
 class TestEmailFriendRequest extends TestCase
 {
-	public function testHandleReturnsTrueAfterFriendRequestWasSent()
+    use \Illuminate\Foundation\Testing\DatabaseTransactions;
+
+    public function testHandleReturnsTrueAfterFriendRequestWasSent()
 	{
 		$requesterUser = Factory::create('App\User');
 

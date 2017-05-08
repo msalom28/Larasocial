@@ -14,7 +14,7 @@ class EloquentFeedRepository implements FeedRepository
 	 */
 	public function getPublishedByUserAndFriends(User $user)
 	{
-		$friendsUserIds = $user->friends()->lists('requester_id');
+		$friendsUserIds = $user->friends()->pluck('requester_id')->all();
 
 		$friendsUserIds[] = $user->id;
 
@@ -40,11 +40,11 @@ class EloquentFeedRepository implements FeedRepository
 	 */
 	public function getPublishedByUserAndFriendsAjax(User $user, $skipQty)
 	{
-		$friendsUserIds = $user->friends()->lists('requester_id');
+		$friendsUserIds = $user->friends()->pluck('requester_id');
 
 		$friendsUserIds[] = $user->id;
 
-		return Feed::whereIn('user_id', $friendsUserIds)->latest()->skip($skipQty)->take(10)->get();
+		return Feed::whereIn('user_id', $friendsUserIds)->latest()->skip($skipQty)->take(10)->get()->all();
 	}
 		
 }

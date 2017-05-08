@@ -6,6 +6,8 @@ use App\Repositories\User\EloquentUserRepository;
 class TestUserRepository extends TestCase
 {
 
+    use \Illuminate\Foundation\Testing\DatabaseTransactions;
+
 	public function testGetPaginatedReturnsACollectionSuccesfully()
 	{
 		$currentUser = Factory::create('App\User');

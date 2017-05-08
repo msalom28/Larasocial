@@ -1,10 +1,10 @@
 <?php namespace App\Http\Controllers;
 
-use App\Commands\CreateFeedCommand;
+use App\Jobs\CreateFeedCommand;
 use App\Http\Controllers\Controller;
 use App\Repositories\Feed\FeedRepository;
-use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Feed;
 
@@ -15,6 +15,7 @@ class FeedController extends Controller {
 	 */
 	protected $feedRepository;
 
+
 	/**
 	 * Create a new instance of FeedController.
 	 *
@@ -22,7 +23,6 @@ class FeedController extends Controller {
 	 */
 	public function __construct()
 	{
-		$this->currentUser = Auth::user();
 
 		$this->middleware('auth');
 	}
@@ -34,7 +34,7 @@ class FeedController extends Controller {
 	 */
 	public function index(FeedRepository $feedRepository)
 	{
-		$user = $this->currentUser;
+		$user = Auth::user();
 
 		$feeds = $feedRepository->getPublishedByUserAndFriends($user);
 
@@ -59,7 +59,7 @@ class FeedController extends Controller {
 
 		if($validator->fails()) return abort(403);
 
-		$feeds = $feedRepository->getPublishedByUserAndFriendsAjax($this->currentUser, $request->skipQty);
+		$feeds = $feedRepository->getPublishedByUserAndFriendsAjax(Auth::user(), $request->skipQty);
 
 		return response()->json(['feeds' => $feeds]);
 	}
@@ -71,17 +71,16 @@ class FeedController extends Controller {
 	 */
 	public function store(Request $request)
 	{
+        $user = Auth::user();
 
-		$validator = Validator::make($request->all(), ['body'	=> 'required']);
+	    $validator = Validator::make($request->all(), ['body'	=> 'required']);
 
 		if($validator->fails()) return response()->json(['response' => 'failed']);
 
-		$feed = $this->dispatchFrom(CreateFeedCommand::class, $request, [
-				'body' => $request->body,
-				'posterFirstname' => $this->currentUser->firstname,
-				'posterProfileImage' => $this->currentUser->profileimage
-				]);
-		
+		$feed = Feed::publish($request->body, $user->firstname, $user->profileimage);
+
+        $user->feeds()->save($feed);
+        
 		return response()->json([
 				'response' => 'success',
 				'userProfileImage' => $feed->poster_profile_image,

@@ -1,10 +1,11 @@
-<?php namespace App\Handlers\Events;
+<?php namespace App\Listeners\Events;
 
 use App\Events\UserWasRegistered;
 
+use App\Mail\Welcome;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldBeQueued;
-use App\Mailers\UserMailer;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Mail;
 
 class EmailRegistrationConfirmation {
 
@@ -20,9 +21,9 @@ class EmailRegistrationConfirmation {
 	 *
 	 * @return void
 	 */
-	public function __construct(UserMailer $mailer)
+	public function __construct()
 	{
-		$this->mailer = $mailer;
+
 	}
 
 	/**
@@ -33,7 +34,7 @@ class EmailRegistrationConfirmation {
 	 */
 	public function handle(UserWasRegistered $event)
 	{
-		return $this->mailer->sendWelcomeMessageTo($event->user);
+        Mail::to($event->user)->send(new Welcome());
 	}
 
 }

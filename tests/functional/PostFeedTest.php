@@ -2,8 +2,10 @@
 
 use Laracasts\TestDummy\Factory; 
 
-class PostFeedTest extends TestCase
+class PostFeedTest extends BrowserKitTestCase
 {
+    use \Illuminate\Foundation\Testing\DatabaseTransactions;
+
 	public function testSuccesfulPostFeed()
 	{
 		$currentUser = Factory::create('App\User');

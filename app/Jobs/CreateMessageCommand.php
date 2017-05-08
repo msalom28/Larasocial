@@ -1,13 +1,12 @@
-<?php namespace App\Commands;
+<?php namespace App\Jobs;
 
-use App\Commands\Command;
+use App\Jobs\Command;
 use App\Repositories\User\UserRepository;
 use App\Repositories\Message\MessageRepository;
-use Illuminate\Contracts\Bus\SelfHandling;
 use App\Message;
 use App\MessageResponse;
 
-class CreateMessageCommand extends Command implements SelfHandling {
+class CreateMessageCommand extends Command {
 
 	/**
 	 * @var int
@@ -73,6 +72,7 @@ class CreateMessageCommand extends Command implements SelfHandling {
 		$userRepository->findById($this->receiverId)->messageResponses()->save($response);
 
 		return true;
+
 	}
 
 }

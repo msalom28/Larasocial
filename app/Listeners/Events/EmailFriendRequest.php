@@ -1,29 +1,25 @@
-<?php namespace App\Handlers\Events;
+<?php namespace App\Listeners\Events;
 
 use App\Events\FriendRequestWasSent;
 
+use App\Mail\FriendRequest;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldBeQueued;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Mailers\UserMailer;
+use Illuminate\Support\Facades\Mail;
 
 class EmailFriendRequest
 {
 
-	/**
-	 * @var UserMailer
-	 */
-	public $mailer;
-	
+
 	/**
 	 * Create the event handler.
 	 *
-	 * @param UserMailer $mailer
-	 *
 	 * @return void
 	 */
-	public function __construct(UserMailer $mailer)
+	public function __construct()
 	{
-		$this->mailer = $mailer;
+
 	}
 	/**
 	 * Handle the event.
@@ -33,8 +29,9 @@ class EmailFriendRequest
 	 */
 	public function handle(FriendRequestWasSent $event)
 	{		
-		$this->mailer->sendFriendRequestAlertTo($event->requestedUser, $event->requesterUser);
-	}
+        Mail::to($event->requestedUser)->send(new FriendRequest($event->requestedUser, $event->requesterUser));
+
+    }
 
 
 }

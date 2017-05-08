@@ -1,6 +1,7 @@
 <?php namespace App\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
+use Illuminate\Session\TokenMismatchException;
 
 class CustomVerifyCsrfToken extends BaseVerifier
 {
@@ -35,7 +36,7 @@ class CustomVerifyCsrfToken extends BaseVerifier
         {
             return $this->addCookieToResponse($request, $next($request));
         }
-        throw new \TokenMismatchException;
+        throw new TokenMismatchException();
     }
     /**
      * This will return a bool value based on route checking.

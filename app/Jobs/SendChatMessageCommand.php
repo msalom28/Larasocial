@@ -1,11 +1,11 @@
-<?php namespace App\Commands;
+<?php namespace App\Jobs;
 
-use App\Commands\Command;
+use App\Jobs\Command;
 use App\Realtime\Chat as SocketClient;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Auth;
 
-class SendChatMessageCommand extends Command implements SelfHandling {
+class SendChatMessageCommand extends Command {
 	/**
 	 * @var int
 	 */
