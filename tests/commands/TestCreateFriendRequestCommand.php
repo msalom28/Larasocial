@@ -1,12 +1,15 @@
 <?php 
 
 use Laracasts\TestDummy\Factory;
-use App\Commands\CreateFriendRequestCommand;
+use App\Jobs\CreateFriendRequestCommand;
 use App\Repositories\User\EloquentUserRepository;
 
-class TestCreateFriendRequestCommand extends TestCase
+class TestCreateFriendRequestCommand extends BrowserKitTestCase
 {
-	public function testHandleReturnsTrueOnSuccesfulFriendRequest()
+    use \Illuminate\Foundation\Testing\DatabaseTransactions;
+
+
+    public function testHandleReturnsTrueOnSuccesfulFriendRequest()
 	{
 		$requestedUser = Factory::create('App\User');
 
@@ -26,4 +29,4 @@ class TestCreateFriendRequestCommand extends TestCase
 
 
 	}
-} 
+}

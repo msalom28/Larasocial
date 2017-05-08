@@ -6,7 +6,9 @@ use App\Http\Controllers\MessageController;
 
 class TestMessageController extends TestCase
 {
-	public function testCreateReturnsViewInstance()
+    use \Illuminate\Foundation\Testing\DatabaseTransactions;
+
+    public function testCreateReturnsViewInstance()
 	{
 		$currentUser = Factory::create('App\User');
 

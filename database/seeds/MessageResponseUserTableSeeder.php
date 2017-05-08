@@ -15,7 +15,7 @@ class MessageResponseUserTableSeeder extends Seeder {
 
 		$date = new DateTime();
 
-		$messageResponseIds = DB::table('message_responses')->lists('id');
+		$messageResponseIds = DB::table('message_responses')->pluck('id');
 
 		foreach ($messageResponseIds as $messageResponseId) {
 			

@@ -1,11 +1,10 @@
-<?php namespace App\Commands;
+<?php namespace App\Jobs;
 
-use App\Commands\Command;
+use App\Jobs\Command;
 use App\Feed;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Auth;
 
-class CreateFeedCommand extends Command implements SelfHandling {
+class CreateFeedCommand extends Command {
 
 	/**
 	 * @var string

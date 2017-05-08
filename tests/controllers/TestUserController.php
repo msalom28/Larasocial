@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 
 class TestUserController extends testCase
 {
-	public function testIndexReturnsViewInstance()
+    use \Illuminate\Foundation\Testing\DatabaseTransactions;
+
+    public function testIndexReturnsViewInstance()
 	{
 		$currentUser = Factory::create('App\User');
 

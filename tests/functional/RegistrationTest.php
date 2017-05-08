@@ -2,8 +2,10 @@
 
 use Laracasts\TestDummy\Factory; 
 
-class RegistrationTest extends TestCase
+class RegistrationTest extends BrowserKitTestCase
 {
+    use \Illuminate\Foundation\Testing\DatabaseTransactions;
+
 	public function testEmptyFirstnameShowsErrorOnSubmit()
 	{
 		    $this->visit('/')
@@ -16,12 +18,12 @@ class RegistrationTest extends TestCase
 			'password_confirmation'	=> 	'secret',
 			'gender'				=>	'M',
 			'month'					=>	12,
-			'day'					=>	11,			
+			'day'					=>	11,
 			'year'					=>	2000,
 			'profileimage'			=>	''
 		])
-            ->andSee('Your first name is required.')
-            ->onPage('/');
+            ->see('Your first name is required.')
+            ->seePageIs('/');
 	}
 
 	public function testFirstNameTooShortShowsErrorOnSubmit()
@@ -36,12 +38,12 @@ class RegistrationTest extends TestCase
 			'password_confirmation'	=> 	'secret',
 			'gender'				=>	'M',
 			'month'					=>	12,
-			'day'					=>	11,			
+			'day'					=>	11,
 			'year'					=>	2000,
 			'profileimage'			=>	''
 		])
-            ->andSee('Your first name must have at least 2 characters.')
-            ->onPage('/');
+            ->see('Your first name must have at least 2 characters.')
+            ->seePageIs('/');
 	}
 
 	public function testFirstNameContainNumberShowsErrorOnSubmit()
@@ -56,12 +58,12 @@ class RegistrationTest extends TestCase
 			'password_confirmation'	=> 	'secret',
 			'gender'				=>	'M',
 			'month'					=>	12,
-			'day'					=>	11,			
+			'day'					=>	11,
 			'year'					=>	2000,
 			'profileimage'			=>	''
 		])
-            ->andSee('Your first name may only contain letters.')
-            ->onPage('/');
+            ->see('Your first name may only contain letters.')
+            ->seePageIs('/');
 	}
 
 	public function testLastNameEmptyShowsErrorOnSubmit()
@@ -76,12 +78,12 @@ class RegistrationTest extends TestCase
 			'password_confirmation'	=> 	'secret',
 			'gender'				=>	'M',
 			'month'					=>	12,
-			'day'					=>	11,			
+			'day'					=>	11,
 			'year'					=>	2000,
 			'profileimage'			=>	''
 		])
-            ->andSee('Your last name is required.')
-            ->onPage('/');
+            ->see('Your last name is required.')
+            ->seePageIs('/');
 	}
 
 	public function testLastNameTooShortShowsErrorOnSubmit()
@@ -96,12 +98,12 @@ class RegistrationTest extends TestCase
 			'password_confirmation'	=> 	'secret',
 			'gender'				=>	'M',
 			'month'					=>	12,
-			'day'					=>	11,			
+			'day'					=>	11,
 			'year'					=>	2000,
 			'profileimage'			=>	''
 		])
-            ->andSee('Your last name must have at least 2 characters.')
-            ->onPage('/');
+            ->see('Your last name must have at least 2 characters.')
+            ->seePageIs('/');
 	}
 
 	public function testLastNameContainNumberShowsErrorOnSubmit()
@@ -116,12 +118,12 @@ class RegistrationTest extends TestCase
 			'password_confirmation'	=> 	'secret',
 			'gender'				=>	'M',
 			'month'					=>	12,
-			'day'					=>	11,			
+			'day'					=>	11,
 			'year'					=>	2000,
 			'profileimage'			=>	''
 		])
-            ->andSee('Your last name may only contain letters.')
-            ->onPage('/');
+            ->see('Your last name may only contain letters.')
+            ->seePageIs('/');
 	}
 
 	public function testEmptyEmailShowsErrorOnSubmit()
@@ -136,12 +138,12 @@ class RegistrationTest extends TestCase
 			'password_confirmation'	=> 	'secret',
 			'gender'				=>	'M',
 			'month'					=>	12,
-			'day'					=>	11,			
+			'day'					=>	11,
 			'year'					=>	2000,
 			'profileimage'			=>	''
 		])
-            ->andSee('The email field is required.')
-            ->onPage('/');
+            ->see('The email field is required.')
+            ->seePageIs('/');
 	}
 
 	public function testTakenEmailShowsErrorOnSubmit()
@@ -159,12 +161,12 @@ class RegistrationTest extends TestCase
 			'password_confirmation'	=> 	'secret',
 			'gender'				=>	'M',
 			'month'					=>	12,
-			'day'					=>	11,			
+			'day'					=>	11,
 			'year'					=>	2000,
 			'profileimage'			=>	''
 		])
-            ->andSee('The email has already been taken.')
-            ->onPage('/');
+            ->see('The email has already been taken.')
+            ->seePageIs('/');
 	}
 
 	public function testEmptyPasswordShowsErrorOnSubmit()
@@ -179,12 +181,12 @@ class RegistrationTest extends TestCase
 			'password_confirmation'	=> 	'secret',
 			'gender'				=>	'M',
 			'month'					=>	12,
-			'day'					=>	11,			
+			'day'					=>	11,
 			'year'					=>	2000,
 			'profileimage'			=>	''
 		])
-            ->andSee('The password field is required.')
-            ->onPage('/');
+            ->see('The password field is required.')
+            ->seePageIs('/');
 	}
 
 	public function testConfirmPasswordShowsErrorOnSubmit()
@@ -199,12 +201,12 @@ class RegistrationTest extends TestCase
 			'password_confirmation'	=> 	'secret',
 			'gender'				=>	'M',
 			'month'					=>	12,
-			'day'					=>	11,			
+			'day'					=>	11,
 			'year'					=>	2000,
 			'profileimage'			=>	''
 		])
-            ->andSee('The password confirmation does not match.')
-            ->onPage('/');
+            ->see('The password confirmation does not match.')
+            ->seePageIs('/');
 	}
 
 	public function testPasswordTooShortShowsErrorOnSubmit()
@@ -219,12 +221,12 @@ class RegistrationTest extends TestCase
 			'password_confirmation'	=> 	'secret',
 			'gender'				=>	'M',
 			'month'					=>	12,
-			'day'					=>	11,			
+			'day'					=>	11,
 			'year'					=>	2000,
 			'profileimage'			=>	''
 		])
-            ->andSee('The password must be between 4 and 12 characters.')
-            ->onPage('/');
+            ->see('The password must be between 4 and 12 characters.')
+            ->seePageIs('/');
 	}
 
 	public function testEmptyPasswordConfirmationShowsErrorOnSubmit()
@@ -239,12 +241,12 @@ class RegistrationTest extends TestCase
 			'password_confirmation'	=> 	'',
 			'gender'				=>	'M',
 			'month'					=>	12,
-			'day'					=>	11,			
+			'day'					=>	11,
 			'year'					=>	2000,
 			'profileimage'			=>	''
 		])
-            ->andSee('The password confirmation field is required.')
-            ->onPage('/');
+            ->see('The password confirmation field is required.')
+            ->seePageIs('/');
 	}
 
 	public function testEmptyYearShowsErrorOnSubmit()
@@ -259,12 +261,12 @@ class RegistrationTest extends TestCase
 			'password_confirmation'	=> 	'secret',
 			'gender'				=>	'M',
 			'month'					=>	'12',
-			'day'					=>	11,			
+			'day'					=>	11,
 			'year'					=>	'',
 			'profileimage'			=>	''
 		])
-            ->andSee('The year field is required')
-            ->onPage('/');
+            ->see('The year field is required')
+            ->seePageIs('/');
 	}
 
 	public function testNumericYearShowsErrorOnSubmit()
@@ -279,12 +281,12 @@ class RegistrationTest extends TestCase
 			'password_confirmation'	=> 	'secret',
 			'gender'				=>	'M',
 			'month'					=>	'12',
-			'day'					=>	11,			
+			'day'					=>	11,
 			'year'					=>	'bab1',
 			'profileimage'			=>	''
 		])
-            ->andSee('The year must be a number.')
-            ->onPage('/');
+            ->see('The year must be a number.')
+            ->seePageIs('/');
 	}
 
 	public function testYearBeforeCurrentShowsErrorOnSubmit()
@@ -299,12 +301,12 @@ class RegistrationTest extends TestCase
 			'password_confirmation'	=> 	'secret',
 			'gender'				=>	'M',
 			'month'					=>	'12',
-			'day'					=>	11,			
+			'day'					=>	11,
 			'year'					=>	'2015',
 			'profileimage'			=>	''
 		])
-            ->andSee('The year must be a date before 2000.')
-            ->onPage('/');
+            ->see('The year must be a date before 2002.')
+            ->seePageIs('/');
 	}
 
 	public function testEmptyImageShowsErrorOnSubmit()
@@ -319,12 +321,12 @@ class RegistrationTest extends TestCase
 			'password_confirmation'	=> 	'secret',
 			'gender'				=>	'M',
 			'month'					=>	'12',
-			'day'					=>	11,			
+			'day'					=>	11,
 			'year'					=>	'1980',
 			'profileimage'			=>	''
 		])
-            ->andSee('Your profile image is required.')
-            ->onPage('/');
+            ->see('Your profile image is required.')
+            ->seePageIs('/');
 	}
 
 

@@ -1,11 +1,13 @@
 <?php
 
-use App\Commands\LogoutUserCommand;
+use App\Jobs\LogoutUserCommand;
 use Laracasts\TestDummy\Factory; 
 
-class TestLogoutUserCommand extends TestCase
+class TestLogoutUserCommand extends BrowserKitTestCase
 {
-	public function testHandleReturnsLogout()
+    use \Illuminate\Foundation\Testing\DatabaseTransactions;
+
+    public function testHandleReturnsLogout()
 	{
 		$tempUser = Factory::create('App\User');
 
@@ -15,7 +17,7 @@ class TestLogoutUserCommand extends TestCase
 
 		$response = $logoutUserCommand->handle();
 
-		$this->assertFalse($response);
+		$this->assertFalse(Auth::check());
 
 	}
 

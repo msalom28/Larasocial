@@ -7,6 +7,8 @@ use App\User;
 class TestFriendRequestRepository extends TestCase
 {
 
+    use \Illuminate\Foundation\Testing\DatabaseTransactions;
+
 	public function testGetIdsThatSentRequestToCurrentUser()
 	{
 		$user = Factory::create('App\User');

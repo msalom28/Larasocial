@@ -6,7 +6,9 @@ use App\Message;
 
 class TestMessageRepository extends TestCase
 {
-	public function testFindByidReTurnsMessageInstance()
+    use \Illuminate\Foundation\Testing\DatabaseTransactions;
+
+    public function testFindByidReTurnsMessageInstance()
 	{
 		$messageRepository = new EloquentMessageRepository;
 

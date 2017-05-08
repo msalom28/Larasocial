@@ -1,12 +1,11 @@
-<?php namespace App\Commands;
+<?php namespace App\Jobs;
 
-use App\Commands\Command;
-use Illuminate\Contracts\Bus\SelfHandling;
+use App\Jobs\Command;
 use App\Repositories\User\UserRepository;
 use App\Repositories\Message\MessageRepository;
 use App\MessageResponse;
 
-class CreateMessageResponseCommand extends Command implements SelfHandling {
+class CreateMessageResponseCommand extends Command {
 	/**
 	 * @var int
 	 */

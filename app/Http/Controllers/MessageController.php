@@ -4,7 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\User\UserRepository;
 use App\Repositories\Message\MessageRepository;
-use App\Commands\CreateMessageCommand;
+use App\jobs\CreateMessageCommand;
 use Illuminate\Http\Request;
 use Validator;
 use Auth;
@@ -15,7 +15,6 @@ class MessageController extends Controller {
 
 	public function __construct()
 	{
-		$this->currentUser = Auth::user();
 
 		$this->middleware('auth');
 	}
@@ -27,9 +26,9 @@ class MessageController extends Controller {
 	 */
 	public function index(UserRepository $userRepository)
 	{
-		$user = $this->currentUser;
+		$user = Auth::user();
 
-		$messages = $userRepository->findByIdWithMessages($this->currentUser->id);
+		$messages = $userRepository->findByIdWithMessages($user->id);
 
 		return view('messages.index', compact('messages', 'user'));
 
@@ -42,7 +41,7 @@ class MessageController extends Controller {
 	 */
 	public function create($id, UserRepository $userRepository)
 	{
-		$currentUser = $this->currentUser;
+		$currentUser = Auth::user();
 
 		$user = $userRepository->findById($id);
 
@@ -65,7 +64,13 @@ class MessageController extends Controller {
 		}
 		else
 		{
-			$this->dispatchFrom(CreateMessageCommand::class, $request);
+		    $this->dispatch(new CreateMessageCommand(
+		        $request->get('receiverId'),
+                $request->get('body'),
+                $request->get('senderId'),
+                $request->get('senderProfileImage'),
+                $request->get('senderName')
+            ) );
 			
 			return response()->json(['response' => 'success', 'message' => 'Your message was sent.']);
 		}
@@ -81,7 +86,7 @@ class MessageController extends Controller {
 	 */
 	public function show($id, MessageRepository $messageRepository)
 	{
-		$user = $this->currentUser;
+		$user = Auth::user();
 
 		$message = $messageRepository->findByIdWithMessageResponses($id);
 
@@ -100,11 +105,13 @@ class MessageController extends Controller {
 	{
 		$validator = Validator::make($request->all(), ['messageId' => 'required']);
 
+		$user = Auth::user();
+
 		if($validator->fails()) return abort(403);
 
-		$this->currentUser->messages()->detach($request->messageId);
+        $user->messages()->detach($request->messageId);
 
-		$messageCount = $this->currentUser->messages()->count();
+		$messageCount = $user->messages()->count();
 
 		return response()->json(['count' => $messageCount ]);
 	}

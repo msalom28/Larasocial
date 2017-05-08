@@ -14,9 +14,9 @@ class MessageResponsesTableSeeder extends Seeder {
 	{
 		$faker = Faker::create();
 
-		$messageIds = DB::table('messages')->lists('id');
+		$messageIds = DB::table('messages')->pluck('id');
 
-		$messageSenderIds = DB::table('messages')->lists('senderid');
+		$messageSenderIds = DB::table('messages')->pluck('senderid');
 
 
 		foreach ($messageIds as $messageId) {

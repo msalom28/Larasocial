@@ -4,15 +4,16 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
 use Illuminate\Http\Request;
-use App\Commands\CreateMessageResponseCommand;
+use App\Jobs\CreateMessageResponseCommand;
 use Auth;
 use App;
 use Validator;
 
 class MessageResponseController extends Controller {
 
+    protected $currentUser;
 
-	/**
+    /**
 	 * Create a new instance of ResponsesController
 	 */
 	public function __construct()
@@ -35,17 +36,17 @@ class MessageResponseController extends Controller {
 
 		if($validator->fails()) return response()->json(['response' => 'failed']);		
 		
-			$this->dispatchFrom(CreateMessageResponseCommand::class, $request, [
+			$this->dispatch( new CreateMessageResponseCommand(
 
-				'receiverId' 			=> $request->receiverId,
-				'body'					=> $request->body,
-				'senderId'				=> $request->senderId,
-				'senderProfileImage'	=> $request->senderProfileImage,
-				'senderName'			=> $request->senderName,
-				'messageId'				=> $request->messageId,
-				'currentUser'			=> $this->currentUser 
+				$request->receiverId,
+				$request->body,
+				$request->senderId,
+				$request->senderProfileImage,
+				$request->senderName,
+				$request->messageId,
+				$this->currentUser
 
-			]);
+			));
 
 			return response()->json(['response' => 'success', 'message' => 'Your message was sent.']);
 	}

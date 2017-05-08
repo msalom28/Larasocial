@@ -18,9 +18,9 @@
       <ul class="nav navbar-nav navbar-right">        
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-          <img class="avatar small-avatar" src="{!! Auth::user()->profileimage !!}" alt="{!! Auth::user()->firstname !!}">
+          <img class="avatar small-avatar" src="{{ Auth::user()->profileimage }}" alt="{{ Auth::user()->firstname }}">
                     
-          {!! Auth::user()->firstname !!} 
+          {{ Auth::user()->firstname }}
           <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
           <li><a href="/">Home</a></li>

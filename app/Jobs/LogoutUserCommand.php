@@ -1,12 +1,12 @@
-<?php namespace App\Commands;
+<?php namespace App\Jobs;
 
-use App\Commands\Command;
+use App\Jobs\Command;
 use App\Realtime\Events as SocketClient;
 use App\User;
-use Auth;
-use Illuminate\Contracts\Bus\SelfHandling;
+use Illuminate\Support\Facades\Auth;
 
-class LogoutUserCommand extends Command implements SelfHandling {
+
+class LogoutUserCommand extends Command {
 
 	/**
 	 * @var User
@@ -40,12 +40,15 @@ class LogoutUserCommand extends Command implements SelfHandling {
 	public function handle()
 	{
 		$this->user->updateOnlineStatus(0);
-		$friendsUserIds = $this->user->friends()->where('onlinestatus', 1)->lists('requester_id');
+
+		$friendsUserIds = $this->user->friends()->where('onlinestatus', 1)->pluck('requester_id');
+
 		$relatedToId = $this->user->id;
+
 		$this->socketClient->updateChatStatusBar($friendsUserIds, 22, $relatedToId, false);
+
 		Auth::logout();
 
-		return Auth::check();
 	}
 
 }

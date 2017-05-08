@@ -2,8 +2,8 @@
 
 use App\Events\UserWasRegistered;
 use App\Events\FriendRequestWasSent;
-use App\Handlers\Events\EmailRegistrationConfirmation;
-use App\Handlers\Events\EmailFriendRequest;
+use App\Listeners\Events\EmailRegistrationConfirmation;
+use App\Listeners\Events\EmailFriendRequest;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -33,9 +33,9 @@ class EventServiceProvider extends ServiceProvider {
 	 * @param  \Illuminate\Contracts\Events\Dispatcher  $events
 	 * @return void
 	 */
-	public function boot(DispatcherContract $events)
+	public function boot()
 	{
-		parent::boot($events);
+		parent::boot();
 
 		//
 	}

@@ -1,11 +1,10 @@
-<?php namespace App\Commands;
+<?php namespace App\Jobs;
 
-use App\Commands\Command;
-use Auth;
-use Illuminate\Contracts\Bus\SelfHandling;
+use App\Jobs\Command;
 use App\Realtime\Events as SocketClient;
+use Illuminate\Support\Facades\Auth;
 
-class UpdateChatStatusCommand extends Command implements SelfHandling {
+class UpdateChatStatusCommand extends Command {
 
 	/**
 	 * @var boolean
@@ -47,9 +46,13 @@ class UpdateChatStatusCommand extends Command implements SelfHandling {
 	public function handle()
 	{
 		$this->currentUser->updateChatStatus($this->chatStatus);
+
 		$relatedToId = $this->currentUser->id;
-		$friendsUserIds = $this->currentUser->friends()->where('onlinestatus', 1)->lists('requester_id');
+
+		$friendsUserIds = $this->currentUser->friends()->where('onlinestatus', 1)->pluck('requester_id');
+
 		$friendsUserIds[] = $relatedToId;
+
 		$this->socketClient->updateChatStatusBar($friendsUserIds, 21, $relatedToId, $this->chatStatus);
 	}
 

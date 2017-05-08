@@ -8,7 +8,7 @@ use App\User;
 
 class TestFeedController extends TestCase
 {
-
+    use \Illuminate\Foundation\Testing\DatabaseTransactions;
 
 	public function testIndexReturnsViewInstance()
 	{

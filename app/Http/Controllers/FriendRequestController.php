@@ -4,7 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Validator;
 use Illuminate\Http\Request;
-use App\Commands\CreateFriendRequestCommand;
+use App\Jobs\CreateFriendRequestCommand;
 use App\Repositories\FriendRequest\FriendRequestRepository;
 use App\Repositories\User\UserRepository;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -14,10 +14,6 @@ use Auth;
 
 class FriendRequestController extends Controller {
 
-	/**
-	 *  @var User
-	 */
-	protected $currentUser;
 
 	/**
 	 * Create a new instance of FriendRequestController.
@@ -25,8 +21,6 @@ class FriendRequestController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth');
-
-		$this->currentUser = Auth::user();
 	}
 
 	/**
@@ -36,7 +30,7 @@ class FriendRequestController extends Controller {
 	 */
 	public function index(FriendRequestRepository $friendRequestRepository, UserRepository $userRepository)
 	{
-		$user = $this->currentUser;
+		$user = Auth::user();
 
 		$requesterIds = $friendRequestRepository->getIdsThatSentRequestToCurrentUser($user->id);
 
@@ -74,7 +68,7 @@ class FriendRequestController extends Controller {
 		}
 		else
 		{
-			$this->dispatchFrom(CreateFriendRequestCommand::class, $request, [ 'requestedId'	=> $request->userId ]);
+			$this->dispatch( new CreateFriendRequestCommand($request->userId) );
 			
 			return response()->json(['response' => 'success', 'message' => 'Friend request submitted']);
 
@@ -93,20 +87,24 @@ class FriendRequestController extends Controller {
 	{
 		$validator = Validator::make($request->all(), ['userId' => 'required']);
 
+		$currentUser = Auth::user();
+
 		if($validator->fails())
 		{
 			return response()->json(['response' => 'failed', 'message' => 'Something went wrong please try again.']);
 		}
 		else
 		{
-			FriendRequest::where('user_id', $this->currentUser->id)->where('requester_id', $request->userId)->delete();
+			FriendRequest::where('user_id', $currentUser->id)->where('requester_id', $request->userId)->delete();
 
-			$friendRequestCount = $this->currentUser->friendRequests()->count();
+			$friendRequestCount = $currentUser->friendRequests()->count();
 
 			return response()->json(['response' => 'success', 'count' => $friendRequestCount, 'message' => 'friend request removed']);
 		}
 		
 	}
+
+
 
 
 }

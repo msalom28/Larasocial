@@ -18,7 +18,7 @@
 
 					@foreach($message->MessageResponses as $messageResponse)
 
-						@if(Auth::user()->is($messageResponse->senderid))
+						@if(Auth::user()->id == $messageResponse->senderid)
 
 							<div class="media listed-object-close">
 						

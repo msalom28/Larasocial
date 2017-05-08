@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 
 class TestFriendRequestController extends TestCase
 {
-	public function testStoreReturnsJsonReponseInstance()
+	use \Illuminate\Foundation\Testing\DatabaseTransactions;
+
+    public function testStoreReturnsJsonReponseInstance()
 	{
 		$currentUser = Factory::create('App\User');
 

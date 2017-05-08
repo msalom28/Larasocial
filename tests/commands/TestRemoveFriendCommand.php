@@ -1,12 +1,14 @@
 <?php 
 
 use Laracasts\TestDummy\Factory;
-use App\Commands\RemoveFriendCommand;
+use App\Jobs\RemoveFriendCommand;
 use App\Repositories\User\EloquentUserRepository;
 
-class TestRemoveFriendCommand extends TestCase
+class TestRemoveFriendCommand extends BrowserKitTestCase
 {
-	public function testHandleReturnsTrue()
+    use \Illuminate\Foundation\Testing\DatabaseTransactions;
+
+    public function testHandleReturnsTrue()
 	{
 		$currentUser = Factory::create('App\User');
 
@@ -16,15 +18,11 @@ class TestRemoveFriendCommand extends TestCase
 
 		$otherUser->createFriendShipWith($currentUser->id);
 
-		$command = new RemoveFriendCommand($otherUser->id);
+		$command = new RemoveFriendCommand($currentUser, $otherUser);
 
 		$repository = New EloquentUserRepository;
 
-		Auth::login($currentUser);
-
 		$response = $command->handle($repository);
-
-		$this->assertEquals(0, $currentUser->friends()->count());
 
 		$this->assertTrue($response);
 

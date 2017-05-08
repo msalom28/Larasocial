@@ -15,7 +15,7 @@ class FriendRequestTableSeeder extends Seeder {
 	{
 		$faker = Faker::create();
 
-		$userIds = DB::table('users')->where('id', '!=', 1)->lists('id');
+		$userIds = DB::table('users')->where('id', '!=', 1)->pluck('id');
 
 
 		foreach (range(1, 25) as $index) {	

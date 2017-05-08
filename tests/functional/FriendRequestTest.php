@@ -2,9 +2,11 @@
 
 use Laracasts\TestDummy\Factory;
 
-class FriendRequestTest extends TestCase
+class FriendRequestTest extends BrowserKitTestCase
 {
-	public function testAddNewFriendRequest()
+    use \Illuminate\Foundation\Testing\DatabaseTransactions;
+
+    public function testAddNewFriendRequest()
 	{
 		$currentUser = Factory::create('App\User');
 

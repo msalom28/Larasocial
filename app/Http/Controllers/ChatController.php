@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\User\UserRepository;
 use Illuminate\Http\Request;
 use Validator;
-use App\Commands\SendChatMessageCommand;
+use App\jobs\SendChatMessageCommand;
 
 class ChatController extends Controller {
 
@@ -34,7 +34,7 @@ class ChatController extends Controller {
 		}
 		else
 		{
-			$this->dispatchFrom(SendChatMessageCommand::class, $request);
+			$this->dispatch( new SendChatMessageCommand( $request->get('receiverId'), $request->get('message') ) );
 
 			return response()->json(['response' => 'success', 'availableToChat' => $userRepository->findById($request->receiverId)->chatstatus]);
 		}

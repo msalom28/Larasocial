@@ -4,9 +4,11 @@ use Laracasts\TestDummy\Factory;
 use App\User;
 use App\Message;
 
-class MessagesTest extends TestCase
+class MessagesTest extends BrowserKitTestCase
 {
-	public function testSendingAmessageToAnotherUser()
+    use \Illuminate\Foundation\Testing\DatabaseTransactions;
+
+    public function testSendingAmessageToAnotherUser()
 	{
 		$currentUser = Factory::create('App\User');
 
@@ -16,8 +18,8 @@ class MessagesTest extends TestCase
 
 		$this->visit('/messages/compose/'.$otherUser->id)
 		->submitForm('Submit', ['body' => 'This is the new message to you.'])
-		->verifyInDatabase('messages', ['body' => 'This is the new message to you.'])
-		->verifyInDatabase('message_responses', ['body' => 'This is the new message to you.']);		
+		->seeInDatabase('messages', ['body' => 'This is the new message to you.'])
+		->seeInDatabase('message_responses', ['body' => 'This is the new message to you.']);
 	}
 
 	

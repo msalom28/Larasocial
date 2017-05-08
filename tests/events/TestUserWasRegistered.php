@@ -5,7 +5,9 @@ use App\Events\UserWasRegistered;
 
 class TestUserWasRegistered extends TestCase
 {
-	public function testUserObjectExistinClass()
+    use \Illuminate\Foundation\Testing\DatabaseTransactions;
+
+    public function testUserObjectExistinClass()
 	{
 		$user = Factory::create('App\User');
 

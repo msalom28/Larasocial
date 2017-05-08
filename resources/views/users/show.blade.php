@@ -24,7 +24,7 @@
 						 	{!! $feeds->render() !!}	
 						</div>
 					@else
-						@if(Auth::user()->is($user->id))
+						@if(Auth::user()->is($user))
 							<div class="alert alert-info no-feeds-info" role="alert"><span class="glyphicon glyphicon-info-sign"></span> You haven't posted anything yet.
 							</div>
 

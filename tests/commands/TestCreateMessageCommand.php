@@ -1,14 +1,16 @@
 <?php
 
-use App\Commands\CreateMessageCommand; 
+use App\jobs\CreateMessageCommand;
 use Laracasts\TestDummy\Factory;
 use App\Repositories\User\EloquentUserRepository;
 use App\Repositories\Message\EloquentMessageRepository;
 use Faker\Factory as Faker;
 
-class TestCreateMessageCommand extends TestCase
+class TestCreateMessageCommand extends BrowserKitTestCase
 {
-	public function testHandleReturnsTrue()
+    use \Illuminate\Foundation\Testing\DatabaseTransactions;
+
+    public function testHandleReturnsTrue()
 	{
 		$faker = Faker::create();
 		

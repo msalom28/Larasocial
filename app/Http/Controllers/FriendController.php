@@ -2,21 +2,15 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Auth;
 use Illuminate\Http\Request;
 use App\Repositories\User\UserRepository;
-use App\Commands\RemoveFriendCommand;
+use App\Jobs\RemoveFriendCommand;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\FriendRequest;
 
 
 class FriendController extends Controller {
-
-
-	public function __construct()
-	{
-		$this->currentUser = Auth::user();
-	}
 
 	/**
 	 * Display a listing of the resource.
@@ -25,7 +19,7 @@ class FriendController extends Controller {
 	 */
 	public function index(UserRepository $repository)
 	{
-		$user = $this->currentUser;
+        $user = Auth::user();
 
 		$friends = $repository->findByIdWithFriends($user->id);
 
@@ -43,19 +37,21 @@ class FriendController extends Controller {
 	{
 		$validator = Validator::make($request->all(), ['userId' => 'required']);
 
+        $currentUser = Auth::user();
+
 		if($validator->fails())
 		{			
 			return response()->json(['response' => 'failed', 'message' => 'Something went wrong please try again.']);
 		}
 		else
 		{
-			$this->currentUser->createFriendShipWith($request->userId);
+            $currentUser->createFriendShipWith($request->userId);
 
-			$repository->findById($request->userId)->createFriendShipWith($this->currentUser->id);
+			$repository->findById($request->userId)->createFriendShipWith($currentUser->id);
 
-			FriendRequest::where('user_id', $this->currentUser->id)->where('requester_id', $request->userId)->delete();
+			FriendRequest::where('user_id', $currentUser->id)->where('requester_id', $request->userId)->delete();
 
-			$friendRequestCount = $this->currentUser->friendRequests()->count();
+			$friendRequestCount = $currentUser->friendRequests()->count();
 
 			return response()->json(['response' => 'success', 'count' => $friendRequestCount, 'message' => 'Friend request accepted.']);
 		}
@@ -63,15 +59,16 @@ class FriendController extends Controller {
 	}
 
 
-
-/**
-	 * Terminate friendship between 2 users.
-	 *
-	 * @param Request $request
-	 *
-	 * @return Response
-	 */
-	public function destroy(Request $request)
+    /**
+     * Terminate friendship between 2 users.
+     *
+     * @param Request $request
+     *
+     * @param UserRepository $userRepository
+     *
+     * @return Response
+     */
+	public function destroy(Request $request, UserRepository $userRepository)
 	{
 		$validator = Validator::make($request->all(), ['userId' => 'required']);
 
@@ -81,9 +78,17 @@ class FriendController extends Controller {
 		}
 		else
 		{
-			$this->dispatchFrom(RemoveFriendCommand::class, $request, ['userId' => $request->userId]);
+            $otherUser = $userRepository->findById($request->get('userId'));
 
-			$friendsCount = $this->currentUser->friends()->count();
+            $currentUser = Auth::user();
+
+            $currentUser->finishFriendshipWith($request->get('userId'));
+
+            $otherUser->finishFriendshipWith(Auth::user()->id);
+
+		    $this->dispatch( new RemoveFriendCommand($currentUser, $otherUser) );
+
+			$friendsCount = $currentUser->friends()->count();
 
 			return response()->json(['response' => 'success', 'count' => $friendsCount, 'message' => 'This friend has been removed']);	
 		}

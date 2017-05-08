@@ -1,15 +1,23 @@
-<?php namespace App;
+<?php
+
+namespace App;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use DB;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
+class User extends Model implements AuthenticatableContract,
+    AuthorizableContract,
+    CanResetPasswordContract
+{
+    use Authenticatable, Authorizable, CanResetPassword, Notifiable;
 
-	use Authenticatable, CanResetPassword;
 
 	/**
 	 * The database table used by the model.
@@ -159,7 +167,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	public function isFriendsWith($otherUserId)
 	{
-		$currentUserFriends = DB::table('friends')->where('requester_id', $this->id)->lists('requested_id');
+		$currentUserFriends = DB::table('friends')->where('requester_id', $this->id)->pluck('requested_id')->all();
 
 		return in_array($otherUserId, $currentUserFriends);		
 	}
@@ -173,7 +181,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	public function sentFriendRequestTo($otherUserId)
 	{
-		$friendRequestedByCurrentUser = DB::table('friend_requests')->where('requester_id', $this->id)->lists('user_id');
+		$friendRequestedByCurrentUser = DB::table('friend_requests')->where('requester_id', $this->id)->pluck('user_id')->all();
 
 		return in_array($otherUserId, $friendRequestedByCurrentUser);
 	}
@@ -187,24 +195,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	public function receivedFriendRequestFrom($otherUserId)
 	{
-		$friendRequestsReceivedByCurrentUser = DB::table('friend_requests')->where('user_id', $this->id)->lists('requester_id');
+		$friendRequestsReceivedByCurrentUser = DB::table('friend_requests')->where('user_id', $this->id)->pluck('requester_id')->all();
 		
 		return in_array($otherUserId, $friendRequestsReceivedByCurrentUser);
 	}
 
-
-	/**
-	 * Determine if the current user is the same as the given one.
-	 *
-	 * @param int $id
-	 *
-	 * @return boolean
-	 *
-	 */
-	public function is($id)
-	{
-		return $this->id == $id;
-	}
 
 	/**
 	 * Determine if current user is available to chat.
