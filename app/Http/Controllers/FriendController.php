@@ -47,7 +47,7 @@ class FriendController extends Controller {
 		{
             $currentUser->createFriendShipWith($request->userId);
 
-			$repository->findById($request->userId)->createFriendShipWith($currentUser->id);
+			$repository->findById($request->get('userId'))->createFriendShipWith($currentUser->id);
 
 			FriendRequest::where('user_id', $currentUser->id)->where('requester_id', $request->userId)->delete();
 

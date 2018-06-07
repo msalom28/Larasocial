@@ -4,15 +4,15 @@ use Laracasts\TestDummy\Factory;
 use App\Jobs\RemoveFriendCommand;
 use App\Repositories\User\EloquentUserRepository;
 
-class TestRemoveFriendCommand extends BrowserKitTestCase
+class TestRemoveFriendCommand extends TestCase
 {
     use \Illuminate\Foundation\Testing\DatabaseTransactions;
 
     public function testHandleReturnsTrue()
 	{
-		$currentUser = Factory::create('App\User');
+		$currentUser = factory(\App\User::class)->create();
 
-		$otherUser = Factory::create('App\User');
+		$otherUser = factory(\App\User::class)->create();
 
 		$currentUser->createFriendShipWith($otherUser->id);
 

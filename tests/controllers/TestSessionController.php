@@ -20,7 +20,7 @@ class testSessionController extends TestCase
 
 	public function testStoreReturnsRedirectResponseInstance()
 	{
-		$tempUser = Factory::create('App\User');
+		$tempUser = factory(\App\User::class)->create();
 
 		$request = new CreateSessionRequest(['email' => $tempUser->email, 'password' => $tempUser->password]);
 
@@ -49,7 +49,7 @@ class testSessionController extends TestCase
 
 	public function testDestroyReturnsJsonResponseInstance()
 	{
-		$tempUser = Factory::create('App\User');
+		$tempUser = factory(\App\User::class)->create();
 
 		Auth::login($tempUser);
 

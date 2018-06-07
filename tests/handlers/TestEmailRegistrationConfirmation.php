@@ -9,7 +9,7 @@ class TestEmailRegistrationConfirmation extends TestCase
 
     public function testHandleReturnsTrueAfterUserWasRegistered()
 	{
-		$user = Factory::create('App\User');
+		$user = factory(\App\User::class)->create();
 
 		$response = event(new UserWasRegistered($user));
 

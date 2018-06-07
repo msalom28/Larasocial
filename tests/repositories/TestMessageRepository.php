@@ -12,17 +12,17 @@ class TestMessageRepository extends TestCase
 	{
 		$messageRepository = new EloquentMessageRepository;
 
-		$message = Factory::create('App\Message');
+        $message = factory(\App\Message::class)->create();
 
 		$response = $messageRepository->findById($message->id);
 
-		$this->assertInstanceOf('App\Message', $response);
+		$this->assertInstanceOf(Message::class, $response);
 
 	}
 
 	public function testFindByIdWithResponsesReturnsCollection()
 	{
-		$messageResponse = Factory::create('App\MessageResponse');
+        $messageResponse = factory(\App\MessageResponse::class)->create();
 
 		$message = Message::first(); 
 

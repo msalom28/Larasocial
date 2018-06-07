@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-	
+
 	<div class="row">
 		
   <div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="welcomeModal" aria-hidden="true">
@@ -17,7 +17,7 @@
 
          @foreach($randomLogins as $randomLogin)
 
-        	 <p><strong>email:</strong> {!! $randomLogin->email !!}</p>
+        	 <p><strong>email:</strong> {!! $randomLogin->email or '<No users. Seed your database>'!!}</p>
         	 <p><strong>password:</strong> "secret"</p>
         	 <br>
 
@@ -48,7 +48,7 @@
 				@endif			
 			</div>
 			<div class="row">
-				{!!Form::open(['files' => 'true'])!!}
+				{!!Form::open(['files' => 'true', 'class' =>'registration-form'])!!}
 					<div class="form-group">
 						{!!Form::label('firstname', 'First Name', ['class' => 'sr-only'])!!}
 						{!!Form::text('firstname', null, ['class' => 'form-control', 'placeholder' => 'Enter first name'])!!}			
@@ -151,7 +151,7 @@
 					{!!Form::file('profileimage')!!}			    
 				    <p class="help-block">Please select an image.</p>
 			  	</div>
-			  	{!!Form::submit('Submit', ['class' => 'btn btn-primary form-control'])!!}
+			  	{!!Form::submit('Submit', ['class' => 'btn btn-primary form-control submit-registration'])!!}
 
 				{!! Form::close() !!}
 

@@ -11,11 +11,11 @@ class TestFriendRequestRepository extends TestCase
 
 	public function testGetIdsThatSentRequestToCurrentUser()
 	{
-		$user = Factory::create('App\User');
+		$user = factory(\App\User::class)->create();
 
-		$friendRequests = Factory::times(25)->create('App\FriendRequest', ['user_id' => $user->id]);
+        $friendRequests = factory(\App\FriendRequest::class,25)->create(['user_id' => $user->id]);
 
-		$repository = new EloquentFriendRequestRepository();
+        $repository = new EloquentFriendRequestRepository();
 
 		$results = $repository->getIdsThatSentRequestToCurrentUser($user->id);
 

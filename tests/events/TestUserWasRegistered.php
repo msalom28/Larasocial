@@ -9,7 +9,7 @@ class TestUserWasRegistered extends TestCase
 
     public function testUserObjectExistinClass()
 	{
-		$user = Factory::create('App\User');
+		$user = factory(\App\User::class)->create();
 
 		$event = new UserWasRegistered($user);
 

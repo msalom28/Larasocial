@@ -9,9 +9,9 @@ class TestEmailFriendRequest extends TestCase
 
     public function testHandleReturnsTrueAfterFriendRequestWasSent()
 	{
-		$requesterUser = Factory::create('App\User');
+		$requesterUser = factory(\App\User::class)->create();
 
-		$requestedUser = Factory::create('App\User');
+		$requestedUser = factory(\App\User::class)->create();
 
 		event(new FriendRequestWasSent($requestedUser, $requesterUser));
 		

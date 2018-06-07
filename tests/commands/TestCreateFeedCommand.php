@@ -4,14 +4,14 @@ use App\Jobs\CreateFeedCommand;
 use Laracasts\TestDummy\Factory;
 use App\Feed;
 
-class TestCreateFeedCommand extends BrowserKitTestCase
+class TestCreateFeedCommand extends TestCase
 {
 
     use \Illuminate\Foundation\Testing\DatabaseTransactions;
 
     public function testHandleReturnsTheNewlyCreatedFeed()
 	{
-		$currentUser = Factory::create('App\User');
+		$currentUser = factory(\App\User::class)->create();
 
 		Auth::login($currentUser);
 

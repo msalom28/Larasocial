@@ -10,9 +10,9 @@ class TestMessageController extends TestCase
 
     public function testCreateReturnsViewInstance()
 	{
-		$currentUser = Factory::create('App\User');
+		$currentUser = factory(\App\User::class)->create();
 
-		$otherUser = Factory::create('App\User');
+		$otherUser = factory(\App\User::class)->create();
 
 		$userRepository = New EloquentUserRepository;
 

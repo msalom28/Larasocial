@@ -12,9 +12,9 @@ class TestFeedRepository extends TestCase
     public function testGetPublishedByUserAndFriendsReturnArrayWithResults()
 	{
 
-		$user = Factory::create('App\User');
+		$user = factory(\App\User::class)->create();
 
-		$feeds = Factory::times(20)->create('App\Feed', ['user_id' => $user->id]);
+        $feeds = factory(\App\Feed::class,15)->create(['user_id' => $user->id]);
 
 		$repository = new EloquentFeedRepository;
 
@@ -27,11 +27,11 @@ class TestFeedRepository extends TestCase
 	public function testGetPublishedByUserReturnArrayWithResults()
 	{
 
-		$user = Factory::create('App\User');
+        $user = factory(\App\User::class)->create();
 
-		$feeds = Factory::times(20)->create('App\Feed', ['user_id' => $user->id]);
+        $feeds = factory(\App\Feed::class,15)->create(['user_id' => $user->id]);
 
-		$repository = new EloquentFeedRepository;
+        $repository = new EloquentFeedRepository;
 
 		$feedCount = $repository->getPublishedByUser($user);
 
@@ -42,9 +42,9 @@ class TestFeedRepository extends TestCase
 	public function testGetPublishedByUserAndFriendsAjaxReturnArrayWithResults()
 	{
 
-		$user = Factory::create('App\User');
+        $user = factory(\App\User::class)->create();
 
-		$feeds = Factory::times(20)->create('App\Feed', ['user_id' => $user->id]);
+        $feeds = factory(\App\Feed::class,15)->create(['user_id' => $user->id]);
 
 		$repository = new EloquentFeedRepository;
 

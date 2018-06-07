@@ -8,7 +8,7 @@ $factory('App\User', [
 	'password'  => 'password',
 	'gender'	=> 'M',
 	'birthday'	=> '12-06-1980',
-	'profileimage' => $faker->imageUrl($width = 180, $height = 180)
+	'profileimage' => '/images/noavatar.png'
 
 ]);
 

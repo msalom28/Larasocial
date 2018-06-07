@@ -6,7 +6,7 @@ use App\Repositories\User\EloquentUserRepository;
 use App\Repositories\Message\EloquentMessageRepository;
 use Faker\Factory as Faker;
 
-class TestCreateMessageCommand extends BrowserKitTestCase
+class TestCreateMessageCommand extends TestCase
 {
     use \Illuminate\Foundation\Testing\DatabaseTransactions;
 
@@ -14,9 +14,9 @@ class TestCreateMessageCommand extends BrowserKitTestCase
 	{
 		$faker = Faker::create();
 		
-		$user = Factory::create('App\User');
+		$user = factory(\App\User::class)->create();
 
-		$message = Factory::create('App\Message');
+		$message = factory(\App\Message::class)->create();
 
 		$userRepository = new EloquentUserRepository;
 

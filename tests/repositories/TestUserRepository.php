@@ -10,9 +10,9 @@ class TestUserRepository extends TestCase
 
 	public function testGetPaginatedReturnsACollectionSuccesfully()
 	{
-		$currentUser = Factory::create('App\User');
+		$currentUser = factory(\App\User::class)->create();
 
-		$users = Factory::times(20)->create('App\User');
+        $users = factory(\App\User::class,20)->create();
 
 		Auth::login($currentUser);
 
@@ -24,9 +24,9 @@ class TestUserRepository extends TestCase
 
 	public function testFindManyById()
 	{
-		$users = Factory::times(20)->create('App\User');
+        $users = factory(\App\User::class,20)->create();
 
-		$ids = [];
+        $ids = [];
 
 		foreach ($users as $user) {
 			

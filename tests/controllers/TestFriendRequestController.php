@@ -12,9 +12,9 @@ class TestFriendRequestController extends TestCase
 
     public function testStoreReturnsJsonReponseInstance()
 	{
-		$currentUser = Factory::create('App\User');
+		$currentUser = factory(\App\User::class)->create();
 
-		$otherUser = Factory::create('App\User');
+		$otherUser = factory(\App\User::class)->create();
 
 		Auth::login($currentUser);
 
@@ -32,9 +32,9 @@ class TestFriendRequestController extends TestCase
 
 	public function testIndexReturnsViewInstance()
 	{
-		$user = Factory::create('App\User');
+		$user = factory(\App\User::class)->create();
 
-		$friendRequests = Factory::times(25)->create('App\FriendRequest', ['user_id' => $user->id]);		
+        $friendRequests = factory(\App\FriendRequest::class,25)->create(['user_id' => $user->id]);
 
 		Auth::login($user);
 

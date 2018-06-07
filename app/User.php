@@ -46,7 +46,7 @@ class User extends Model implements AuthenticatableContract,
 	 */
 	public function feeds()
 	{
-		return $this->hasMany('App\Feed')->latest();
+		return $this->hasMany(Feed::class)->latest();
 	}
 
 	/**
@@ -56,7 +56,7 @@ class User extends Model implements AuthenticatableContract,
 	 */
 	public function friendRequests()
 	{
-		return $this->hasMany('App\FriendRequest');
+		return $this->hasMany(FriendRequest::class);
 	}
 
 	/**
@@ -77,7 +77,7 @@ class User extends Model implements AuthenticatableContract,
 	 */
 	 public function messages()
     {
-        return $this->belongsToMany('App\Message')->withTimestamps();
+        return $this->belongsToMany(Message::class)->withTimestamps();
     }
 
     /**
@@ -87,7 +87,7 @@ class User extends Model implements AuthenticatableContract,
 	 */
 	 public function messageResponses()
     {
-        return $this->belongsToMany('App\MessageResponse')->withTimestamps();
+        return $this->belongsToMany(MessageResponse::class)->withTimestamps();
     }
 
 
@@ -126,7 +126,8 @@ class User extends Model implements AuthenticatableContract,
 	 */
 	public function createFriendShipWith($requesterUserId)
 	{
-		return $this->friends()->attach($requesterUserId, ['requested_id' => $this->id, 'requester_id' => $requesterUserId]);	
+
+        return $this->friends()->attach($requesterUserId, ['requested_id' => $this->id, 'requester_id' => $requesterUserId]);
 	}
 
 	
@@ -139,7 +140,7 @@ class User extends Model implements AuthenticatableContract,
 	 */
 	public function finishFriendshipWith($requesterUserId)
 	{
-		return $this->friends()->detach($requesterUserId, ['requested_id' => $this->id, 'requester_id' => $requesterUserId]);
+	    return $this->friends()->detach((array)$requesterUserId);
 	}
 
 

@@ -42,14 +42,14 @@
       {!! Form::close() !!}
 
    @else
-      {!! Form::open(['route' => 'login_path', 'class'=>'navbar-form navbar-right']) !!}       
+      {!! Form::open(['route' => 'login_path', 'class'=>'navbar-form navbar-right login-form']) !!}
         <div class="form-group">
           {!! Form::email('email', null, ['class' => 'form-control login-form', 'placeholder' => 'Email', 'required' => 'required']) !!}
         </div>
         <div class="form-group">
           {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password', 'required' => 'required']) !!}
         </div>
-        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span> Sign in</button>
+        <button type="submit" class="btn btn-primary login-button"><span class="glyphicon glyphicon-user"></span> Sign in</button>
       {!! Form::close() !!}
 
    @endif

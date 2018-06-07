@@ -3,6 +3,7 @@
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\User\CachingUserRepository;
 use App\Repositories\User\EloquentUserRepository;
+use Laravel\Dusk\DuskServiceProvider;
 
 
 class AppServiceProvider extends ServiceProvider {
@@ -60,6 +61,9 @@ class AppServiceProvider extends ServiceProvider {
 			'App\Http\Requests\CreateMessageResponseRequest'
 		);
 
+        if ($this->app->environment('local', 'testing')) {
+            $this->app->register(DuskServiceProvider::class);
+        }
 
 		//Uncomment if you wish to cache all users
 

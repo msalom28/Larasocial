@@ -13,7 +13,7 @@ class TestFriendController extends TestCase
 
     public function testIndexReturnsViewInstance()
 	{
-		$users = Factory::times(5)->create('App\User');
+        $users = factory(\App\User::class,5)->create();
 
 		$currentUser = User::first();
 
@@ -31,7 +31,7 @@ class TestFriendController extends TestCase
 
 	public function testStoreReturnsJsonResponseInstance()
 	{
-		$users = Factory::times(5)->create('App\User');
+        $users = factory(\App\User::class,5)->create();
 
 		$currentUser = User::first();
 
@@ -41,7 +41,7 @@ class TestFriendController extends TestCase
 
 		$repository = new EloquentUserRepository;
 
-		$request = new Request(['userId' => 2]);
+		$request = new Request(['userId' => $users->last()->id]);
 
 		$response = $controller->store($request, $repository);
 
@@ -51,15 +51,15 @@ class TestFriendController extends TestCase
 
 	public function testDestroyReturnsJsonResponseInstance()
 	{
-		$users = Factory::times(5)->create('App\User');
+        $users = factory(\App\User::class,5)->create();
 
 		$currentUser = User::first();
 
 		Auth::login($currentUser);
 
-		$controller = new FriendController($currentUser);
+		$controller = new FriendController();
 
-		$request = new Request(['userId' => 2]);
+		$request = new Request(['userId' => $users->last()->id]);
 
 		$response = $controller->destroy($request, app(UserRepository::class));
 
@@ -69,9 +69,9 @@ class TestFriendController extends TestCase
 
     public function testDestroyRemovesFriend()
     {
-        $currentUser = Factory::create('App\User');
+        $currentUser = factory(\App\User::class)->create();
 
-        $otherUser = Factory::create('App\User');
+        $otherUser = factory(\App\User::class)->create();
 
         $currentUser->createFriendShipWith($otherUser->id);
 
@@ -81,7 +81,7 @@ class TestFriendController extends TestCase
 
         $request = new Request(['userId' => $otherUser->id]);
 
-        $friendController = new FriendController($currentUser);
+        $friendController = new FriendController();
 
         $response = $friendController->destroy($request, app(UserRepository::class));
 
@@ -89,4 +89,5 @@ class TestFriendController extends TestCase
 
         $this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
 	}
+
 }

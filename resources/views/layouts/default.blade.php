@@ -19,7 +19,7 @@
 	<div class="container" id="chat-container"></div>
 	<footer class="footer">			
       <div class="container"> 
-        <p class="text-muted"><small>&copy; Larasocial.info 2015</small></p>               
+        <p class="text-muted"><small>&copy; Larasocial.info 2018</small></p>
       </div>
     </footer>
     <script src="{{ asset('js/libs.js') }}"></script>

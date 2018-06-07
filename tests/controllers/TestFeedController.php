@@ -12,9 +12,9 @@ class TestFeedController extends TestCase
 
 	public function testIndexReturnsViewInstance()
 	{
-		$currentUser = Factory::create('App\User');
+		$currentUser = factory(\App\User::class)->create();
 
-		$feeds = Factory::times(20)->create('App\Feed', ['user_id' => $currentUser->id]);
+        $feeds = factory(\App\Feed::class,20)->create(['user_id' => $currentUser->id]);
 
 		Auth::login($currentUser);
 
@@ -29,7 +29,7 @@ class TestFeedController extends TestCase
 
 	public function testStoreReturnsJsonResponseInstance()
 	{
-		$currentUser = Factory::create('App\User');
+		$currentUser = factory(\App\User::class)->create();
 
 		Auth::login($currentUser);
 

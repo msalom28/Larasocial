@@ -9,9 +9,9 @@ class TestFriendRequestWasSent extends TestCase
 
     public function testBothUserObjectsExistInClass()
 	{
-		$requestedUser = Factory::create('App\User');
+		$requestedUser = factory(\App\User::class)->create();
 
-		$requesterUser = Factory::create('App\User');
+		$requesterUser = factory(\App\User::class)->create();
 
 		$event = new FriendRequestWasSent($requestedUser, $requesterUser);
 
