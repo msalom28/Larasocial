@@ -10,8 +10,19 @@ class TestEmailRegistrationConfirmation extends TestCase
     public function testHandleReturnsTrueAfterUserWasRegistered()
 	{
 		$user = factory(\App\User::class)->create();
+        $user = factory(\App\User::class)->create();
 
-		$response = event(new UserWasRegistered($user));
+        $mailer = new \Illuminate\Support\Testing\Fakes\MailFake();
+        $this->app->instance('mailer', $mailer);
+
+        event(new UserWasRegistered($user));
+
+        $mailer->assertSent(\App\Mail\Welcome::class, function ($mail) use ($user) {
+            return $mail->hasTo($user->email);
+        });
+
+
+
 
 	}
 }

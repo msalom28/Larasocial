@@ -1,7 +1,5 @@
 <?php
 
-use Laracasts\TestDummy\Factory; 
-
 class RegistrationTest extends \Tests\DuskTestCase
 {
 

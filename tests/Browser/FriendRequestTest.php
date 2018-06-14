@@ -13,7 +13,8 @@ class FriendRequestTest extends \Tests\DuskTestCase
               $browser->loginAs($currentUser)
                 ->visit('/users')
                 ->clickLink('Add friend')
-                ->waitForLink('Requested');
+                ->waitForLink('Requested')
+                ->assertSee('Requested');
         });
 
 
