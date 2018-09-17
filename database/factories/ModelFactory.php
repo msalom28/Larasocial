@@ -18,7 +18,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'firstname' => $faker->firstName,
         'lastname'  => $faker->lastName,
         'email'     => $faker->email,
-        'password'  => 'password',
+        'password'  => bcrypt('password'),
         'gender'	=> 'M',
         'birthday'	=> '12-06-1980',
         'profileimage' => '/images/noavatar.png'
